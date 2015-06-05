@@ -1,0 +1,276 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading;
+using System.IO;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+
+namespace Cameyo.Player
+{
+    /// <summary>
+    /// Interaction logic for MainWindow.xaml
+    /// </summary>
+    public partial class MainWindow : Window
+    {
+        ServerClient Server = ServerSingleton.Instance.ServerClient;
+        List<ServerApp> Apps = new List<ServerApp>();
+
+        public MainWindow()
+        {
+            InitializeComponent();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            // Libs
+            var libs = Server.AccountInfo.libs;
+            var curLib = libs[0];
+
+            // Display libs
+            CategorySplitBtn.Content = curLib.DisplayName;
+            CategorySplitBtn.Items.Clear();
+            foreach (var lib in libs)
+            {
+                var menuItem = new MenuItem() { Tag = lib, Header = lib.DisplayName };
+                menuItem.Click += OnLibSelection;
+                CategorySplitBtn.ContextMenu.Items.Add(menuItem);
+            }
+            SearchBox.TextChanged += SearchBox_TextChanged;
+
+            LoginBtn.Content = Server.Login;
+            if (!string.IsNullOrEmpty(Server.AccountInfo.StorageProviderName))
+                StorageBtn.Content = "Storage: " + Server.AccountInfo.StorageProviderName;
+            else
+                StorageBtn.Content = "Storage: none";
+            OnLibSelect(curLib.Id);   // Select first lib
+            ShowDetails(null);   // Hide the details pane
+            ProdType.Text = Server.License.ProdTypeStr().ToUpper();
+        }
+
+        void OnLibSelect(string libId)
+        {
+            var apps = Server.PkgList(libId);
+            Apps.Clear();
+            lvApps.Items.Clear();
+            NoAppsLbl.Visibility = (apps.Count == 0 ? Visibility.Visible : Visibility.Hidden);
+            foreach (var app in apps)
+            {
+                Apps.Add(app);
+                lvApps.Items.Add(new AppDisplay(app));
+            }
+
+            // Start LoadIconsAsync
+            var threadStart = new ParameterizedThreadStart(LoadIconsAsync);
+            var thread = new Thread(threadStart);
+            var lvAppItems = new List<AppDisplay>();
+            for (int i = 0; i < lvApps.Items.Count; i++)
+                lvAppItems.Add((AppDisplay)(lvApps.Items[i]));
+            thread.Start(lvAppItems);
+        }
+
+        void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var searchTxt = SearchBox.Text;
+            var query = from n in Apps where n.AppID.ToLower().Contains(searchTxt) select n;
+            lvApps.Items.Clear();
+            foreach (var app in query)
+                lvApps.Items.Add(new AppDisplay(app));
+        }
+
+        // Lib Selection
+        void OnLibSelection(object sender, RoutedEventArgs e)
+        {
+            SearchBox.Text = "";
+            MenuItem menuItem = e.OriginalSource as MenuItem;
+            var lib = (ServerLib)(menuItem.Tag);
+            CategorySplitBtn.Content = lib.DisplayName;
+            OnLibSelect(lib.Id);
+        }
+
+        // Storage click
+        void OnStorageClick(object sender, RoutedEventArgs e)
+        {
+            Utils.ShellExec(Server.ServerUrl() + "/storage");
+        }
+
+        // Add app click
+        void OnAddAppClick(object sender, RoutedEventArgs e)
+        {
+            Utils.ShellExec(Server.ServerUrl() + "/add");
+        }
+
+        // Profile settings click
+        void OnProfileSettingsClick(object sender, RoutedEventArgs e)
+        {
+            Utils.ShellExec(Server.ServerUrl() + "/profile");
+        }
+
+        // Logout click
+        private void OnLogoutClick(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("Would you like to log out?", "Logout", MessageBoxButton.YesNo) != MessageBoxResult.Yes)
+                return;
+            Server.DeleteUserCache();
+            Hide();
+            var login = new Login();
+            login.Show();
+            Close();
+        }
+
+        // App selection
+        private void OnAppSelection(object sender, SelectionChangedEventArgs e)
+        {
+            var appDisplay = (AppDisplay)lvApps.SelectedItem;
+            ShowDetails(appDisplay);
+        }
+
+        private void DownloadBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var app = (AppDisplay)lvApps.SelectedItem;
+            var dlg = new Microsoft.Win32.SaveFileDialog();
+            dlg.FileName = app.Name + ".cameyo";            // Default file name
+            dlg.DefaultExt = ".exe";                        // Default file extension
+            dlg.Filter = "Executable files (.exe)|*.exe";   // Filter files by extension
+
+            // Show save file dialog box
+            bool? result = dlg.ShowDialog();
+            if (result == true)
+            {
+                var playing = new Playing((AppDisplay)lvApps.SelectedItem, Playing.AppAction.Download, dlg.FileName);
+                playing.Owner = this;
+                playing.Show();
+            }
+        }
+
+        private void PlayBtn_Click(object sender, RoutedEventArgs e)
+        {
+            borderMain.Opacity = 0.3;
+            var playing = new Playing((AppDisplay)lvApps.SelectedItem, Playing.AppAction.Play, null);
+            playing.Owner = this;
+            playing.ShowDialog();
+            borderMain.Opacity = 1;
+        }
+
+        private void ShowDetailsAsync(object data)
+        {
+            var appDisplay = (AppDisplay)data;
+            var appDetails = Server.AppDetails(appDisplay.PkgId);
+            Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() =>
+            {
+                if (DetailsPkgId.Text.Contains(appDisplay.PkgId))   // Are we still displaying the same app?
+                {
+                    if (appDetails.ShortDesc == null || appDetails.ShortDesc.Trim() == "")
+                        DetailsDescription.Text = "No description available.";
+                    else
+                        DetailsDescription.Text = appDetails.ShortDesc;
+                    PreloaderStop();
+                }
+            }));
+        }
+
+        private void ShowDetails(AppDisplay appDisplay)
+        {
+            if (appDisplay == null)
+            {
+                AppsGrid.RowDefinitions[2].Height = new GridLength(0);
+                return;
+            }
+            AppsGrid.RowDefinitions[2].Height = new GridLength(200);
+
+            // Fill in available info
+            BitmapImage img = new BitmapImage();
+            img.BeginInit();
+            img.UriSource = new Uri(appDisplay.ImagePath);
+            img.EndInit();
+            //DetailsVersion.Text = "v" + appDisplay.Version;
+            DetailsName.Text = appDisplay.Name;
+            DetailsImg.Source = img;
+
+            DetailsPkgId.Text = "#" + appDisplay.PkgId;   // Used also to synchronize between this routine and ShowDetailsAsync
+            DetailsSize.Text = Utils.BytesToStr(appDisplay.Size);
+            DetailsVersion.Text = "v" + appDisplay.Version;
+
+            // Empty async items
+            DetailsDescription.Text = "";
+
+            // Start ShowDetailsAsync
+            PreloaderStart();
+            var threadStart = new ParameterizedThreadStart(ShowDetailsAsync);
+            var thread = new Thread(threadStart);
+            thread.Start(appDisplay);
+        }
+
+        void LoadIconsAsync(object data)
+        {
+            Directory.CreateDirectory(Server.ImgCacheDir());
+            var lvAppItems = (List<AppDisplay>)data;
+            for (int i = 0; i < lvAppItems.Count; i++)
+            {
+                var lvAppItem = lvAppItems[i];
+                if (!lvAppItem.ImageLoaded)
+                {
+                    if (!Server.DownloadIcon(lvAppItem.ImageUrl, lvAppItem.PkgId))
+                        continue;
+                    Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() =>
+                    {
+                        ((AppDisplay)lvAppItems[i]).ImagePath = Server.LocalIconFile(lvAppItem.PkgId);
+                        ((AppDisplay)lvAppItems[i]).ImageLoaded = true;
+                    }));
+                }
+            }
+        }
+
+        // Window resize / drag / close
+        private void DragAreaGrid_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+                DragMove();
+        }
+        private void CloseBtn_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+        private void MaxRestoreBtn_Click(object sender, RoutedEventArgs e)
+        {
+            // Webdings: "1" = Maximize, "2" = Restore
+            string maximizeTxt = "1", restoreTxt = "2";
+            if (MaxRestoreTxt.Text == maximizeTxt)
+            {
+                WindowState = WindowState.Maximized;
+                MaxRestoreTxt.Text = restoreTxt;
+            }
+            else
+            {
+                WindowState = WindowState.Normal;
+                MaxRestoreTxt.Text = maximizeTxt;
+            }
+        }
+        private void MinimizeBtn_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
+
+        private void PreloaderStart()
+        {
+            ellipse.Visibility = System.Windows.Visibility.Visible;
+            var story = this.TryFindResource("PreloaderRotate") as System.Windows.Media.Animation.Storyboard;
+            story.Begin(this, true);
+        }
+
+        private void PreloaderStop()
+        {
+            ellipse.Visibility = System.Windows.Visibility.Hidden;
+            var story = this.TryFindResource("PreloaderRotate") as System.Windows.Media.Animation.Storyboard;
+            story.Stop(this);
+        }
+    }
+}

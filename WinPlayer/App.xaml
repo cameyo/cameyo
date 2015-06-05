@@ -1,0 +1,414 @@
+﻿<Application x:Class="Cameyo.Player.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:WpfControls="clr-namespace:Wpf.Controls"
+             StartupUri="Login.xaml">
+
+    <Application.Resources>
+        <!-- Colors -->
+        <SolidColorBrush x:Key="SelectedItemColor" Color="#3998D6"/>
+        <SolidColorBrush x:Key="WinBorderColor" Color="#FFACACAC"/>
+        <SolidColorBrush x:Key="SoftIconBtnColor" Color="#FFC9C9C9"/>
+        <SolidColorBrush x:Key="TextBtnTextColor" Color="#FFAAAAAA"/>
+        <SolidColorBrush x:Key="VerySoftBackground" Color="#FFFAFAFA" />
+        <SolidColorBrush x:Key="SoftStrokeColorSolid" Color="#E5E5E5"/>
+        <SolidColorBrush x:Key="SoftStrokeColor" Color="#E5E5E5"/>
+
+        <!-- Scrollbar style -->
+        <SolidColorBrush x:Key="StandardBorderBrush" Color="#DCDCDC" />
+        <SolidColorBrush x:Key="StandardBackgroundBrush" Color="#FFF" />
+        <SolidColorBrush x:Key="HoverBorderBrush" Color="#DDD" />
+        <SolidColorBrush x:Key="SelectedBackgroundBrush" Color="Gray" />
+        <SolidColorBrush x:Key="SelectedForegroundBrush" Color="White" />
+        <SolidColorBrush x:Key="DisabledForegroundBrush" Color="#DCDCDC" />
+        <SolidColorBrush x:Key="NormalBrush" Color="#DCDCDC" />
+        <SolidColorBrush x:Key="NormalBorderBrush" Color="#DCDCDC" />
+        <SolidColorBrush x:Key="HorizontalNormalBrush" Color="#DCDCDC" />
+        <SolidColorBrush x:Key="HorizontalNormalBorderBrush" Color="#DCDCDC" />
+        <LinearGradientBrush x:Key="ListBoxBackgroundBrush" StartPoint="0,0" EndPoint="1,0.001">
+            <GradientBrush.GradientStops>
+                <GradientStopCollection>
+                    <GradientStop Color="White" Offset="0.0" />
+                    <GradientStop Color="White" Offset="0.6" />
+                    <GradientStop Color="#DDDDDD" Offset="1.2"/>
+                </GradientStopCollection>
+            </GradientBrush.GradientStops>
+        </LinearGradientBrush>
+        <LinearGradientBrush x:Key="StandardBrush" StartPoint="0,0" EndPoint="0,1">
+            <GradientBrush.GradientStops>
+                <GradientStopCollection>
+                    <GradientStop Color="#FFF" Offset="0.0"/>
+                    <GradientStop Color="#DCDCDC" Offset="1.0"/>
+                </GradientStopCollection>
+            </GradientBrush.GradientStops>
+        </LinearGradientBrush>
+        <SolidColorBrush x:Key="GlyphBrush" Color="Transparent" />
+        <!-- was: #444 -->
+        <LinearGradientBrush x:Key="PressedBrush" StartPoint="0,0" EndPoint="0,1">
+            <GradientBrush.GradientStops>
+                <GradientStopCollection>
+                    <GradientStop Color="#BBB" Offset="0.0"/>
+                    <GradientStop Color="#EEE" Offset="0.1"/>
+                    <GradientStop Color="#EEE" Offset="0.9"/>
+                    <GradientStop Color="#FFF" Offset="1.0"/>
+                </GradientStopCollection>
+            </GradientBrush.GradientStops>
+        </LinearGradientBrush>
+
+        <!-- SrollViewer ScrollBar Repeat Buttons (at each end) -->
+        <Style x:Key="ScrollBarLineButton" TargetType="{x:Type RepeatButton}">
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+            <Setter Property="OverridesDefaultStyle" Value="true"/>
+            <Setter Property="Focusable" Value="false"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type RepeatButton}">
+                        <Border Name="Border" Margin="1" CornerRadius="2" Background="{StaticResource NormalBrush}" BorderBrush="{StaticResource NormalBorderBrush}" BorderThickness="1">
+                            <Path HorizontalAlignment="Center" VerticalAlignment="Center" Fill="{StaticResource GlyphBrush}" Data="{Binding Path=Content, RelativeSource={RelativeSource TemplatedParent}}" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter TargetName="Border" Property="Background" Value="{StaticResource PressedBrush}" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Foreground" Value="{StaticResource DisabledForegroundBrush}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- SrollViewer ScrollBar Repeat Buttons (The part in the middle, not the thumb the long area between the buttons ) -->
+        <Style x:Key="ScrollBarPageButton" TargetType="{x:Type RepeatButton}">
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+            <Setter Property="OverridesDefaultStyle" Value="true"/>
+            <Setter Property="IsTabStop" Value="false"/>
+            <Setter Property="Focusable" Value="false"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type RepeatButton}">
+                        <Border Background="Transparent" />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- ScrollViewer ScrollBar Thumb, that part that can be dragged up/down or left/right Buttons -->
+        <Style x:Key="ScrollBarThumb" TargetType="{x:Type Thumb}">
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+            <Setter Property="OverridesDefaultStyle" Value="true"/>
+            <Setter Property="IsTabStop" Value="false"/>
+            <Setter Property="Focusable" Value="false"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Thumb}">
+                        <Border CornerRadius="2" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1" />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- VerticalScrollBar Template using the previously created Templates -->
+        <ControlTemplate x:Key="VerticalScrollBar" TargetType="{x:Type ScrollBar}">
+            <Grid Width="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition MaxHeight="12"/>
+                    <RowDefinition Height="0.00001*"/>
+                    <RowDefinition MaxHeight="12"/>
+                </Grid.RowDefinitions>
+                <Border Grid.RowSpan="3" CornerRadius="2" Background="#FAFAFA" />
+                <RepeatButton Grid.Row="0" Style="{StaticResource ScrollBarLineButton}" Height="12" Command="ScrollBar.LineUpCommand" Content="M 0 4 L 8 4 L 4 0 Z" />
+                <Track Name="PART_Track" Grid.Row="1" IsDirectionReversed="true">
+                    <Track.DecreaseRepeatButton>
+                        <RepeatButton Style="{StaticResource ScrollBarPageButton}" Command="ScrollBar.PageUpCommand" />
+                    </Track.DecreaseRepeatButton>
+                    <Track.Thumb>
+                        <Thumb Style="{StaticResource ScrollBarThumb}" Margin="1,0,1,0" Background="{StaticResource HorizontalNormalBrush}" BorderBrush="{StaticResource HorizontalNormalBorderBrush}" />
+                    </Track.Thumb>
+                    <Track.IncreaseRepeatButton>
+                        <RepeatButton Style="{StaticResource ScrollBarPageButton}" Command="ScrollBar.PageDownCommand" />
+                    </Track.IncreaseRepeatButton>
+                </Track>
+                <RepeatButton Grid.Row="3" Style="{StaticResource ScrollBarLineButton}" Height="12" Command="ScrollBar.LineDownCommand" Content="M 0 0 L 4 4 L 8 0 Z"/>
+            </Grid>
+        </ControlTemplate>
+
+        <!-- HorizontalScrollBar Template using the previously created Templates -->
+        <ControlTemplate x:Key="HorizontalScrollBar" TargetType="{x:Type ScrollBar}">
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition MaxWidth="18"/>
+                    <ColumnDefinition Width="0.00001*"/>
+                    <ColumnDefinition MaxWidth="18"/>
+                </Grid.ColumnDefinitions>
+                <Border Grid.ColumnSpan="3" CornerRadius="2" Background="#F0F0F0" />
+                <RepeatButton Grid.Column="0" Style="{StaticResource ScrollBarLineButton}" Width="18" Command="ScrollBar.LineLeftCommand" Content="M 4 0 L 4 8 L 0 4 Z" />
+                <Track Name="PART_Track" Grid.Column="1" IsDirectionReversed="False">
+                    <Track.DecreaseRepeatButton>
+                        <RepeatButton Style="{StaticResource ScrollBarPageButton}" Command="ScrollBar.PageLeftCommand" />
+                    </Track.DecreaseRepeatButton>
+                    <Track.Thumb>
+                        <Thumb Style="{StaticResource ScrollBarThumb}" Margin="0,1,0,1" Background="{StaticResource NormalBrush}" BorderBrush="{StaticResource NormalBorderBrush}" />
+                    </Track.Thumb>
+                    <Track.IncreaseRepeatButton>
+                        <RepeatButton Style="{StaticResource ScrollBarPageButton}" Command="ScrollBar.PageRightCommand" />
+                    </Track.IncreaseRepeatButton>
+                </Track>
+                <RepeatButton Grid.Column="3" Style="{StaticResource ScrollBarLineButton}" Width="18" Command="ScrollBar.LineRightCommand" Content="M 0 0 L 4 4 L 0 8 Z"/>
+            </Grid>
+        </ControlTemplate>
+
+        <!-- Style for overall ScrollBar -->
+        <Style x:Key="{x:Type ScrollBar}" TargetType="{x:Type ScrollBar}">
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+            <Setter Property="OverridesDefaultStyle" Value="true"/>
+            <Style.Triggers>
+                <Trigger Property="Orientation" Value="Horizontal">
+                    <Setter Property="Width" Value="Auto"/>
+                    <Setter Property="Height" Value="18" />
+                    <Setter Property="Template"
+                        Value="{StaticResource HorizontalScrollBar}" />
+                </Trigger>
+                <Trigger Property="Orientation" Value="Vertical">
+                    <Setter Property="Width" Value="18"/>
+                    <Setter Property="Height" Value="Auto" />
+                    <Setter Property="Template"
+                        Value="{StaticResource VerticalScrollBar}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Style for overall ScrollViewer -->
+        <Style x:Key="FavsScrollViewer" TargetType="{x:Type ScrollViewer}">
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ScrollViewer}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <ScrollContentPresenter Grid.Column="1"/>
+                            <ScrollBar Name="PART_VerticalScrollBar" Value="{TemplateBinding VerticalOffset}" Maximum="{TemplateBinding ScrollableHeight}" ViewportSize="{TemplateBinding ViewportHeight}" Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}"/>
+                            <ScrollBar Name="PART_HorizontalScrollBar" Orientation="Horizontal" Grid.Row="1" Grid.Column="1" Value="{TemplateBinding HorizontalOffset}" Maximum="{TemplateBinding ScrollableWidth}" ViewportSize="{TemplateBinding ViewportWidth}" Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- IconBtn style -->
+        <Style x:Key="IconBtn" TargetType="{x:Type Button}">
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Name="border" Background="{TemplateBinding Background}" Opacity="0.6" RenderTransformOrigin="0.5,0.5">
+                            <ContentPresenter Name="content" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              Margin="{TemplateBinding Padding}" RecognizesAccessKey="True"
+                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Opacity" Value="1" />
+                                <Setter Property="Cursor" Value="Hand" />
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="True">
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- TextBlockBtn style -->
+        <Style x:Key="TextBlockBtn" TargetType="{x:Type TextBlock}">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="Gray"/>
+        </Style>
+
+        <!-- FlatBtn style -->
+        <Style x:Key="FlatBtn" TargetType="{x:Type Button}">
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Width" Value="100" />
+            <Setter Property="Height" Value="28" />
+            <Setter Property="Margin" Value="10, 5, 10, 5" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Name="border" Background="{StaticResource SelectedItemColor}">
+                            <ContentPresenter Name="content" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              Margin="{TemplateBinding Padding}" RecognizesAccessKey="True"
+                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Opacity" Value="0.6" />
+                                <Setter Property="Cursor" Value="Hand" />
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="True">
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- "Clock" icon -->
+        <DrawingBrush x:Key="ClockDrawingBrush" Stretch="Uniform">
+            <DrawingBrush.Drawing>
+                <DrawingGroup>
+                    <DrawingGroup.Children>
+                        <GeometryDrawing Brush="#FF0D0D0D" Geometry="F1 M 298.229,450.161C 294.14,451.183 289.969,452.088 285.828,452.849C 275,454.859 267.844,465.271 269.849,476.104C 270.833,481.437 273.864,485.875 277.973,488.776C 282.208,491.755 287.599,493.099 293.093,492.077C 298.027,491.167 302.995,490.088 307.869,488.869C 318.563,486.208 325.073,475.38 322.407,464.697C 319.745,454.005 308.927,447.5 298.229,450.161 Z "/>
+                        <GeometryDrawing Brush="#FF0D0D0D" Geometry="F1 M 445.745,182.781C 447.14,186.995 449.812,190.432 453.183,192.807C 458.177,196.328 464.713,197.511 470.953,195.448C 481.412,191.973 487.083,180.697 483.62,170.24C 482.041,165.473 480.292,160.692 478.432,156.041C 474.339,145.812 462.735,140.828 452.5,144.921C 442.276,149.011 437.297,160.62 441.391,170.849C 442.953,174.765 444.421,178.781 445.745,182.781 Z "/>
+                        <GeometryDrawing Brush="#FF0D0D0D" Geometry="F1 M 363.052,421.683C 359.531,424.005 355.901,426.249 352.24,428.359C 342.693,433.864 339.427,446.068 344.932,455.609C 346.427,458.203 348.416,460.323 350.708,461.948C 356.86,466.276 365.219,466.921 372.177,462.916C 376.527,460.407 380.855,457.74 385.041,454.968C 394.229,448.896 396.76,436.52 390.688,427.328C 384.615,418.131 372.245,415.604 363.052,421.683 Z "/>
+                        <GeometryDrawing Brush="#FF0D0D0D" Geometry="F1 M 496.021,238.5C 495.588,227.489 486.317,218.916 475.303,219.349C 464.303,219.781 455.729,229.057 456.156,240.063C 456.323,244.271 456.369,248.541 456.271,252.744C 456.115,259.651 459.489,265.807 464.74,269.505C 467.864,271.708 471.661,273.041 475.776,273.135C 486.787,273.375 495.907,264.645 496.151,253.631C 496.26,248.604 496.219,243.516 496.021,238.5 Z "/>
+                        <GeometryDrawing Brush="#FF0D0D0D" Geometry="F1 M 442.489,369.203C 433.661,362.577 421.172,364.38 414.557,373.192C 412.027,376.568 409.36,379.901 406.631,383.109C 399.495,391.495 400.505,404.088 408.885,411.229C 409.364,411.635 409.849,412.005 410.349,412.353C 418.688,418.235 430.265,416.88 437.005,408.973C 440.265,405.145 443.448,401.161 446.473,397.131C 453.083,388.317 451.297,375.817 442.489,369.203 Z "/>
+                        <DrawingGroup ClipGeometry="F1 M 0,-2.02656e-005L 497.28,-2.02656e-005L 497.28,493.333L 0,493.333L 0,-2.02656e-005 Z ">
+                            <DrawingGroup.Children>
+                                <GeometryDrawing Brush="#FF0D0D0D" Geometry="F1 M 471.812,297.093C 461.303,293.797 450.109,299.651 446.812,310.161C 445.552,314.177 444.156,318.213 442.645,322.167C 439.333,330.864 442.505,340.437 449.781,345.568C 451.115,346.505 452.588,347.297 454.183,347.901C 464.473,351.828 476,346.667 479.921,336.369C 481.713,331.672 483.375,326.869 484.88,322.093C 488.172,311.583 482.323,300.391 471.812,297.093 Z "/>
+                                <GeometryDrawing Brush="#FF0D0D0D" Geometry="F1 M 211.197,453.031C 193.364,449.828 176.255,444.375 160.031,436.771C 159.839,436.667 159.667,436.552 159.469,436.464C 155.645,434.661 151.828,432.735 148.073,430.687C 141.287,426.953 134.661,422.817 128.224,418.287C 34.3907,352.183 11.828,222.063 77.932,128.229C 92.3067,107.833 109.703,90.812 129.093,77.328C 129.333,77.1614 129.573,76.9947 129.812,76.828C 198.151,29.74 290.943,26.568 363.505,74.9533L 347.921,97.4733C 343.588,103.74 346.251,108.307 353.839,107.625L 421.536,101.563C 429.131,100.88 433.672,94.312 431.631,86.9787L 413.448,21.4787C 411.416,14.1347 406.203,13.2547 401.864,19.52L 386.245,42.0933C 332.995,6.34935 269.125,-7.28664 205.729,3.70799C 199.344,4.81199 193.047,6.16667 186.839,7.73997C 186.792,7.74934 186.749,7.75468 186.713,7.76536C 186.473,7.82267 186.229,7.90135 185.995,7.96403C 131.328,22.0054 83.636,53.8853 49.5987,99.38C 49.312,99.7187 49.016,100.052 48.7453,100.421C 47.6147,101.948 46.4893,103.505 45.3907,105.063C 43.5933,107.62 41.8173,110.24 40.1253,112.859C 39.912,113.177 39.7493,113.495 39.5627,113.817C 11.4787,157.339 -2.06799,207.651 0.254659,258.875C 0.26001,259.041 0.250671,259.213 0.254659,259.385C 0.478658,264.391 0.874674,269.464 1.416,274.459C 1.44267,274.781 1.51599,275.083 1.57332,275.407C 2.12533,280.427 2.828,285.464 3.70266,290.495C 12.604,341.839 36.8227,388.047 73.12,424C 73.2027,424.083 73.292,424.172 73.4693,424.344C 83.2187,433.959 93.828,442.859 105.245,450.901C 135.136,471.964 168.416,485.88 204.156,492.297C 215.005,494.244 225.364,487.025 227.307,476.187C 229.255,465.339 222.041,454.968 211.197,453.031 Z "/>
+                            </DrawingGroup.Children>
+                        </DrawingGroup>
+                        <GeometryDrawing Brush="#FF0D0D0D" Geometry="F1 M 235.864,86.9427C 226.943,86.9427 219.719,94.1773 219.719,103.083L 219.719,263.88L 366.781,339.901C 369.145,341.131 371.683,341.708 374.172,341.708C 380.016,341.708 385.656,338.525 388.527,332.973C 392.615,325.057 389.521,315.323 381.599,311.235L 251.989,244.229L 251.989,103.083C 251.989,94.1773 244.776,86.9427 235.864,86.9427 Z "/>
+                    </DrawingGroup.Children>
+                </DrawingGroup>
+            </DrawingBrush.Drawing>
+        </DrawingBrush>
+
+        <!-- SplitButton -->
+        <Style TargetType="{x:Type WpfControls:SplitButton}">
+            <Setter Property="Foreground" Value="{StaticResource SelectedItemColor}"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="LeftDrawingBrush" Value="{StaticResource ClockDrawingBrush}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type WpfControls:SplitButton}">
+                        <Border x:Name="border" 
+							HorizontalAlignment="Stretch" 
+							VerticalAlignment="Stretch"
+							BorderBrush="{TemplateBinding BorderBrush}"
+							Background="{TemplateBinding Background}"
+							BorderThickness="{TemplateBinding BorderThickness}"
+							SnapsToDevicePixels="True">
+
+                            <Grid Background="Transparent" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                                <Button x:Name="PART_Btn" Margin="1,1,2,1" Style="{StaticResource IconBtn}" Foreground="{TemplateBinding Foreground}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <!--Rectangle Fill="{TemplateBinding LeftDrawingBrush}" /-->
+                                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                          Margin="{TemplateBinding Padding}"
+                                                          RecognizesAccessKey="True" />
+                                        <Path x:Name="PART_Arrow" Data="M0,0L3,3 6,0z" Margin="5,1,0,0" Stroke="{TemplateBinding Foreground}" Fill="{TemplateBinding Foreground}" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </Button>
+                            </Grid>
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <!--Setter TargetName="border" Property="Background" Value="{StaticResource VerySoftBackground}" /-->
+                                <Setter Property="Cursor" Value="Hand" />
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="True">
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Cameyo logo -->
+        <DrawingBrush x:Key="CameyoLogo1" Stretch="Uniform">
+            <DrawingBrush.Drawing>
+                <DrawingGroup>
+                    <DrawingGroup.Children>
+                        <GeometryDrawing Brush="#FF231F20" Geometry="F1 M 4.4375,2.0625C 2.5625,2.0625 1.64583,2.5 1.64583,3.375L 1.64583,9.0625C 1.64583,10.0625 2.66667,10.5625 4.70833,10.5625L 10.8542,10.5625C 11.25,10.5625 11.4583,10.7917 11.4583,11.25C 11.4583,11.7083 11.25,11.9167 10.8542,11.9167L 4.5,11.9167C 1.5,11.9167 0,11 0,9.125L 0,3.375C 0,1.625 1.45833,0.729167 4.39583,0.729167L 10.8542,0.729167C 11.25,0.729167 11.4583,0.958333 11.4583,1.39583C 11.4583,1.85417 11.25,2.0625 10.8542,2.0625L 4.4375,2.0625 Z "/>
+                        <GeometryDrawing Brush="#FF231F20" Geometry="F1 M 17.3285,7.52083L 24.0993,7.52083L 20.7452,2.16667L 17.3285,7.52083 Z M 25.016,8.875L 16.4327,8.875L 14.5785,11.6458C 14.4952,11.7708 14.391,11.8542 14.266,11.9167C 14.141,11.9583 14.0368,12 13.9535,12C 13.7243,12 13.5368,11.9167 13.3702,11.7917C 13.2035,11.6458 13.1202,11.4583 13.1202,11.25C 13.1202,11.125 13.141,10.9792 13.2243,10.8333L 19.641,1.20833C 19.766,1.02083 19.9327,0.875 20.1202,0.770833C 20.3077,0.6875 20.516,0.625 20.7243,0.625C 20.9118,0.625 21.0993,0.6875 21.2868,0.770833C 21.4743,0.875 21.641,1.02083 21.766,1.20833L 28.2243,10.8125C 28.266,10.8958 28.3077,10.9583 28.3285,11.0417C 28.3493,11.125 28.3702,11.2083 28.3702,11.25C 28.3702,11.4792 28.2868,11.6458 28.1202,11.7708C 27.9535,11.8958 27.7452,11.9583 27.5368,11.9583C 27.4118,11.9583 27.3077,11.9167 27.1827,11.875C 27.0577,11.8333 26.9327,11.7292 26.8493,11.6042L 25.016,8.875 Z "/>
+                        <GeometryDrawing Brush="#FF231F20" Geometry="F1 M 48.7587,11.2917C 48.7587,11.7708 48.467,12 47.9045,12C 47.3628,12 47.1128,11.7708 47.1128,11.2917L 47.1128,3.125L 40.8837,11.4167C 40.5712,11.8125 40.1962,12 39.7378,12C 39.4878,12 39.2587,11.9375 39.0712,11.8542C 38.8837,11.7708 38.717,11.625 38.5712,11.4167L 32.217,3.16667L 32.217,11.2917C 32.217,11.7708 31.9462,12 31.4253,12C 30.8628,12 30.592,11.7708 30.592,11.2917L 30.592,1.60417C 30.592,0.979167 30.8837,0.645833 31.5087,0.645833C 31.9462,0.645833 32.3212,0.854167 32.6128,1.25L 39.7587,10.3542L 46.7587,1.14583C 46.8837,1 47.0295,0.875 47.217,0.791667C 47.3837,0.708333 47.5712,0.645833 47.7795,0.645833C 48.4253,0.645833 48.7587,0.979167 48.7587,1.64583L 48.7587,11.2917 Z "/>
+                        <GeometryDrawing Brush="#FF231F20" Geometry="F1 M 53.5707,5.6875L 63.4248,5.6875C 63.7998,5.6875 63.9873,5.91667 63.9873,6.375C 63.9873,6.83333 63.7998,7.0625 63.4248,7.0625L 53.5707,7.0625L 53.5707,9.14583C 53.5707,10.1042 54.4665,10.5625 56.2998,10.5625L 63.4248,10.5625C 63.8207,10.5625 64.029,10.7917 64.029,11.25C 64.029,11.7083 63.8207,11.9167 63.4248,11.9167L 56.2373,11.9167C 53.3415,11.9167 51.904,11.0208 51.904,9.22917L 51.904,3.5C 51.904,2.58333 52.2582,1.89583 53.0082,1.4375C 53.7582,0.979167 54.8832,0.729167 56.404,0.729167L 58.3415,0.729167C 58.7165,0.729167 58.9248,0.958333 58.9248,1.41667C 58.9248,1.85417 58.7165,2.0625 58.3415,2.0625L 57.029,2.0625C 54.7165,2.0625 53.5707,2.54167 53.5707,3.5L 53.5707,5.6875 Z "/>
+                        <GeometryDrawing Brush="#FF231F20" Geometry="F1 M 70.1158,5.875L 75.0533,0.916667C 75.1992,0.770833 75.3867,0.6875 75.6158,0.6875C 75.8242,0.6875 76.0117,0.770833 76.1992,0.916667C 76.3658,1.0625 76.47,1.22917 76.47,1.41667C 76.47,1.58333 76.3867,1.72917 76.2617,1.875L 70.9492,7.1875L 70.9283,11.3125C 70.8867,11.7708 70.6158,12 70.1158,12C 69.5533,12 69.2825,11.7708 69.2825,11.2917L 69.2825,7.1875L 63.97,1.875C 63.8242,1.72917 63.7617,1.58333 63.7617,1.41667C 63.7617,1.22917 63.845,1.0625 64.0117,0.916667C 64.1783,0.791667 64.3658,0.708333 64.595,0.708333C 64.6783,0.708333 64.7825,0.729167 64.8867,0.75C 64.97,0.770833 65.0533,0.833333 65.1367,0.916667L 70.1158,5.875 Z "/>
+                        <GeometryDrawing Brush="#FF231F20" Geometry="F1 M 89.0197,3.75C 89.0197,2.625 88.103,2.0625 86.2905,2.0625L 82.2905,2.0625C 80.353,2.0625 79.3947,2.625 79.3947,3.75L 79.3947,8.97917C 79.3947,10.0417 80.353,10.5625 82.2905,10.5625L 86.2072,10.5625C 88.0822,10.5625 89.0197,10.0417 89.0197,8.97917L 89.0197,3.75 Z M 90.6863,8.97917C 90.6863,10.9375 89.0405,11.9167 85.7488,11.9167L 82.6447,11.9167C 79.353,11.9167 77.728,10.9583 77.728,9.02083L 77.728,3.66667C 77.728,1.70833 79.353,0.729167 82.6447,0.729167L 85.7488,0.729167C 89.0405,0.729167 90.6863,1.70833 90.6863,3.66667L 90.6863,8.97917 Z "/>
+                    </DrawingGroup.Children>
+                </DrawingGroup>
+            </DrawingBrush.Drawing>
+        </DrawingBrush>
+
+        <!-- "Apps" icon -->
+        <DrawingBrush x:Key="AppsVector" Stretch="Uniform">
+            <DrawingBrush.Drawing>
+                <DrawingGroup>
+                    <DrawingGroup.Children>
+                        <GeometryDrawing Brush="#FF000000" Geometry="F1 M 9.644,17.332L 17.3333,17.332L 17.3333,9.64267L 9.644,9.64267M 11.1293,11.128L 15.848,11.128L 15.848,15.8467L 11.1293,15.8467L 11.1293,11.128 Z "/>
+                        <GeometryDrawing Brush="#FF000000" Geometry="F1 M 0,17.332L 7.68933,17.332L 7.68933,9.64267L 0,9.64267M 1.48533,11.128L 6.204,11.128L 6.204,15.8467L 1.48533,15.8467L 1.48533,11.128 Z "/>
+                        <GeometryDrawing Brush="#FF000000" Geometry="F1 M 9.644,7.688L 17.3333,7.688L 17.3333,0L 9.644,0M 11.1293,1.48534L 15.848,1.48534L 15.848,6.20267L 11.1293,6.20267L 11.1293,1.48534 Z "/>
+                        <GeometryDrawing Brush="#FF000000" Geometry="F1 M 0,7.688L 7.68933,7.688L 7.68933,0L 0,0M 1.48533,1.48534L 6.204,1.48534L 6.204,6.20267L 1.48533,6.20267L 1.48533,1.48534 Z "/>
+                    </DrawingGroup.Children>
+                </DrawingGroup>
+            </DrawingBrush.Drawing>
+        </DrawingBrush>
+
+        <!-- "Add" icon -->
+        <DrawingBrush x:Key="AddDrawingBrush" Stretch="Uniform">
+            <DrawingBrush.Drawing>
+                <DrawingGroup>
+                    <DrawingGroup.Children>
+                        <GeometryDrawing Brush="{StaticResource SelectedItemColor}" Geometry="F1 M 12,-6.3586e-007L 9.33333,-6.3586e-007L 9.33333,9.33333L 1.58946e-006,9.33333L 1.58946e-006,12L 9.33333,12L 9.33333,21.3333L 12,21.3333L 12,12L 21.3333,12L 21.3333,9.33333L 12,9.33333L 12,-6.3586e-007 Z "/>
+                    </DrawingGroup.Children>
+                </DrawingGroup>
+            </DrawingBrush.Drawing>
+        </DrawingBrush>
+
+        <!-- "Logout" icon -->
+        <DrawingBrush x:Key="LogoutDrawingBrush" Stretch="Uniform">
+            <DrawingBrush.Drawing>
+                <DrawingGroup>
+                    <DrawingGroup.Children>
+                        <DrawingGroup ClipGeometry="F1 M 0,100L 104,100L 104,0.0239868L 0,0.0239868L 0,100 Z ">
+                            <DrawingGroup.Children>
+                                <GeometryDrawing Brush="{StaticResource TextBtnTextColor}" Geometry="F1 M 65.2453,87.744L 12.12,87.744L 12.12,12.124L 65.2453,12.124C 66.4267,12.124 67.38,11.1667 67.38,9.98932L 67.38,2.13467C 67.38,0.957314 66.4267,0 65.2453,0L 2.136,0C 0.958667,0 0,0.957314 0,2.13467L 0,97.728C 0,98.9053 0.958667,99.864 2.136,99.864L 65.2453,99.864C 66.4267,99.864 67.38,98.9053 67.38,97.728L 67.38,89.8747C 67.38,88.6973 66.4267,87.744 65.2453,87.744 Z "/>
+                            </DrawingGroup.Children>
+                        </DrawingGroup>
+                        <GeometryDrawing Brush="{StaticResource TextBtnTextColor}" Geometry="F1 M 102.781,48.4267L 74.0627,19.708C 73.26,18.9053 71.8493,18.9107 71.0467,19.708L 64.2347,26.5253C 63.4013,27.3587 63.4013,28.708 64.2347,29.5413L 77.2027,42.5147L 21.052,42.5147C 19.8747,42.5147 18.9213,43.468 18.9213,44.6453L 18.9213,55.2187C 18.9213,56.3947 19.8747,57.3533 21.052,57.3533L 77.2027,57.3533L 64.2347,70.3227C 63.4013,71.156 63.4013,72.5093 64.2347,73.3427L 71.0467,80.156C 71.448,80.5573 71.9893,80.7813 72.5573,80.7813C 73.12,80.7813 73.6613,80.5573 74.0627,80.156L 102.781,51.4427C 103.183,51.0413 103.407,50.5 103.407,49.932C 103.407,49.3693 103.183,48.8227 102.781,48.4267 Z "/>
+                    </DrawingGroup.Children>
+                </DrawingGroup>
+            </DrawingBrush.Drawing>
+        </DrawingBrush>
+
+        <!-- "Storage" icon -->
+        <DrawingBrush x:Key="StorageDrawingBrush" Stretch="Uniform">
+            <DrawingBrush.Drawing>
+                <DrawingGroup>
+                    <DrawingGroup.Children>
+                        <GeometryDrawing Brush="{StaticResource TextBtnTextColor}" Geometry="F1 M 7.83236,12.2803C 5.33036,12.2803 2.71262,11.7542 1.16569,10.6931C 1.16569,10.973 1.16569,12.0017 1.16569,12.2803C 1.16569,13.7438 4.15076,14.9301 7.83236,14.9301C 11.5146,14.9301 14.499,13.7438 14.499,12.2803C 14.499,12.0017 14.499,10.973 14.486,10.6397C 12.9521,11.7542 10.3337,12.2803 7.83236,12.2803 Z "/>
+                        <GeometryDrawing Brush="{StaticResource TextBtnTextColor}" Geometry="F1 M 1.16569,6.78939C 1.16569,7.12539 1.16569,8.04592 1.16569,8.31018C 1.16569,9.77379 4.15076,10.9587 7.83236,10.9587C 11.5146,10.9587 14.499,9.77379 14.499,8.31018C 14.499,8.04592 14.499,7.12539 14.499,6.78939C 12.9678,7.91179 10.3414,8.44312 7.83236,8.44312C 5.32329,8.44312 2.69689,7.91179 1.16569,6.78939 Z "/>
+                        <GeometryDrawing Brush="{StaticResource TextBtnTextColor}" Geometry="F1 M 7.83236,0.23472C 4.15076,0.23472 1.16569,1.41965 1.16569,2.88312C 1.16569,3.16179 1.16569,4.19179 1.16569,4.47165C 1.16569,5.93259 4.15076,7.11885 7.83236,7.11885C 11.5146,7.11885 14.499,5.93259 14.499,4.47165C 14.499,4.19179 14.499,3.16179 14.499,2.88312C 14.499,1.41965 11.5146,0.23472 7.83236,0.23472 Z "/>
+                    </DrawingGroup.Children>
+                </DrawingGroup>
+            </DrawingBrush.Drawing>
+        </DrawingBrush>
+
+        <!-- MenuItem panel without the "checkbox/icon" area -->
+        <ItemsPanelTemplate x:Key="MenuItemPanelTemplate">
+            <StackPanel Margin="-20,0,0,0" Background="White"/>
+        </ItemsPanelTemplate>
+    </Application.Resources>
+
+</Application>
