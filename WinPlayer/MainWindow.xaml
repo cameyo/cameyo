@@ -98,7 +98,7 @@
                         </Grid>
 
                         <!-- Login dropdown -->
-                        <Grid Width="Auto" Height="19" Margin="20,2,0,0">
+                        <Grid Width="Auto" Height="19" Margin="20,2,2,0">
                             <Rectangle RadiusX="2" RadiusY="2" Fill="{StaticResource SelectedItemColor}"/>
                             <TextBlock x:Name="ProdType" Text="" Foreground="White" FontFamily="Segoe UI" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,0,5,1"/>
                         </Grid>

@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using System.Windows.Media.Animation;
+using System.Net;
 
 namespace Cameyo.Player
 {
@@ -51,11 +52,25 @@ namespace Cameyo.Player
             {
                 success = Server.Auth(credentials.Login, credentials.Password, true);
             }
-            catch
+            catch (Exception ex)
             {
+                success = false;
                 error = true;
+                if (ex is WebException)
+                {
+                    var wex = (WebException)ex;
+                    if (wex.Status == WebExceptionStatus.ProtocolError)
+                    {
+                        var response = wex.Response as HttpWebResponse;
+                        if (response != null)
+                        {
+                            if (response.StatusCode == HttpStatusCode.Forbidden)
+                                error = false;   // No error; incorrect login
+                        }
+                    }
+                }
             }
-
+            
             // License activation
             if (!error && success)
             {

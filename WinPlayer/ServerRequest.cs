@@ -165,8 +165,15 @@ namespace Cameyo.Player
             var passwordEncrypted = File.ReadAllText(PasswordFile);
             string description;
 
-            login = DPAPI.Decrypt(loginEncrypted, "=EQW*", out description);
-            password = DPAPI.Decrypt(passwordEncrypted, "M#$!", out description);
+            try
+            {
+                login = DPAPI.Decrypt(loginEncrypted, "=EQW*", out description);
+                password = DPAPI.Decrypt(passwordEncrypted, "M#$!", out description);
+            }
+            catch
+            {
+                return false;
+            }
 
             return (!string.IsNullOrEmpty(login) && !string.IsNullOrEmpty(password));
         }

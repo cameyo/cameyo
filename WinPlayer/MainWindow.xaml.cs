@@ -187,13 +187,26 @@ namespace Cameyo.Player
             AppsGrid.RowDefinitions[2].Height = new GridLength(200);
 
             // Fill in available info
-            BitmapImage img = new BitmapImage();
-            img.BeginInit();
-            img.UriSource = new Uri(appDisplay.ImagePath);
-            img.EndInit();
+            if (File.Exists(appDisplay.ImagePath))
+            {
+                try
+                {
+                    BitmapImage img = new BitmapImage();
+                    img.BeginInit();
+                    img.UriSource = new Uri(appDisplay.ImagePath);
+                    img.EndInit();
+                    DetailsImg.Source = img;
+                }
+                catch 
+                {
+                    DetailsImg.Source = null;
+                }
+            }
+            else
+                DetailsImg.Source = null;
+
             //DetailsVersion.Text = "v" + appDisplay.Version;
             DetailsName.Text = appDisplay.Name;
-            DetailsImg.Source = img;
 
             DetailsPkgId.Text = "#" + appDisplay.PkgId;   // Used also to synchronize between this routine and ShowDetailsAsync
             DetailsSize.Text = Utils.BytesToStr(appDisplay.Size);
