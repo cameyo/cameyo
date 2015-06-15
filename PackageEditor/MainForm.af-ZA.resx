@@ -1,0 +1,357 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Pakketredigeerder</value>
+  </data>
+  <data name="chineseMenuItem.Text" xml:space="preserve">
+    <value>Chinees</value>
+  </data>
+  <data name="chkCleanAsk.Text" xml:space="preserve">
+    <value>Bevestig voor verwysering</value>
+  </data>
+  <data name="chkCleanDoneDialog.Text" xml:space="preserve">
+    <value>Wys dialoog as opruimingsproses klaar is.</value>
+  </data>
+  <data name="closeToolStripMenuItem.Text" xml:space="preserve">
+    <value>Maak &amp;toe</value>
+  </data>
+  <data name="columnFileName.Text" xml:space="preserve">
+    <value>Lêer</value>
+  </data>
+  <data name="columnFileSize.Text" xml:space="preserve">
+    <value>Grootte</value>
+  </data>
+  <data name="columnFileType.Text" xml:space="preserve">
+    <value>Tipe</value>
+  </data>
+  <data name="columnHeader3.Text" xml:space="preserve">
+    <value>Lêer</value>
+  </data>
+  <data name="columnHeader4.Text" xml:space="preserve">
+    <value>Waarde</value>
+  </data>
+  <data name="columnHeader5.Text" xml:space="preserve">
+    <value>Tipe</value>
+  </data>
+  <data name="deleteToolStripMenuItem.Text" xml:space="preserve">
+    <value>Verwyder</value>
+  </data>
+  <data name="dropboxLabel.Text" xml:space="preserve">
+    <value>Publiseer na</value>
+  </data>
+  <data name="englishMenuItem.Text" xml:space="preserve">
+    <value>Engels</value>
+  </data>
+  <data name="exitToolStripMenuItem.Text" xml:space="preserve">
+    <value>Gaan &amp;uit</value>
+  </data>
+  <data name="exportXmlToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Eksporteer as ZeroInstaller xml</value>
+  </data>
+  <data name="fileContextMenuDelete.Text" xml:space="preserve">
+    <value>Verwyder</value>
+  </data>
+  <data name="fileContextMenuProperties.Text" xml:space="preserve">
+    <value>Eienska&amp;ppe</value>
+  </data>
+  <data name="fileToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Lêer</value>
+  </data>
+  <data name="frenchMenuItem.Text" xml:space="preserve">
+    <value>Frans</value>
+  </data>
+  <data name="fsAddBtn.Text" xml:space="preserve">
+    <value>Voeg by</value>
+  </data>
+  <data name="fsAddBtn.ToolTipText" xml:space="preserve">
+    <value>Voeg lêer by</value>
+  </data>
+  <data name="fsAddDirBtn.ToolTipText" xml:space="preserve">
+    <value>Voeg gids by</value>
+  </data>
+  <data name="fsAddEmptyDirBtn.ToolTipText" xml:space="preserve">
+    <value>Voeg leë gids by</value>
+  </data>
+  <data name="fsFolderInfoIsolationLbl.Text" xml:space="preserve">
+    <value>Gidsisolasie:</value>
+  </data>
+  <data name="fsRemoveBtn.Text" xml:space="preserve">
+    <value>Verwyder</value>
+  </data>
+  <data name="fsRemoveBtn.ToolTipText" xml:space="preserve">
+    <value>Verwyder lêer of gids</value>
+  </data>
+  <data name="fsSaveFileAsBtn.ToolTipText" xml:space="preserve">
+    <value>Stoor lêer as</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Basiese</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Ekstras</value>
+  </data>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>Integrasie</value>
+  </data>
+  <data name="groupBox5.Text" xml:space="preserve">
+    <value>Gevorderd</value>
+  </data>
+  <data name="groupBox6.Text" xml:space="preserve">
+    <value>Verstryking</value>
+  </data>
+  <data name="groupBox7.Text" xml:space="preserve">
+    <value>Verwyder oorblyfsels as pakket toemaak</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Pakket ID:</value>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>Lêerweergawe:</value>
+  </data>
+  <data name="label11.Text" xml:space="preserve">
+    <value>Onlangs gewysig</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Isolasie:</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Isolasiewyse:</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Databerging:</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>voorbeeld: "iexplore.exe;mypakket.exe"</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>Virtualisasie:</value>
+  </data>
+  <data name="langToolStripMenuItem.Text" xml:space="preserve">
+    <value>T&amp;aal</value>
+  </data>
+  <data name="lblAutoLaunch.Text" xml:space="preserve">
+    <value>Beginproses:</value>
+  </data>
+  <data name="lnkAutoLaunch.Text" xml:space="preserve">
+    <value>Verander</value>
+  </data>
+  <data name="lnkChangeDataStorage.Text" xml:space="preserve">
+    <value>Verander</value>
+  </data>
+  <data name="lnkChangeIcon.Text" xml:space="preserve">
+    <value>Verander ikoon</value>
+  </data>
+  <data name="lnkCustomEvents.Text" xml:space="preserve">
+    <value>Verander ikoon</value>
+  </data>
+  <data name="lnkPackageEdit.Text" xml:space="preserve">
+    <value>Eie gebeurtenisse</value>
+  </data>
+  <data name="newToolStripMenuItem.Text" xml:space="preserve">
+    <value>Maak bestaande pakket oop</value>
+  </data>
+  <data name="openToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Nuwe leë pakket</value>
+  </data>
+  <data name="propertyDataStorage.Text" xml:space="preserve">
+    <value>Maak virtuele pakket &amp;oop</value>
+  </data>
+  <data name="propertyExpiration.Text" xml:space="preserve">
+    <value>Vervaldatum:</value>
+  </data>
+  <data name="propertyIsolationDataMode.Text" xml:space="preserve">
+    <value>Datawyse: pakket kan slegs lêers stoor in Documents, Desktop en netwerkskywe</value>
+  </data>
+  <data name="propertyIsolationIsolated.Text" xml:space="preserve">
+    <value>Geïsoleerd: pakket bestaan slegs in die sandboks</value>
+  </data>
+  <data name="propertyIsolationMerge.Text" xml:space="preserve">
+    <value>Volle toegang: pakket kan veranderinge aan die stelsel en Windows Register aanbring</value>
+  </data>
+  <data name="propertyVirtModeDisk.Text" xml:space="preserve">
+    <value>Skyfwyse: virtuele pakket ekstraheer leêrs na skyf soos benodig; vinniger vir pakkette wat gereeld gebruik word</value>
+  </data>
+  <data name="propertyVirtModeRam.Text" xml:space="preserve">
+    <value>LSG-wyse: virtuele pakket hardloop vanuit leesgeheue</value>
+  </data>
+  <data name="rdbCleanAll.Text" xml:space="preserve">
+    <value>Verwyder alle pakketdata as pakket toemaak (data en instellings sal VERLORE wees)</value>
+  </data>
+  <data name="rdbCleanNone.Text" xml:space="preserve">
+    <value>Geen opruiming, los pakket gereed om weer te hardloop (vinniger)</value>
+  </data>
+  <data name="rdbCleanRegOnly.Text" xml:space="preserve">
+    <value>Laat geen Windows Registeroorblyfsels agter (Windows Registerveranderinge sal in 'n lêer gestoor word)</value>
+  </data>
+  <data name="rdbIntegrateNone.Text" xml:space="preserve">
+    <value>Geen integrasie</value>
+  </data>
+  <data name="rdbIntegrateStandard.Text" xml:space="preserve">
+    <value>Herskep kortpaaie en lêerassosiasies</value>
+  </data>
+  <data name="rdbIntegrateVirtual.Text" xml:space="preserve">
+    <value>Virtuele integrasie: voeg virtuele laag in Windows Explorer</value>
+  </data>
+  <data name="regEditBtn.ToolTipText" xml:space="preserve">
+    <value>Wysig Windows Register</value>
+  </data>
+  <data name="regExportBtn.ToolTipText" xml:space="preserve">
+    <value>Eksporteer gekose registersleutel na 'n .reg lêer</value>
+  </data>
+  <data name="regImportBtn.Text" xml:space="preserve">
+    <value>Invoer</value>
+  </data>
+  <data name="regImportBtn.ToolTipText" xml:space="preserve">
+    <value>Voer .reg lêer in</value>
+  </data>
+  <data name="regRemoveBtn.Text" xml:space="preserve">
+    <value>Verwyder</value>
+  </data>
+  <data name="regRemoveBtn.ToolTipText" xml:space="preserve">
+    <value>Verwyder sleutel</value>
+  </data>
+  <data name="saveasToolStripMenuItem.Text" xml:space="preserve">
+    <value>Stoor &amp;as</value>
+  </data>
+  <data name="saveToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Stoor</value>
+  </data>
+  <data name="spanishMenuItem.Text" xml:space="preserve">
+    <value>Spaans</value>
+  </data>
+  <data name="tabAdvanced.Text" xml:space="preserve">
+    <value>Gevorderd</value>
+  </data>
+  <data name="tabFileSystem.Text" xml:space="preserve">
+    <value>Lêers</value>
+  </data>
+  <data name="tabGeneral.Text" xml:space="preserve">
+    <value>Algemeen</value>
+  </data>
+  <data name="tabRegistry.Text" xml:space="preserve">
+    <value>Windows Register</value>
+  </data>
+  <data name="tabWelcome.Text" xml:space="preserve">
+    <value>Welkom</value>
+  </data>
+  <data name="toolStripMenuItemExport.Text" xml:space="preserve">
+    <value>&amp;Eksporteer na 'n .reg lêer</value>
+  </data>
+</root>

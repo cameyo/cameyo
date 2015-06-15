@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="cannotSave" xml:space="preserve">
+    <value>Impossible d'enregistrer le package</value>
+  </data>
+  <data name="confirm" xml:space="preserve">
+    <value>Confirmer</value>
+  </data>
+  <data name="discardChanges" xml:space="preserve">
+    <value>Vos modifications seront perdues. Ignorer les modifications?</value>
+  </data>
+  <data name="opening" xml:space="preserve">
+    <value>Ouverture</value>
+  </data>
+  <data name="openingPackage" xml:space="preserve">
+    <value>Ouverture du package</value>
+  </data>
+  <data name="packageBuiltOk" xml:space="preserve">
+    <value>Package créé avec succès dans:</value>
+  </data>
+  <data name="packageSaved" xml:space="preserve">
+    <value>Package sauvegardé</value>
+  </data>
+  <data name="saving" xml:space="preserve">
+    <value>&amp;Enregistrer</value>
+  </data>
+  <data name="savingPackage" xml:space="preserve">
+    <value>Sauvegarde en cours</value>
+  </data>
+  <data name="changesWillTakeEffectOnNextStart" xml:space="preserve">
+    <value>Ce changement prendra effet lors du prochain démarrage du programme.</value>
+  </data>
+  <data name="fullAccess" xml:space="preserve">
+    <value>Accès total</value>
+  </data>
+  <data name="isolated" xml:space="preserve">
+    <value>Isolé</value>
+  </data>
+  <data name="menuRequiresAtLeastTwo" xml:space="preserve">
+    <value>Le menu nécessite au moins deux commandes.</value>
+  </data>
+  <data name="menuRequiresAtLeastTwoTransform" xml:space="preserve">
+    <value>Le menu nécessite au moins deux commandes. Transformer en commande spécifique?</value>
+  </data>
+  <data name="btnApply" xml:space="preserve">
+    <value>&amp;Appliquer</value>
+  </data>
+  <data name="displayMenu" xml:space="preserve">
+    <value>Afficher menu</value>
+  </data>
+  <data name="saveChanges" xml:space="preserve">
+    <value>Enregistrer les modifications ?</value>
+  </data>
+  <data name="customEventsCount" xml:space="preserve">
+    <value>{0} événements personnalisés </value>
+  </data>
+  <data name="customEventsNone" xml:space="preserve">
+    <value>Pas événements personnalisés </value>
+  </data>
+  <data name="incorrectRootDir" xml:space="preserve">
+    <value>Les répertoires racines doivent inclure une lettre de lecteur, i.e: "C_", "%Program Files%". Le chemin d'accès que vous avez entré semble incorrect. \n Voulez-vous quand même continuer ?</value>
+  </data>
+  <data name="reqElevation" xml:space="preserve">
+    <value>L'éditeur de package va maintenant se fermer et s'exécuter avec des privilèges élevés (mode Admin).</value>
+  </data>
+  <data name="reqElevationSaveWorkFirst" xml:space="preserve">
+    <value>Veuillez commencer par enregistrer votre travail.</value>
+  </data>
+  <data name="reqElevationTitle" xml:space="preserve">
+    <value>Élévation requise</value>
+  </data>
+  <data name="storageDirSubdirWarning" xml:space="preserve">
+    <value>Vous avez spécifié un chemin d'accès sans sous-dossier. Les fichiers seront extraits directement dans ce dossier. Êtes-vous sûr de que vouloir continuer ?</value>
+  </data>
+  <data name="strictlyIsolated" xml:space="preserve">
+    <value>Strictement isolé</value>
+  </data>
+</root>

@@ -1,0 +1,399 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="$this.Text" xml:space="preserve">
+    <value>程序包编辑器</value>
+  </data>
+  <data name="chkCleanAsk.Text" xml:space="preserve">
+    <value>删除前确认</value>
+  </data>
+  <data name="chkCleanDoneDialog.Text" xml:space="preserve">
+    <value>清除完毕时弹出对话框</value>
+  </data>
+  <data name="closeToolStripMenuItem.Text" xml:space="preserve">
+    <value>关闭(&amp;C)</value>
+  </data>
+  <data name="columnFileName.Text" xml:space="preserve">
+    <value>文件</value>
+  </data>
+  <data name="columnFileSize.Text" xml:space="preserve">
+    <value>大小</value>
+  </data>
+  <data name="columnFileType.Text" xml:space="preserve">
+    <value>类型</value>
+  </data>
+  <data name="columnHeader3.Text" xml:space="preserve">
+    <value>名称</value>
+  </data>
+  <data name="columnHeader4.Text" xml:space="preserve">
+    <value>数据</value>
+  </data>
+  <data name="columnHeader5.Text" xml:space="preserve">
+    <value>类型</value>
+  </data>
+  <data name="deleteToolStripMenuItem.Text" xml:space="preserve">
+    <value>删除</value>
+  </data>
+  <data name="dropboxLabel.Text" xml:space="preserve">
+    <value>发布</value>
+  </data>
+  <data name="englishMenuItem.Text" xml:space="preserve">
+    <value>英语</value>
+  </data>
+  <data name="exitToolStripMenuItem.Text" xml:space="preserve">
+    <value>退出(&amp;X)</value>
+  </data>
+  <data name="exportAsZeroInstallerXmlToolStripMenuItem.Text" xml:space="preserve">
+    <value>导出为ZeroInstaller XML(&amp;E)</value>
+  </data>
+  <data name="fileContextMenuDelete.Text" xml:space="preserve">
+    <value>删除</value>
+  </data>
+  <data name="fileContextMenuProperties.Text" xml:space="preserve">
+    <value>属性(&amp;P)</value>
+  </data>
+  <data name="fileToolStripMenuItem.Text" xml:space="preserve">
+    <value>文件(&amp;F)</value>
+  </data>
+  <data name="frenchMenuItem.Text" xml:space="preserve">
+    <value>法文</value>
+  </data>
+  <data name="fsAddBtn.Text" xml:space="preserve">
+    <value>添加</value>
+  </data>
+  <data name="fsAddBtn.ToolTipText" xml:space="preserve">
+    <value>添加文件</value>
+  </data>
+  <data name="fsAddDirBtn.ToolTipText" xml:space="preserve">
+    <value>添加文件夹</value>
+  </data>
+  <data name="fsAddEmptyDirBtn.ToolTipText" xml:space="preserve">
+    <value>添加空文件夹</value>
+  </data>
+  <data name="fsFolderInfoIsolationLbl.Text" xml:space="preserve">
+    <value>文件夹隔离</value>
+  </data>
+  <data name="fsRemoveBtn.Text" xml:space="preserve">
+    <value>删除</value>
+  </data>
+  <data name="fsRemoveBtn.ToolTipText" xml:space="preserve">
+    <value>删除文件或文件夹</value>
+  </data>
+  <data name="fsSaveFileAsBtn.ToolTipText" xml:space="preserve">
+    <value>另存为</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>基本属性</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>扩展属性</value>
+  </data>
+  <data name="groupBox5.Text" xml:space="preserve">
+    <value>高级</value>
+  </data>
+  <data name="groupBox6.Text" xml:space="preserve">
+    <value>时间限制</value>
+  </data>
+  <data name="groupBox7.Text" xml:space="preserve">
+    <value>删除应用程序痕迹</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>程序名:</value>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>文件版本：</value>
+  </data>
+  <data name="label11.Text" xml:space="preserve">
+    <value>最近编辑</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>说明：</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>隔离：</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>安全模式：</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>数据存储器：</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>图标：</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>在虚拟机外执行子程序:</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>例子：“iexplore.exe;myapp.exe”</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>工作室</value>
+  </data>
+  <data name="langToolStripMenuItem.Text" xml:space="preserve">
+    <value>语言(&amp;L)</value>
+  </data>
+  <data name="lblAutoLaunch.Text" xml:space="preserve">
+    <value>启动:</value>
+  </data>
+  <data name="lnkAutoLaunch.Text" xml:space="preserve">
+    <value>更改</value>
+  </data>
+  <data name="lnkChangeDataStorage.Text" xml:space="preserve">
+    <value>更改</value>
+  </data>
+  <data name="lnkChangeIcon.Text" xml:space="preserve">
+    <value>更改图标</value>
+  </data>
+  <data name="lnkCustomEvents.Text" xml:space="preserve">
+    <value>自定义事件</value>
+  </data>
+  <data name="lnkPackageEdit.Text" xml:space="preserve">
+    <value>打开已经存在的虚拟程序包</value>
+  </data>
+  <data name="newToolStripMenuItem.Text" xml:space="preserve">
+    <value>创建新的虚拟程序包(&amp;N)</value>
+  </data>
+  <data name="openToolStripMenuItem.Text" xml:space="preserve">
+    <value>打开虚拟程序包(&amp;O)</value>
+  </data>
+  <data name="propertyExpiration.Text" xml:space="preserve">
+    <value>终止日期</value>
+  </data>
+  <data name="propertyIsolationDataMode.Text" xml:space="preserve">
+    <value>数据模式：应用程序只能存储文件到我的文档，桌面和网络硬盘</value>
+  </data>
+  <data name="propertyIsolationIsolated.Text" xml:space="preserve">
+    <value>隔离模式：安全模式，应用程序无法对真实系统进行修改。</value>
+  </data>
+  <data name="propertyIsolationMerge.Text" xml:space="preserve">
+    <value>完全访问：应用程序可以修改系统文件和注册表</value>
+  </data>
+  <data name="rdbCleanAll.Text" xml:space="preserve">
+    <value>退出时清除(所有数据和设置都会丢失)</value>
+  </data>
+  <data name="rdbCleanNone.Text" xml:space="preserve">
+    <value>不删除，让应用程序准备运行（最快）</value>
+  </data>
+  <data name="rdbCleanRegOnly.Text" xml:space="preserve">
+    <value>不修改注册表（注册表的更改将会保存在文件中）</value>
+  </data>
+  <data name="regEditBtn.ToolTipText" xml:space="preserve">
+    <value>编辑注册表</value>
+  </data>
+  <data name="regExportBtn.ToolTipText" xml:space="preserve">
+    <value>导出所选注册表项到文件表文件</value>
+  </data>
+  <data name="regImportBtn.Text" xml:space="preserve">
+    <value>导入</value>
+  </data>
+  <data name="regImportBtn.ToolTipText" xml:space="preserve">
+    <value>导入注册表文件</value>
+  </data>
+  <data name="regRemoveBtn.Text" xml:space="preserve">
+    <value>删除</value>
+  </data>
+  <data name="regRemoveBtn.ToolTipText" xml:space="preserve">
+    <value>删除键值</value>
+  </data>
+  <data name="saveasToolStripMenuItem.Text" xml:space="preserve">
+    <value>另存为(&amp;A)</value>
+  </data>
+  <data name="saveToolStripMenuItem.Text" xml:space="preserve">
+    <value>保存(&amp;S)</value>
+  </data>
+  <data name="spanishMenuItem.Text" xml:space="preserve">
+    <value>西班牙语</value>
+  </data>
+  <data name="tabAdvanced.Text" xml:space="preserve">
+    <value>高级</value>
+  </data>
+  <data name="tabFileSystem.Text" xml:space="preserve">
+    <value>文件</value>
+  </data>
+  <data name="tabGeneral.Text" xml:space="preserve">
+    <value>常规</value>
+  </data>
+  <data name="tabRegistry.Text" xml:space="preserve">
+    <value>注册表</value>
+  </data>
+  <data name="tabWelcome.Text" xml:space="preserve">
+    <value>欢迎</value>
+  </data>
+  <data name="toolStripMenuItemExport.Text" xml:space="preserve">
+    <value>导出为注册表文件(&amp;E)</value>
+  </data>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>集成</value>
+  </data>
+  <data name="rdbIntegrateNone.Text" xml:space="preserve">
+    <value>不集成</value>
+  </data>
+  <data name="rdbIntegrateStandard.Text" xml:space="preserve">
+    <value>重建快捷方式和关联</value>
+  </data>
+  <data name="rdbIntegrateVirtual.Text" xml:space="preserve">
+    <value>虚拟集成：添加虚拟层到Windows资源管理器</value>
+  </data>
+  <data name="chineseMenuItem.Text" xml:space="preserve">
+    <value>简体中文</value>
+  </data>
+  <data name="propertyVirtModeDisk.Text" xml:space="preserve">
+    <value>磁盘模式: 提取所需要的文件到磁盘上,建议经常使用或大程序使用,速度比较快.</value>
+  </data>
+  <data name="propertyVirtModeRam.Text" xml:space="preserve">
+    <value>内存模式: 直接从内存运行,不释放文件到硬盘上.</value>
+  </data>
+  <data name="cbDatFile.Text" xml:space="preserve">
+    <value>将数据包保存为.DAT，和启动程序分开（超过2 GB的应用建议启用）</value>
+  </data>
+  <data name="cbVolatileRegistry.Text" xml:space="preserve">
+    <value>Volatile virtual registry</value>
+  </data>
+  <data name="exportXmlToolStripMenuItem.Text" xml:space="preserve">
+    <value>导出为XML(&amp;E)</value>
+  </data>
+  <data name="groupConstraints.Text" xml:space="preserve">
+    <value>安全和有效期设置</value>
+  </data>
+  <data name="lnkActiveDirectory.Text" xml:space="preserve">
+    <value>Active Directory权限</value>
+  </data>
+  <data name="lnkAutoUpdate.Text" xml:space="preserve">
+    <value>自动更新</value>
+  </data>
+  <data name="lnkUpgrade.Text" xml:space="preserve">
+    <value>升级到企业版/开发版（解锁高级功能）</value>
+  </data>
+  <data name="propertyDisplayLogo.Text" xml:space="preserve">
+    <value>显示 Cameyo 标志</value>
+  </data>
+  <data name="propertyProt.Text" xml:space="preserve">
+    <value>启密码保护，防止编辑：</value>
+  </data>
+  <data name="propertyScmDirect.Text" xml:space="preserve">
+    <value>允许在系统中注册服务</value>
+  </data>
+  <data name="propertyTtlDays.Text" xml:space="preserve">
+    <value>有效期(天)</value>
+  </data>
+  <data name="propertyTtlResistRemove.Text" xml:space="preserve">
+    <value>删除应用时不重置应用有效期</value>
+  </data>
+</root>

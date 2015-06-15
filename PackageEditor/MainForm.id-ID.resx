@@ -1,0 +1,358 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Editor Paket</value>
+  </data>
+  <data name="chineseSimplifiedToolStripMenuItem.Text" xml:space="preserve">
+    <value>Cina</value>
+  </data>
+  <data name="chkCleanAsk.Text" xml:space="preserve">
+    <value>Meminta konfirmasi sebelum penghapusan</value>
+  </data>
+  <data name="chkCleanDoneDialog.Text" xml:space="preserve">
+    <value>Tampilkan dialog saat pembersihan dilakukan.</value>
+  </data>
+  <data name="closeToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Tutup</value>
+  </data>
+  <data name="columnFileName.Text" xml:space="preserve">
+    <value>Berkas</value>
+  </data>
+  <data name="columnFileSize.Text" xml:space="preserve">
+    <value>Ukuran</value>
+  </data>
+  <data name="columnFileType.Text" xml:space="preserve">
+    <value>Tipe</value>
+  </data>
+  <data name="columnHeader3.Text" xml:space="preserve">
+    <value>Berkas</value>
+  </data>
+  <data name="columnHeader4.Text" xml:space="preserve">
+    <value>Nilai</value>
+  </data>
+  <data name="columnHeader5.Text" xml:space="preserve">
+    <value>Tipe</value>
+  </data>
+  <data name="deleteToolStripMenuItem.Text" xml:space="preserve">
+    <value>Hapus</value>
+  </data>
+  <data name="dropboxLabel.Text" xml:space="preserve">
+    <value>Publikasikan ke</value>
+  </data>
+  <data name="englishMenuItem.Text" xml:space="preserve">
+    <value>Bahasa inggris</value>
+  </data>
+  <data name="exitToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Keluar</value>
+  </data>
+  <data name="exportAsZeroInstallerXmlToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp; Ekspor sebagai NolInstaller xml</value>
+  </data>
+  <data name="fileContextMenuDelete.Text" xml:space="preserve">
+    <value>Hapus</value>
+  </data>
+  <data name="fileContextMenuProperties.Text" xml:space="preserve">
+    <value>&amp;Properti</value>
+  </data>
+  <data name="fileToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Berkas</value>
+  </data>
+  <data name="frenchMenuItem.Text" xml:space="preserve">
+    <value>Prancis</value>
+  </data>
+  <data name="fsAddBtn.Text" xml:space="preserve">
+    <value>Tambahkan</value>
+  </data>
+  <data name="fsAddBtn.ToolTipText" xml:space="preserve">
+    <value>Tambahkan Berkas</value>
+  </data>
+  <data name="fsAddDirBtn.ToolTipText" xml:space="preserve">
+    <value>Tambahkan Folder</value>
+  </data>
+  <data name="fsAddEmptyDirBtn.ToolTipText" xml:space="preserve">
+    <value>Tambahkan Folder Kosong</value>
+  </data>
+  <data name="fsFolderInfoIsolationLbl.Text" xml:space="preserve">
+    <value>Folder Isolasi:</value>
+  </data>
+  <data name="fsRemoveBtn.Text" xml:space="preserve">
+    <value>Hapus</value>
+  </data>
+  <data name="fsRemoveBtn.ToolTipText" xml:space="preserve">
+    <value>Hapus Berkas atau folder</value>
+  </data>
+  <data name="fsSaveFileAsBtn.ToolTipText" xml:space="preserve">
+    <value>Simpan Berkas Sebagai</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Dasar-dasar</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Tambahan</value>
+  </data>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>Integrasi</value>
+  </data>
+  <data name="groupBox5.Text" xml:space="preserve">
+    <value>Lanjutan</value>
+  </data>
+  <data name="groupBox6.Text" xml:space="preserve">
+    <value>Kadaluarsa</value>
+  </data>
+  <data name="groupBox7.Text" xml:space="preserve">
+    <value>Hapus jejak saat keluar aplikasi</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Aplikasi ID:</value>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>Versi Berkas:</value>
+  </data>
+  <data name="label11.Text" xml:space="preserve">
+    <value>Baru diedit</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Keterangan:</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Isolasi</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Modus Isolasi:</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Penyimpanan Data
+</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Ikon</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>Kecualikan proses anak dari virtualisasi</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>contoh: "iexplore.exe; myapp.exe"</value>
+  </data>
+  <data name="langToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Bahasa</value>
+  </data>
+  <data name="lblAutoLaunch.Text" xml:space="preserve">
+    <value>Memulai:</value>
+  </data>
+  <data name="lblLogoTitle.Text" xml:space="preserve">
+    <value>Paket Editor</value>
+  </data>
+  <data name="lnkAutoLaunch.Text" xml:space="preserve">
+    <value>Ganti</value>
+  </data>
+  <data name="lnkChangeDataStorage.Text" xml:space="preserve">
+    <value>Ganti</value>
+  </data>
+  <data name="lnkChangeIcon.Text" xml:space="preserve">
+    <value>Ganti ikon</value>
+  </data>
+  <data name="lnkCustomEvents.Text" xml:space="preserve">
+    <value>Kustom peristiwa</value>
+  </data>
+  <data name="lnkPackageEdit.Text" xml:space="preserve">
+    <value>Buka aplikasi virtual yang ada</value>
+  </data>
+  <data name="newToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Baru paket virtual kosong</value>
+  </data>
+  <data name="openToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Buka paket virtual</value>
+  </data>
+  <data name="propertyExpiration.Text" xml:space="preserve">
+    <value>Tanggal Kadaluarsa</value>
+  </data>
+  <data name="propertyIsolationDataMode.Text" xml:space="preserve">
+    <value>Modus data: aplikasi hanya dapat menyimpan file ke drive Document, Desktop dan jaringan</value>
+  </data>
+  <data name="propertyIsolationIsolated.Text" xml:space="preserve">
+    <value>Terisolasi: aplikasi tidak dapat memodifikasi sistem</value>
+  </data>
+  <data name="propertyIsolationMerge.Text" xml:space="preserve">
+    <value> Penuh Akses: aplikasi dapat memodifikasi file sistem dan registry</value>
+  </data>
+  <data name="rdbCleanAll.Text" xml:space="preserve">
+    <value>Hapus semua data virtual setelah keluar (data dan pengaturan akan HILANG)</value>
+  </data>
+  <data name="rdbCleanNone.Text" xml:space="preserve">
+    <value>Tidak ada pembersihan, biarkan aplikasi siap dijalankan (tercepat)</value>
+  </data>
+  <data name="rdbCleanRegOnly.Text" xml:space="preserve">
+    <value>Tidak meninggalkan jejak registry (perubahan registri akan disimpan dalam file</value>
+  </data>
+  <data name="rdbIntegrateNone.Text" xml:space="preserve">
+    <value>Tidak ada integrasi</value>
+  </data>
+  <data name="rdbIntegrateStandard.Text" xml:space="preserve">
+    <value>Menciptakan cara pintas dan asosiasi</value>
+  </data>
+  <data name="rdbIntegrateVirtual.Text" xml:space="preserve">
+    <value>Integrasi virtual: menambahkan layer virtual ke dalam Windows Explorer</value>
+  </data>
+  <data name="regEditBtn.ToolTipText" xml:space="preserve">
+    <value>Mengedit registri</value>
+  </data>
+  <data name="regExportBtn.ToolTipText" xml:space="preserve">
+    <value>Ekspor kunci registri dipilih ke Berkas reg.</value>
+  </data>
+  <data name="regImportBtn.Text" xml:space="preserve">
+    <value>Mengimpor</value>
+  </data>
+  <data name="regImportBtn.ToolTipText" xml:space="preserve">
+    <value>Mengimpor .Berkas Reg</value>
+  </data>
+  <data name="regRemoveBtn.Text" xml:space="preserve">
+    <value>Hapus</value>
+  </data>
+  <data name="regRemoveBtn.ToolTipText" xml:space="preserve">
+    <value>Hapus kunci</value>
+  </data>
+  <data name="saveasToolStripMenuItem.Text" xml:space="preserve">
+    <value>Simpan &amp;sebagai</value>
+  </data>
+  <data name="saveToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Simpan</value>
+  </data>
+  <data name="spanishMenuItem.Text" xml:space="preserve">
+    <value>Spanyol</value>
+  </data>
+  <data name="tabAdvanced.Text" xml:space="preserve">
+    <value>Lanjutan</value>
+  </data>
+  <data name="tabFileSystem.Text" xml:space="preserve">
+    <value>Berkas</value>
+  </data>
+  <data name="tabGeneral.Text" xml:space="preserve">
+    <value>Umum</value>
+  </data>
+  <data name="tabRegistry.Text" xml:space="preserve">
+    <value>Registri</value>
+  </data>
+  <data name="tabWelcome.Text" xml:space="preserve">
+    <value>Selamat Datang</value>
+  </data>
+  <data name="toolStripMenuItemExport.Text" xml:space="preserve">
+    <value>Ekspor ke .Berkas reg</value>
+  </data>
+</root>

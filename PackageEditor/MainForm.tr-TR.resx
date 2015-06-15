@@ -1,0 +1,402 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Paket düzenleyici</value>
+  </data>
+  <data name="chkCleanAsk.Text" xml:space="preserve">
+    <value>Silmeden önce uyar</value>
+  </data>
+  <data name="chkCleanDoneDialog.Text" xml:space="preserve">
+    <value>Temizleme bitince haber ver</value>
+  </data>
+  <data name="closeToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Kapat</value>
+  </data>
+  <data name="columnFileName.Text" xml:space="preserve">
+    <value>Dosya</value>
+  </data>
+  <data name="columnFileSize.Text" xml:space="preserve">
+    <value>Boyut</value>
+  </data>
+  <data name="columnFileType.Text" xml:space="preserve">
+    <value>Tür</value>
+  </data>
+  <data name="columnHeader3.Text" xml:space="preserve">
+    <value>Dosya</value>
+  </data>
+  <data name="columnHeader4.Text" xml:space="preserve">
+    <value>Değer</value>
+  </data>
+  <data name="columnHeader5.Text" xml:space="preserve">
+    <value>Tür</value>
+  </data>
+  <data name="deleteToolStripMenuItem.Text" xml:space="preserve">
+    <value>Sil</value>
+  </data>
+  <data name="dropboxLabel.Text" xml:space="preserve">
+    <value>Yayınla</value>
+  </data>
+  <data name="englishMenuItem.Text" xml:space="preserve">
+    <value>İngilizce</value>
+  </data>
+  <data name="exitToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Çıkış</value>
+  </data>
+  <data name="exportAsZeroInstallerXmlToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;ZeroInstaller.xml olarak çıkart</value>
+  </data>
+  <data name="fileContextMenuDelete.Text" xml:space="preserve">
+    <value>Sil</value>
+  </data>
+  <data name="fileContextMenuProperties.Text" xml:space="preserve">
+    <value>&amp;Özellikler</value>
+  </data>
+  <data name="fileToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Dosya</value>
+  </data>
+  <data name="frenchMenuItem.Text" xml:space="preserve">
+    <value>Fransızca</value>
+  </data>
+  <data name="fsAddBtn.Text" xml:space="preserve">
+    <value>Ekle</value>
+  </data>
+  <data name="fsAddBtn.ToolTipText" xml:space="preserve">
+    <value>Dosya ekle</value>
+  </data>
+  <data name="fsAddDirBtn.ToolTipText" xml:space="preserve">
+    <value>Klasör ekle</value>
+  </data>
+  <data name="fsAddEmptyDirBtn.ToolTipText" xml:space="preserve">
+    <value>Boş klasör ekle</value>
+  </data>
+  <data name="fsFolderInfoIsolationLbl.Text" xml:space="preserve">
+    <value>Klasör Gizleme:</value>
+  </data>
+  <data name="fsRemoveBtn.Text" xml:space="preserve">
+    <value>Sil</value>
+  </data>
+  <data name="fsRemoveBtn.ToolTipText" xml:space="preserve">
+    <value>Dosya ya da klasör sil</value>
+  </data>
+  <data name="fsSaveFileAsBtn.ToolTipText" xml:space="preserve">
+    <value>Farklı kaydet</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Temel</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Ekstra</value>
+  </data>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>Entegrasyon</value>
+  </data>
+  <data name="groupBox5.Text" xml:space="preserve">
+    <value>Gelişmiş</value>
+  </data>
+  <data name="groupBox6.Text" xml:space="preserve">
+    <value>Süre sınırı</value>
+  </data>
+  <data name="groupBox7.Text" xml:space="preserve">
+    <value>Uygulama kapanınca kalıntıları sil</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Uygulama adı:</value>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>Dosya versiyonu:</value>
+  </data>
+  <data name="label11.Text" xml:space="preserve">
+    <value>Yeni düzenlenmiş</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Açıklama:</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Gizleme:</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Gizleme modu:</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Veri depolama:</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Simge:</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>Çocuk denetimlerini sanallaştırmanın dışında tut</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>örnek: "iexplore.exe;benimuygulamam.exe"</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>Sanallaştırma:</value>
+  </data>
+  <data name="langToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Dil</value>
+  </data>
+  <data name="lblAutoLaunch.Text" xml:space="preserve">
+    <value>Başlangıç:</value>
+  </data>
+  <data name="lnkAutoLaunch.Text" xml:space="preserve">
+    <value>Değiştir</value>
+  </data>
+  <data name="lnkChangeDataStorage.Text" xml:space="preserve">
+    <value>Değiştir</value>
+  </data>
+  <data name="lnkChangeIcon.Text" xml:space="preserve">
+    <value>Simgeyi değiştir</value>
+  </data>
+  <data name="lnkCustomEvents.Text" xml:space="preserve">
+    <value>Özel olaylar</value>
+  </data>
+  <data name="lnkPackageEdit.Text" xml:space="preserve">
+    <value>Mevcut bir sanal uygulama aç</value>
+  </data>
+  <data name="newToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Yeni boş sanal paket</value>
+  </data>
+  <data name="openToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Sanal paket aç</value>
+  </data>
+  <data name="propertyExpiration.Text" xml:space="preserve">
+    <value>Son kullanma tarihi:</value>
+  </data>
+  <data name="propertyIsolationDataMode.Text" xml:space="preserve">
+    <value>Veri modu: uygulama, dosyaları sadece Belgeler, Masaüstü ve ağ sürücülerine kaydedebilir</value>
+  </data>
+  <data name="propertyIsolationIsolated.Text" xml:space="preserve">
+    <value>Gizlenmiş: uygulama, sistemi değiştiremez</value>
+  </data>
+  <data name="propertyIsolationMerge.Text" xml:space="preserve">
+    <value>Tam erişim: uygulama sistem dosyalarına ve kayıt defterine erişebilir</value>
+  </data>
+  <data name="propertyVirtModeDisk.Text" xml:space="preserve">
+    <value>Disk modu: sanal uygulama dosyaları diske çıkarır; sık kullanılan uygulamalar için kullanışlıdır</value>
+  </data>
+  <data name="propertyVirtModeRam.Text" xml:space="preserve">
+    <value>RAM modu: sanal uygulamalar dosrudan sanal bellekten çalışır</value>
+  </data>
+  <data name="rdbCleanAll.Text" xml:space="preserve">
+    <value>Kapanışta tüm sanal verileri sil (veriler ve ayarlar SİLİNECEK)</value>
+  </data>
+  <data name="rdbCleanNone.Text" xml:space="preserve">
+    <value>Temizlik yok, uygulama her an çalışmaya hazır (en hızlı)</value>
+  </data>
+  <data name="rdbCleanRegOnly.Text" xml:space="preserve">
+    <value>Kayıt defterinde iz bırakma (kayıt defteri ayarları bir dosyada depolanacak)</value>
+  </data>
+  <data name="rdbIntegrateNone.Text" xml:space="preserve">
+    <value>Entegrasyon yok</value>
+  </data>
+  <data name="rdbIntegrateStandard.Text" xml:space="preserve">
+    <value>Kısayolları ve ilişkilendirmeleri tekrar oluştur</value>
+  </data>
+  <data name="rdbIntegrateVirtual.Text" xml:space="preserve">
+    <value>Sanal entegrasyon: Windows Gezgini'ne sanal katman ekleyin</value>
+  </data>
+  <data name="regEditBtn.ToolTipText" xml:space="preserve">
+    <value>Kayıt defterini düzenle</value>
+  </data>
+  <data name="regExportBtn.ToolTipText" xml:space="preserve">
+    <value>Seçilmiş kayıt defteri anahtarını .reg dosyası olarak çıkart</value>
+  </data>
+  <data name="regImportBtn.Text" xml:space="preserve">
+    <value>Dosyadan ekle</value>
+  </data>
+  <data name="regImportBtn.ToolTipText" xml:space="preserve">
+    <value>.reg dosyasından ekle</value>
+  </data>
+  <data name="regRemoveBtn.Text" xml:space="preserve">
+    <value>Sil</value>
+  </data>
+  <data name="regRemoveBtn.ToolTipText" xml:space="preserve">
+    <value>Anahtarı sil</value>
+  </data>
+  <data name="saveasToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Farklı kaydet</value>
+  </data>
+  <data name="saveToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Kaydet</value>
+  </data>
+  <data name="spanishMenuItem.Text" xml:space="preserve">
+    <value>İspanyolca</value>
+  </data>
+  <data name="tabAdvanced.Text" xml:space="preserve">
+    <value>Gelişmiş</value>
+  </data>
+  <data name="tabFileSystem.Text" xml:space="preserve">
+    <value>Dosyalar</value>
+  </data>
+  <data name="tabGeneral.Text" xml:space="preserve">
+    <value>Genel</value>
+  </data>
+  <data name="tabRegistry.Text" xml:space="preserve">
+    <value>Kayıt defteri</value>
+  </data>
+  <data name="tabWelcome.Text" xml:space="preserve">
+    <value>Hoş geldiniz</value>
+  </data>
+  <data name="toolStripMenuItemExport.Text" xml:space="preserve">
+    <value>.reg &amp;dosyasına çıkar</value>
+  </data>
+  <data name="chineseMenuItem.Text" xml:space="preserve">
+    <value>Çince</value>
+  </data>
+  <data name="cbDatFile.Text" xml:space="preserve">
+    <value>Paketi .exe dosyasından ayrı olarak .DAT şeklinde kaydet (2 GB üstü uygulamalar için önerilir)</value>
+  </data>
+  <data name="cbVolatileRegistry.Text" xml:space="preserve">
+    <value>Değişken sanal kayıt</value>
+  </data>
+  <data name="exportXmlToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Paket taslağını çıkart</value>
+  </data>
+  <data name="groupConstraints.Text" xml:space="preserve">
+    <value>Güvenlik ve süre kısıtlaması</value>
+  </data>
+  <data name="lblNotCommercial.Text" xml:space="preserve">
+    <value>49 makinaya kadar yetkilendirilmiş</value>
+  </data>
+  <data name="lnkActiveDirectory.Text" xml:space="preserve">
+    <value>Active Directory izinleri</value>
+  </data>
+  <data name="lnkAutoUpdate.Text" xml:space="preserve">
+    <value>Oto güncelleme</value>
+  </data>
+  <data name="lnkUpgrade.Text" xml:space="preserve">
+    <value>Şirket / Geliştirici Güncellemesi</value>
+  </data>
+  <data name="propertyDisplayLogo.Text" xml:space="preserve">
+    <value>Cameyo logosunu göster</value>
+  </data>
+  <data name="propertyProt.Text" xml:space="preserve">
+    <value>Düzenlemeye karşı şifreyle koru:</value>
+  </data>
+  <data name="propertyScmDirect.Text" xml:space="preserve">
+    <value>Sistem araçlarının hedef bilgisayara kurulmasına izin ver</value>
+  </data>
+  <data name="propertyTtlDays.Text" xml:space="preserve">
+    <value>(Gün) sonra erişime kapat:</value>
+  </data>
+  <data name="propertyTtlResistRemove.Text" xml:space="preserve">
+    <value>Uygulama silinse dahi son kullanım sayacını tut</value>
+  </data>
+</root>

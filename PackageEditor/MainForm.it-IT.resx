@@ -1,0 +1,405 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Editor pacchetti</value>
+  </data>
+  <data name="chineseMenuItem.Text" xml:space="preserve">
+    <value>Chinese</value>
+  </data>
+  <data name="chkCleanAsk.Text" xml:space="preserve">
+    <value>Chiedi conferma prima della rimozione</value>
+  </data>
+  <data name="chkCleanDoneDialog.Text" xml:space="preserve">
+    <value>Avvisa al termine della pulizia</value>
+  </data>
+  <data name="closeToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Chiudi</value>
+  </data>
+  <data name="columnFileName.Text" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="columnFileSize.Text" xml:space="preserve">
+    <value>Dimensione</value>
+  </data>
+  <data name="columnFileType.Text" xml:space="preserve">
+    <value>Tipo</value>
+  </data>
+  <data name="columnHeader3.Text" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="columnHeader4.Text" xml:space="preserve">
+    <value>Valore</value>
+  </data>
+  <data name="columnHeader5.Text" xml:space="preserve">
+    <value>Tipo</value>
+  </data>
+  <data name="deleteToolStripMenuItem.Text" xml:space="preserve">
+    <value>Cancella</value>
+  </data>
+  <data name="dropboxLabel.Text" xml:space="preserve">
+    <value>Pubblica in</value>
+  </data>
+  <data name="englishMenuItem.Text" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="exitToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Esci</value>
+  </data>
+  <data name="exportAsZeroInstallerXmlToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Esporta come ZeroInstaller xml</value>
+  </data>
+  <data name="fileContextMenuDelete.Text" xml:space="preserve">
+    <value>Cancella</value>
+  </data>
+  <data name="fileContextMenuProperties.Text" xml:space="preserve">
+    <value>&amp;Proprietà</value>
+  </data>
+  <data name="fileToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;File</value>
+  </data>
+  <data name="frenchMenuItem.Text" xml:space="preserve">
+    <value>Français</value>
+  </data>
+  <data name="fsAddBtn.Text" xml:space="preserve">
+    <value>Aggiungi</value>
+  </data>
+  <data name="fsAddBtn.ToolTipText" xml:space="preserve">
+    <value>Aggiungi file</value>
+  </data>
+  <data name="fsAddDirBtn.ToolTipText" xml:space="preserve">
+    <value>Aggiungi cartella</value>
+  </data>
+  <data name="fsAddEmptyDirBtn.ToolTipText" xml:space="preserve">
+    <value>Aggiungi cartella vuota</value>
+  </data>
+  <data name="fsFolderInfoIsolationLbl.Text" xml:space="preserve">
+    <value>Isolamento cartella:</value>
+  </data>
+  <data name="fsRemoveBtn.Text" xml:space="preserve">
+    <value>Cancella</value>
+  </data>
+  <data name="fsRemoveBtn.ToolTipText" xml:space="preserve">
+    <value>Rimuovi file o cartella</value>
+  </data>
+  <data name="fsSaveFileAsBtn.ToolTipText" xml:space="preserve">
+    <value>Salva file come</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Principale</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Extra</value>
+  </data>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>Integrazione</value>
+  </data>
+  <data name="groupBox5.Text" xml:space="preserve">
+    <value>Avanzate</value>
+  </data>
+  <data name="groupBox6.Text" xml:space="preserve">
+    <value>Scadenza</value>
+  </data>
+  <data name="groupBox7.Text" xml:space="preserve">
+    <value>Rimuovi tracce all'uscita dell'applicazione</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>ID Applicazione:</value>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>Versione file:</value>
+  </data>
+  <data name="label11.Text" xml:space="preserve">
+    <value>Recentemente modificato</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Descrizione:</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Isolamento:</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Modalità di isolamento:</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Salvataggio dei dati:</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Icona:</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>Processi da escludere dalla virtualizzazione:</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>Esempio: "iexplore.exe;myapp.exe"</value>
+  </data>
+  <data name="langToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Lingua</value>
+  </data>
+  <data name="lblAutoLaunch.Text" xml:space="preserve">
+    <value>Avvio:</value>
+  </data>
+  <data name="lblLogoTitle.Text" xml:space="preserve">
+    <value>Editor pacchetti</value>
+  </data>
+  <data name="lnkAutoLaunch.Text" xml:space="preserve">
+    <value>Cambia</value>
+  </data>
+  <data name="lnkChangeDataStorage.Text" xml:space="preserve">
+    <value>Cambia</value>
+  </data>
+  <data name="lnkChangeIcon.Text" xml:space="preserve">
+    <value>Cambia icona</value>
+  </data>
+  <data name="lnkCustomEvents.Text" xml:space="preserve">
+    <value>Eventi personalizzati</value>
+  </data>
+  <data name="lnkPackageEdit.Text" xml:space="preserve">
+    <value>Apri un'applicazione virtuale esistente</value>
+  </data>
+  <data name="newToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Nuovo pacchetto vuoto virtualizzato</value>
+  </data>
+  <data name="openToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Apri pacchetto virtuale</value>
+  </data>
+  <data name="propertyExpiration.Text" xml:space="preserve">
+    <value>Data di scadenza:</value>
+  </data>
+  <data name="propertyIsolationDataMode.Text" xml:space="preserve">
+    <value>Modalità dati: L'applicazione potrà scrivere solo in Documenti, Desktop, e nelle unità di rete</value>
+  </data>
+  <data name="propertyIsolationIsolated.Text" xml:space="preserve">
+    <value>Isolata: L'applicazione non potrà modificare il sistema</value>
+  </data>
+  <data name="propertyIsolationMerge.Text" xml:space="preserve">
+    <value>Accesso completo: L'applicazione potrà modificare file e registro di sistema</value>
+  </data>
+  <data name="rdbCleanAll.Text" xml:space="preserve">
+    <value>Alla chiusura rimuovi tutti i dati virtualizzati (salvataggi ed impostazioni verranno PERSI)</value>
+  </data>
+  <data name="rdbCleanNone.Text" xml:space="preserve">
+    <value>Nessuna pulizia, l'app rimane pronta per l'apertura (più veloce)</value>
+  </data>
+  <data name="rdbCleanRegOnly.Text" xml:space="preserve">
+    <value>Non lasciare tracce nel registo (le modifiche verranno salvate in un file)</value>
+  </data>
+  <data name="rdbIntegrateNone.Text" xml:space="preserve">
+    <value>Nessuna integrazione</value>
+  </data>
+  <data name="rdbIntegrateStandard.Text" xml:space="preserve">
+    <value>Ricrea collegamenti ed associazioni</value>
+  </data>
+  <data name="rdbIntegrateVirtual.Text" xml:space="preserve">
+    <value>Integrazione virtuale: aggiungi un layer virtuale in Windows Explorer</value>
+  </data>
+  <data name="regEditBtn.ToolTipText" xml:space="preserve">
+    <value>Modifica registro</value>
+  </data>
+  <data name="regExportBtn.ToolTipText" xml:space="preserve">
+    <value>Esporta registro selezionato in un file .reg</value>
+  </data>
+  <data name="regImportBtn.Text" xml:space="preserve">
+    <value>Importa</value>
+  </data>
+  <data name="regImportBtn.ToolTipText" xml:space="preserve">
+    <value>Importa una file .reg</value>
+  </data>
+  <data name="regRemoveBtn.Text" xml:space="preserve">
+    <value>Cancella</value>
+  </data>
+  <data name="regRemoveBtn.ToolTipText" xml:space="preserve">
+    <value>Rimuovi chiave</value>
+  </data>
+  <data name="saveasToolStripMenuItem.Text" xml:space="preserve">
+    <value>S&amp;alva come</value>
+  </data>
+  <data name="saveToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Salva</value>
+  </data>
+  <data name="spanishMenuItem.Text" xml:space="preserve">
+    <value>Español</value>
+  </data>
+  <data name="tabAdvanced.Text" xml:space="preserve">
+    <value>Avanzate</value>
+  </data>
+  <data name="tabFileSystem.Text" xml:space="preserve">
+    <value>Files</value>
+  </data>
+  <data name="tabGeneral.Text" xml:space="preserve">
+    <value>Generale</value>
+  </data>
+  <data name="tabRegistry.Text" xml:space="preserve">
+    <value>Registro</value>
+  </data>
+  <data name="tabWelcome.Text" xml:space="preserve">
+    <value>Benvenuto</value>
+  </data>
+  <data name="toolStripMenuItemExport.Text" xml:space="preserve">
+    <value>&amp;Esporta come file .reg</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>Virtualizzazione:</value>
+  </data>
+  <data name="propertyVirtModeDisk.Text" xml:space="preserve">
+    <value>Modalità disco: Le applicazioni virtuali pre-estraggono i files su hard disk man mano che ne hanno bisogno; più veloce per applicaizoni di uso frequente</value>
+  </data>
+  <data name="propertyVirtModeRam.Text" xml:space="preserve">
+    <value>Modalità RAM: Le applicazioni virtuali vengono eseguite direttamente dalla memoria</value>
+  </data>
+  <data name="cbDatFile.Text" xml:space="preserve">
+    <value>Salva pacchetto come file .DAT separato (consigliato per apps maggiori di 2gb)</value>
+  </data>
+  <data name="cbVolatileRegistry.Text" xml:space="preserve">
+    <value>Registro virtuale volatile</value>
+  </data>
+  <data name="exportXmlToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Esporta pacchetto Blueprint</value>
+  </data>
+  <data name="groupConstraints.Text" xml:space="preserve">
+    <value>Sicurezza e scadenza</value>
+  </data>
+  <data name="lblNotCommercial.Text" xml:space="preserve">
+    <value>Autorizzato fino a 49 macchine</value>
+  </data>
+  <data name="lnkActiveDirectory.Text" xml:space="preserve">
+    <value>Permessi di Active Directory</value>
+  </data>
+  <data name="lnkAutoUpdate.Text" xml:space="preserve">
+    <value>Aggiornamento automatico</value>
+  </data>
+  <data name="lnkUpgrade.Text" xml:space="preserve">
+    <value>Upgrade per aziende e sviluppatori</value>
+  </data>
+  <data name="propertyDisplayLogo.Text" xml:space="preserve">
+    <value>Mosta il logo di Cameyo</value>
+  </data>
+  <data name="propertyProt.Text" xml:space="preserve">
+    <value>Password per protezione dalle modifiche:</value>
+  </data>
+  <data name="propertyScmDirect.Text" xml:space="preserve">
+    <value>Permetti ai servizi di sistema di venire registrati sul pc di destinazione</value>
+  </data>
+  <data name="propertyTtlDays.Text" xml:space="preserve">
+    <value>Scadenza dopo (giorni):</value>
+  </data>
+  <data name="propertyTtlResistRemove.Text" xml:space="preserve">
+    <value>Mantieni il contatore della scadenza dopo la rimozione dell'applicazione</value>
+  </data>
+</root>

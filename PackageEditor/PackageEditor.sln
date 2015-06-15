@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PackageEditor", "PackageEditor.csproj", "{30663298-6894-488B-8D17-501DBDCF91BD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CameyoSDK.NET", "..\CameyoSDK.NET\CameyoSDK.NET.csproj", "{36419994-CA8A-4300-826F-722E50FDFDFC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PeIcon", "..\Common\PeIcon\PeIcon.csproj", "{6ABFFC16-3E49-4D6F-A1E5-36DECC1FD05B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{30663298-6894-488B-8D17-501DBDCF91BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30663298-6894-488B-8D17-501DBDCF91BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30663298-6894-488B-8D17-501DBDCF91BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30663298-6894-488B-8D17-501DBDCF91BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36419994-CA8A-4300-826F-722E50FDFDFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36419994-CA8A-4300-826F-722E50FDFDFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36419994-CA8A-4300-826F-722E50FDFDFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36419994-CA8A-4300-826F-722E50FDFDFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6ABFFC16-3E49-4D6F-A1E5-36DECC1FD05B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6ABFFC16-3E49-4D6F-A1E5-36DECC1FD05B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6ABFFC16-3E49-4D6F-A1E5-36DECC1FD05B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6ABFFC16-3E49-4D6F-A1E5-36DECC1FD05B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
