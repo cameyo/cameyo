@@ -594,7 +594,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CameyoSDK.NET\CameyoSDK.NET.csproj">
-      <Project>{36419994-CA8A-4300-826F-722E50FDFDFC}</Project>
+      <Project>{36419994-ca8a-4300-826f-722e50fdfdfc}</Project>
       <Name>CameyoSDK.NET</Name>
     </ProjectReference>
     <ProjectReference Include="..\Classes\Common\Cameyo.OpenSrc.Common.csproj">
