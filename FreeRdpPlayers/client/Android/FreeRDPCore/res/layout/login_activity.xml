@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="#34495e">
+    <TextView
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="@string/cameyo_player_string"
+        android:textColor="#ffffff"
+        android:textSize="35sp"
+        android:textStyle="bold"        
+        android:gravity="center"
+        />
+    
+    <EditText
+        android:id="@+id/email_edt"
+        android:inputType="textEmailAddress"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/edittext_field"        
+        android:hint="@string/enter_your_email_string"
+        android:textColorHint="@android:color/darker_gray"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"        
+        android:gravity="center_vertical"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        />
+    
+    <EditText
+        android:id="@+id/password_edt"
+        android:inputType="textPassword"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/edittext_field"
+        android:hint="@string/password_string"
+        android:textColorHint="@android:color/darker_gray"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"        
+        android:gravity="center_vertical"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        />
+    
+    <Button 
+        android:id="@+id/login_btn"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="15dp"
+        android:text="@string/login_string"
+        android:textColor="@android:color/white"
+        android:background="@drawable/buttonshape_background"
+        />
+    
+    <Button 
+        android:id="@+id/forgetpassword_btn"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="25dp"
+        android:text="@string/forgotyourpassword_string"
+        android:textColor="@android:color/darker_gray"
+        android:background="@android:color/transparent"
+        />
+    
+    <Button 
+        android:id="@+id/register_btn"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/registeranaccount_string"
+        android:textColor="@android:color/darker_gray"
+        android:background="@android:color/transparent"
+        />
+
+</LinearLayout>

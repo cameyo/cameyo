@@ -1,0 +1,9 @@
+<resources>
+
+    <color name="md__transparent">#00000000</color>
+
+    <color name="md__defaultBackground">#FF555555</color>
+    
+    <color name="activemenuitem_background">#33000000</color>
+    <color name="appdescribe_textcolor">#aebcbd</color>
+</resources>
