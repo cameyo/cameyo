@@ -48,9 +48,9 @@ namespace Cameyo.Player
 
             LoginBtn.Content = Server.Login;
             if (!string.IsNullOrEmpty(Server.AccountInfo.StorageProviderName))
-                StorageBtn.Content = "Storage: " + Server.AccountInfo.StorageProviderName;
+                StorageBtn.Content = Server.AccountInfo.StorageProviderName;
             else
-                StorageBtn.Content = "Storage: none";
+                StorageBtn.Content = "No storage";
             OnLibSelect(curLib.Id);   // Select first lib
             ShowDetails(null);   // Hide the details pane
             ProdType.Text = Server.License.ProdTypeStr().ToUpper();
