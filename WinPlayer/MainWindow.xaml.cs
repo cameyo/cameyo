@@ -167,6 +167,7 @@ namespace Cameyo.Player
                 MessageBox.Show("Playing apps is not supported on Windows XP");
                 return;
             }
+
             borderMain.Opacity = 0.3;
             var playing = new Playing((AppDisplay)lvApps.SelectedItem, Playing.AppAction.Play, null);
             playing.Owner = this;
