@@ -27,6 +27,13 @@ namespace Cameyo.Player
         public MainWindow()
         {
             InitializeComponent();
+
+            // XP: avoid message "Could not establish trust relationship for SSL/TLS secure channel"
+            if (Environment.OSVersion.Version.Major == 5)
+            {
+                System.Net.ServicePointManager.ServerCertificateValidationCallback +=
+                    new System.Net.Security.RemoteCertificateValidationCallback(ValidateRemoteCertificate);
+            }
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -153,6 +160,13 @@ namespace Cameyo.Player
 
         private void PlayBtn_Click(object sender, RoutedEventArgs e)
         {
+            // XP: avoid message "Could not establish trust relationship for SSL/TLS secure channel"
+            // Packager.exe -Play doesn't work on XP: "CHttpClient:SetLocation: InternetOpenUrl failed, LE=12031"
+            if (Environment.OSVersion.Version.Major == 5)
+            {
+                MessageBox.Show("Playing apps is not supported on Windows XP");
+                return;
+            }
             borderMain.Opacity = 0.3;
             var playing = new Playing((AppDisplay)lvApps.SelectedItem, Playing.AppAction.Play, null);
             playing.Owner = this;
@@ -284,6 +298,20 @@ namespace Cameyo.Player
             ellipse.Visibility = System.Windows.Visibility.Hidden;
             var story = this.TryFindResource("PreloaderRotate") as System.Windows.Media.Animation.Storyboard;
             story.Stop(this);
+        }
+
+        // XP: avoid message "Could not establish trust relationship for SSL/TLS secure channel"
+        private static bool ValidateRemoteCertificate(object sender, System.Security.Cryptography.X509Certificates.X509Certificate cert,
+            System.Security.Cryptography.X509Certificates.X509Chain chain, System.Net.Security.SslPolicyErrors policyErrors)
+        {
+            bool result = true;
+            if (sender is System.Net.HttpWebRequest)
+            {
+                string requestServer = ((System.Net.HttpWebRequest)sender).RequestUri.ToString();
+                if (requestServer.Equals("online.cameyo.com") && !cert.Subject.ToLower().Contains("cn=online.cameyo.com"))
+                    result = false;
+            }
+            return result;
         }
     }
 }
