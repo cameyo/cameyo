@@ -140,7 +140,7 @@
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj0yLjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAAAO
-        KAAAAk1TRnQBSQFMAgEBCQEAAUQBDQFEAQ0BEAEAARABAAT/ASEBAAj/AUIBTQE2BwABNgMAASgDAAFA
+        KAAAAk1TRnQBSQFMAgEBCQEAAUwBDQFMAQ0BEAEAARABAAT/ASEBAAj/AUIBTQE2BwABNgMAASgDAAFA
         AwABMAMAAQEBAAEgBgABMB4AAwQBBgMTARoDHwEsAyABLgMgAS8DIAEvAyABLgMeASsDEgEYAwQBBdQA
         AwIBAwMFBAcBCQNTAfEDgQH/A4EB/wOBAf8DgQH/A1MB8QMGAQgDBAEGAwEBAtwAAU4BXQFOAfABgQGO
         AYEB/wGBAY8BgQH/AYEBjwGBAf8BgQGOAYEB/wFOAV0BTgHw6AABTgFdAU4B8AGBAYMBgQH/AYEBhQGB
@@ -207,16 +207,16 @@
         Af8B5gGtAYEB/wKoAUAB/QNZAfUDZQH0A1cBuAQAA14B3QPoAf8D4wH/A+MB/wPjAf8D4QH/A9EB/wGo
         AacBqAH/A6gB/wKoAacB/wKoAacB/wKoAacB/wOjAf8DSgGLCAADOQH4A7UB/wPjAf8D4wH/A+MB/wPh
         Af8D0QH/AwAB/wMAAf8DAAH/AwAB/wMAAf8DAAH/A0AB/QMXASAEAANIAYQCAAHMAf8CAAHdAf8B2gHf
-        AfAB/wPzAf8B5gHoAfEB/wEAAQMB4AH/AgAB3wH/AeQB5gHxAf8D8wH/AeAB5AHxAf8CAAHcAf8CAAHM
+        AfAB/wPzAf8B5gHoAfEB/wEAAQIB4AH/AgAB3wH/AeQB5gHxAf8D8wH/AeAB5AHxAf8CAAHcAf8CAAHM
         Af8DSAGEBAABkQGSAZMB/wPhAf8B2gHbAdoB/wPYAf8B2gHbAdoB/wHbAtwB/wHdAt4B/wPgAf8B4gHj
         AeIB/wLkAeYB/wPnAf8B4wHgAd4B/wGQAZIBkwH/BAADCAELAwMBBAQAA14B3QPkAf8D4AH/A+AB/wPg
         Af8D3QH/A8kB/wGsAasBrAn/AvEB8gH/A+MB/wNMAZIMAAMhAfsDxwH/A+AB/wPgAf8D4AH/A90B/wPJ
         Af8DAAH/A8EF/wLxAfIB/wO1Af8DXAH4AxYBHwgAAxIBGAJMAV8B8wIAAeEB/wEAAYMB5wH/AekB7AH4
-        Af8BAAGAAeYB/wIAAeAB/wIAAeEB/wEAAQsB5QH/AeAB5QH2Af8BAAGGAegB/wIAAeAB/wJMAV8B8wMS
+        Af8BAAGAAeYB/wIAAeAB/wIAAeEB/wEAAQoB5QH/AeAB5QH2Af8BAAGGAegB/wIAAeAB/wJMAV8B8wMS
         ARgEAAGVApcB/wPsAf8D4QH/At8B4AH/At4B3wH/Ad0C3gH/AuoB6wH/AekB6gHrAf8B5gLnAf8C6AHp
         Af8B6QLqAf8C8QHyAf8BlQGWAZcB/xAAA14B3QPhAf8D3QH/A90B/wPdAf8D2AH/A8kB/wKxAbAJ/wPj
         Af8DTAGPEAADIQH7A8UB/wPdAf8D3QH/A90B/wPYAf8DyQH/AwAB/wPLBf8DtQH/A1wB+AMWAR8QAAM1
-        AVcCAAHJAf8BAAGEAegB/wEAAQwB6gH/AgAB5wH/AgAB5wH/AgAB5wH/AgAB5wH/AQABBQHpAf8BAAGB
+        AVcCAAHJAf8BAAGEAegB/wEAAQsB6gH/AgAB5wH/AgAB5wH/AgAB5wH/AgAB5wH/AQABBAHpAf8BAAGB
         AegB/wIAAckB/wM1AVcIAAGZAZoBmwH/A/QB/wPqAf8D6gH/A+oB/wP4Af8CmgGbAf8BmQKaAf8BmQGa
         AZsB/wGZAZoBmwH/A5oB/wOaAf8DKwFCEAADXgHdA94B/wPYAf8D2AH/A9gB/wPUAf8DyQH/ArUBtgH/
         AfEB8gHxAf8D6wH/A1ABmhQAAyEB+wPCAf8D2AH/A9gB/wPYAf8D1AH/A8kB/wMAAf8DyAH/A7cB/wNN
@@ -245,7 +245,7 @@
         Af8BuAIAAf8BxgIAAf8BxwIAAf8BxwIAAf8BtQIAAf8DBAEFAwQBBQG1AgAB/wHGAgAB/wHGAgAB/wHG
         AgAB/wHGAgAB/wHGAgAB/wHGAgAB/wHGAgAB/wHGAgAB/wHGAgAB/wHGAgAB/wHHAgAB/wHHAgAB/wG1
         AgAB/wMEAQUDBAEFAbUCAAH/AcYCAAH/AcYCAAH/AcYCAAH/AboCAAH/AYICAAH/AgABhgH/AgABgAH/
-        AQkCAAH/AbgCAAH/AcYCAAH/AccCAAH/AccCAAH/AbUCAAH/AwQBBQgAAoEBnAH/AoEBuAH/AoEBtwH/
+        AQgCAAH/AbgCAAH/AcYCAAH/AccCAAH/AccCAAH/AbUCAAH/AwQBBQgAAoEBnAH/AoEBuAH/AoEBtwH/
         AoEBugH/AoEBkAH/CAACgQGQAf8CgQG6Af8CgQG3Af8CgQG4Af8CgQGcAf8IAAMCAQMBtwIAAf8BwwIA
         Af8BxQIAAf8BxAIAAf8DAAH/AgAB3AH/AQABnQH0Af8BAAGdAfQB/wIAAdwB/wMAAf8BxAIAAf8BxAIA
         Af8BxQIAAf8BtwIAAf8DAgEDAwIBAwG3AgAB/wHDAgAB/wHFAgAB/wHEAgAB/wHEAgAB/wHFAgAB/wHE
@@ -262,13 +262,13 @@
         AQMBvgIAAf8B0QIAAf8B0QIAAf8DAAH/AQABpgH2Af8BAAGqAfkB/wEAAaoB+QH/AQABqgH5Af8BAAGq
         AfkB/wEAAaUB9gH/AwAB/wHRAgAB/wHRAgAB/wG+AgAB/wMCAQMDAgEDAb4CAAH/AdECAAH/AdECAAH/
         AdECAAH/AdECAAH/AdECAAH/AdECAAH/AdECAAH/AdECAAH/AdECAAH/AdECAAH/AdECAAH/AdECAAH/
-        Ab4CAAH/AwIBAwMCAQMBvgIAAf8B0QIAAf8B0QIAAf8DAAH/AgABDAH/AgABtgH/AgABtgH/AgABtgH/
+        Ab4CAAH/AwIBAwMCAQMBvgIAAf8B0QIAAf8B0QIAAf8DAAH/AgABCwH/AgABtgH/AgABtgH/AgABtgH/
         AgABtgH/AgABxQH/AwAB/wHRAgAB/wHRAgAB/wG+AgAB/wMCAQMMAAKBAaIB/wKBAb4B/wKBAcAB/wKB
         Ab4B/wKBAb8B/wKBAb8B/wKBAb4B/wKBAcAB/wKBAb4B/wKBAaIB/wwAAwIBAwHDAgAB/wHaAgAB/wHa
         AgAB/wMAAf8BAAG6AfoB/wEAAbwB+wH/AQABvAH8Af8BAAG8AfsB/wEAAbwB+wH/AQABugH5Af8DAAH/
         AdkCAAH/AdkCAAH/AcICAAH/AwIBAwMCAQMBwwIAAf8B2gIAAf8B2gIAAf8B2QIAAf8B2QIAAf8B2QIA
         Af8B2QIAAf8B2gIAAf8B2gIAAf8B2gIAAf8B2gIAAf8B2QIAAf8B2QIAAf8BwgIAAf8DAgEDAwIBAwHD
-        AgAB/wHaAgAB/wHaAgAB/wMAAf8CAAEMAf8CAAG2Af8CAAG2Af8CAAG1Af8CAAG1Af8CAAGvAf8DAAH/
+        AgAB/wHaAgAB/wHaAgAB/wMAAf8CAAELAf8CAAG2Af8CAAG2Af8CAAG1Af8CAAG1Af8CAAGvAf8DAAH/
         AdkCAAH/AdkCAAH/AcICAAH/AwIBAxAAAoEBqgH/AoEBzQH/AoEByAH/AoEByAH/AoEByAH/AoEByAH/
         AoEBzQH/AoEBqgH/EAADAgEDAcgCAAH/AeIBjwEAAf8B4gGQAQAB/wG8AYkBAAH/AQABqwHrAf8BAAHO
         Af4B/wEAAc4B/gH/AQABzgH+Af8BAAHOAf4B/wEAAasB7AH/AbsBiAEAAf8B4gGPAQAB/wHiAY8BAAH/
@@ -10538,9 +10538,6 @@
         rEEAAKxBAACsQf//rEE=
 </value>
   </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
     <value>600, 500</value>
   </data>
@@ -10597,6 +10594,24 @@
   </data>
   <data name="&gt;&gt;deleteToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;columnHeader3.Name" xml:space="preserve">
+    <value>columnHeader3</value>
+  </data>
+  <data name="&gt;&gt;columnHeader3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;columnHeader4.Name" xml:space="preserve">
+    <value>columnHeader4</value>
+  </data>
+  <data name="&gt;&gt;columnHeader4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;columnHeader5.Name" xml:space="preserve">
+    <value>columnHeader5</value>
+  </data>
+  <data name="&gt;&gt;columnHeader5.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;fileToolStripMenuItem.Name" xml:space="preserve">
     <value>fileToolStripMenuItem</value>
@@ -10777,24 +10792,6 @@
   </data>
   <data name="&gt;&gt;imageListMRU.Type" xml:space="preserve">
     <value>System.Windows.Forms.ImageList, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;columnHeader3.Name" xml:space="preserve">
-    <value>columnHeader3</value>
-  </data>
-  <data name="&gt;&gt;columnHeader3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;columnHeader4.Name" xml:space="preserve">
-    <value>columnHeader4</value>
-  </data>
-  <data name="&gt;&gt;columnHeader4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;columnHeader5.Name" xml:space="preserve">
-    <value>columnHeader5</value>
-  </data>
-  <data name="&gt;&gt;columnHeader5.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MainForm</value>
