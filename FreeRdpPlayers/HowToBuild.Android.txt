@@ -1,0 +1,36 @@
+Information from https://github.com/FreeRDP/FreeRDP/wiki/Compilation and from the FreeRDP/docs/README.android file. You will need a Linux machine (I used Fedora 19 x64).
+ 
+1. Get FreeRDP sources:
+git clone git://github.com/FreeRDP/FreeRDP.git
+ 
+2. Install dependencies (see https://github.com/FreeRDP/FreeRDP/wiki/Compilation, Linux Specifics). You will also need the wget utility and ant.
+ 
+3. Install Android SDK
+                3.1. Download Android SDK (SDK Tools Only, Linux 32 & 64-bit): https://developer.android.com/sdk/index.html?hl=i
+                3.2. Unpack it
+                3.3. Update it via SDK Manager (tools/android), install all components that are selected by default
+ 
+4. Install Android NDK
+                4.1. Download Android NDK (Linux 64-bit (x86)): https://developer.android.com/tools/sdk/ndk/index.html
+                4.2. Make the .bin file executable (via chmod)
+                4.3. Launch the .bin file (it will unpack the NDK)
+ 
+5. Setup the environment variables ANDROID_NDK and ANDROID_SDK. For example:
+                export ANDROID_NDK=/home/test/sdk/android-ndk-r10c
+                export ANDROID_SDK=/home/test/sdk/android-sdk-linux_r23.0.2
+ 
+6. Build OpenSSL
+                6.1. git clone https://github.com/bmiklautz/Android-external-openssl-ndk-static openssl
+                6.2. cd to the openssl directory and type
+                                $ANDROID_NDK/ndk_build
+ 
+7. Build JPEG support library
+                7.1. git clone https://github.com/akallabeth/jpeg8d
+                7.2. cd to the jpeg8d directory and type
+                                $ANDROID_NDK/ndk_build
+ 
+8. Build FreeRDP (use correct paths for FREERDP_EXTERNAL_SSL_PATH and FREERDP_EXTERNAL_JPEG_PATH)
+                8.1. cmake -DCMAKE_TOOLCHAIN_FILE=cmake/AndroidToolchain.cmake -DFREERDP_EXTERNAL_SSL_PATH=~/sources/openssl -DFREERDP_EXTERNAL_JPEG_PATH=~/sources/jpeg8d -DCMAKE_BUILD_TYPE=Debug
+                8.2. make
+ 
+When build finishes you will get an Android application: FreeRDP/client/Android/aFreeRDP/bin/aFreeRDP-debug.apk.
