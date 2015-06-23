@@ -221,14 +221,14 @@
     <string name="alert_emailaddress_exists_sent">Email address is not existing</string>
     <string name="alert_blank_password">Please enter password</string>
     <string name="notmatch_password">Password does not match</string>
-    <string name="alert_wrongusernameorpassword">Invalid username or password</string>
+    <string name="alert_wrongusernameorpassword">Invalid username or password, or account not activated</string>
     <string name="alert_submitsuccess_exists">Successfully submitted</string>
     <string name="noapp_string">No apps</string>
     <string name="addapp_string">Add your own app</string>
     <string name="alert_signupinvalid">Email address is not valid or already exists</string>
     
     
-    <string name="alertmsg_signup">Sign up success</string>
-    <string name="alert_signup_success">Check your email inbox.</string>
+    <string name="alertmsg_signup">Account created</string>
+    <string name="alert_signup_success">Please check your email for an activation link.</string>
     
 </resources>

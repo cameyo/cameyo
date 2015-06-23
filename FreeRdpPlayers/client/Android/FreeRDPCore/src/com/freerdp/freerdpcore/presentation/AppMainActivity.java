@@ -29,10 +29,12 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.net.Uri;
 
 import com.freerdp.freerdpcore.R;
 import com.freerdp.freerdpcore.manager.AppPreferences;
 import com.freerdp.freerdpcore.manager.GlobalAPI;
+import com.freerdp.freerdpcore.manager.Server;
 import com.freerdp.freerdpcore.model.PackageCategoryModel;
 import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -66,11 +68,15 @@ public class AppMainActivity extends FragmentActivity {
     
     private int mActivePosition = -1;
     private String mContentText;
+	private String addUrl;
 //    private TextView mContentTextView;
 
 	protected void onCreate(Bundle inState) {
 		super.onCreate(inState);
 		
+		addUrl = Server.serverUrlAuth("add", AppPreferences.getInstance(AppMainActivity.this).getLoEmailId(), 
+			AppPreferences.getInstance(AppMainActivity.this).getLoPassword());
+
 		Log.i("Create", "onCreate APPMainActivity");
 		getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
 		
@@ -187,6 +193,11 @@ public class AppMainActivity extends FragmentActivity {
 	private AdapterView.OnItemClickListener mItemClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+			if (AppPreferences.currentCategories[position].id == "[Add]") {
+				Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(addUrl));
+				startActivity(browserIntent);
+				return;
+			}
             setCategoryIndex(position);
             mMenuDrawer.setActiveView(view, position);
             mMenuDrawer.closeMenu();

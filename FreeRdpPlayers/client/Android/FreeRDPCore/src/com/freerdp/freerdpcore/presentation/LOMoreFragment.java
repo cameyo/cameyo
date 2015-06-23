@@ -128,7 +128,9 @@ public class LOMoreFragment extends BaseFragment implements TaskListener, OnItem
     	mAddAppLabel = (TextView) root.findViewById(R.id.addapp_textview);
         mAddAppLabel.setVisibility(View.INVISIBLE);
         String addAppTxt = getResources().getString(R.string.addapp_string);
-        addAppTxt = "<a href='" + Server.serverUrl("add") + "'>" + addAppTxt + "</a>";
+		String url = Server.serverUrlAuth("add", AppPreferences.getInstance(getActivity()).getLoEmailId(), 
+			AppPreferences.getInstance(getActivity()).getLoPassword());
+        addAppTxt = "<a href='" + url + "'>" + addAppTxt + "</a>";
         mAddAppLabel.setText(Html.fromHtml(addAppTxt));
         mAddAppLabel.setMovementMethod(LinkMovementMethod.getInstance());
     }

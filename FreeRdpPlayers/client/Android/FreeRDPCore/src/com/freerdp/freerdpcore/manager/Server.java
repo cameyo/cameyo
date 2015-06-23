@@ -36,6 +36,22 @@ public class Server {
 		return url;
 	}
 
+	public static String serverUrlAuth(String relativePage, String userEmail, String password) {
+		String httpOrhttps = Protocol.SERVER_HTTPS ? "https://" : "http://";
+		String url = httpOrhttps + Protocol.SERVER_URL + ":" + Protocol.SERVER_PORT;
+        if (relativePage != null && !relativePage.isEmpty())
+            url += "/" + relativePage;
+		if (userEmail != null && !userEmail.isEmpty() && password != null && !password.isEmpty()) {
+			String auth = userEmail + "|" + password;
+			String authEncoded = GlobalAPI.bytesToHex(auth.getBytes());
+			if (relativePage.contains("?"))
+				url += "&auth=" + authEncoded;
+			else
+				url += "?auth=" + authEncoded;
+		}
+		return url;
+	}
+
     public static String serverUrl(String relativePage) {
         return serverUrl(relativePage, null, null);
     }
@@ -75,12 +91,13 @@ public class Server {
 				JSONArray dataArray = origin.getJSONArray("libs");
 				Log.i("array", dataArray.toString());
 				if (dataArray != null && dataArray.length() > 0) {
-					retModelArray = new PackageCategoryModel[dataArray.length()];
+					retModelArray = new PackageCategoryModel[dataArray.length() + 1];
 					for (int i = 0; i < dataArray.length(); i ++) {
 						JSONObject element = dataArray.getJSONObject(i);
 						Log.i("element", element.toString());
 						retModelArray[i] = new PackageCategoryModel(element);
 					}
+					retModelArray[dataArray.length()] = new PackageCategoryModel("[Add]", "Add your own", "");
 				}
 			}
 		} catch (JSONException e) {

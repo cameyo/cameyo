@@ -12,7 +12,12 @@ public class PackageCategoryModel {
 	public static final String TAG = "PackageCategoryModel";
 
 	public PackageCategoryModel() {
+	}
 
+	public PackageCategoryModel(String _id, String _displayName, String _listMode) {
+		id = _id;
+		displayName = _displayName;
+		listMode = _listMode;
 	}
 
 	public PackageCategoryModel (JSONObject jsonData) {
