@@ -28,6 +28,8 @@ namespace Cameyo.Player
         {
             InitializeComponent();
 
+            //ProxyAuth.AuthIfNeeded();
+
             // XP: avoid message "Could not establish trust relationship for SSL/TLS secure channel"
             if (Environment.OSVersion.Version.Major == 5)
             {
@@ -109,16 +111,26 @@ namespace Cameyo.Player
             Utils.ShellExec(Server.ServerUrl() + "/storage");
         }
 
+        // AuthUrl
+        string AuthUrl()
+        {
+            return "auth=" + Utils.HexDump(Encoding.ASCII.GetBytes(Server.Login + "|" + Server.Password));
+        }
+
         // Add app click
         void OnAddAppClick(object sender, RoutedEventArgs e)
         {
-            Utils.ShellExec(Server.ServerUrl() + "/add");
+            string url = Server.ServerUrl() + "/add";
+            url += "?" + AuthUrl();
+            Utils.ShellExec(url);
         }
 
         // Profile settings click
         void OnProfileSettingsClick(object sender, RoutedEventArgs e)
         {
-            Utils.ShellExec(Server.ServerUrl() + "/profile");
+            string url = Server.ServerUrl() + "/profile";
+            url += "?" + AuthUrl();
+            Utils.ShellExec(url);
         }
 
         // Logout click

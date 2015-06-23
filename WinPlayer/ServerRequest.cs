@@ -73,7 +73,7 @@ namespace Cameyo.Player
     public class ServerClient
     {
         public string Login { get; set; }
-        private string Password { get; set; }
+        public string Password { get; set; }
         public string ServerHost { get { return "online.cameyo.com"; } }
         private int ServerPort { get { return 443; } }
         private bool IsHttps { get { return true; } }

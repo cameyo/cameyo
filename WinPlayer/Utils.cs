@@ -99,6 +99,16 @@ namespace Cameyo
             return String.Format("{0:0.#} {1}", len, sizes[order]);
         }
 
+        static public String HexDump(byte[] bytes)
+        {
+            string hexString = "";
+            for (int i = 0; i < bytes.Length; i++)
+            {
+                hexString += bytes[i].ToString("X2");
+            }
+            return hexString;
+        }
+
         static public string TimeAgo(DateTime dt)
         {
             const int SECOND = 1;
