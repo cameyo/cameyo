@@ -232,7 +232,7 @@ namespace PackageEditor
 
             // Developers, please respect copyright restrictions!
             int licenseType = VirtPackage.LicDataLoadFromFile(null);
-            if (licenseType < VirtPackage.LICENSETYPE_DEV)
+            if (licenseType < VirtPackage.LICENSETYPE_PRO)
             {
                 DisableControl(lnkAutoUpdate);
                 DisableControl(propertyDisplayLogo);
