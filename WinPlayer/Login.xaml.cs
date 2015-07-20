@@ -83,7 +83,7 @@ namespace Cameyo.Player
                     {
                         int exitCode = 0;   // Will contain LicenseType
                         Utils.ShellExec(packagerExe, string.Format("-Quiet \"-LicRegister:{0}/{1}\" {2}",
-                            Environment.MachineName, Environment.UserName, Server.AccountInfo.LicData), ref exitCode, true);
+                            Environment.MachineName, Environment.UserName, Server.AccountInfo.LicData), ref exitCode, true, true);
                         Server.License.Type = (License.LicenseType)exitCode;
                         //str += (LicenseType ^ 0xF8).ToString("X2");
                     }
@@ -106,6 +106,7 @@ namespace Cameyo.Player
                     if (success)
                     {
                         Hide();
+                        //var mainWindow = new PkgCreateWin();
                         var mainWindow = new MainWindow();
                         mainWindow.Show();
                         Close();
@@ -149,12 +150,12 @@ namespace Cameyo.Player
 
         private void ForgotBtn_Click(object sender, RoutedEventArgs e)
         {
-            Utils.ShellExec(Server.ServerUrl() + "/forgot");
+            Utils.ShellExec(Server.ServerUrl() + "/forgot", false);
         }
 
         private void RegisterBtn_Click(object sender, RoutedEventArgs e)
         {
-            Utils.ShellExec(Server.ServerUrl() + "/register");
+            Utils.ShellExec(Server.ServerUrl() + "/register", false);
         }
 
         private void PreloaderStart()

@@ -51,14 +51,17 @@ namespace Cameyo
             return (!Directory.Exists(target_dir));
         }
 
-        static public bool ShellExec(string cmd, string args, ref int exitCode, bool wait)
+        static public bool ShellExec(string cmd, string args, ref int exitCode, bool wait, bool hidden)
         {
             try
             {
                 var procStartInfo = new ProcessStartInfo(cmd, args);
                 Process proc = new Process();
-                procStartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-                procStartInfo.CreateNoWindow = true;
+                if (hidden)
+                {
+                    procStartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                    procStartInfo.CreateNoWindow = true;
+                }
                 procStartInfo.UseShellExecute = true;
                 proc.StartInfo = procStartInfo;
                 if (!proc.Start())
@@ -76,15 +79,24 @@ namespace Cameyo
             }
         }
 
-        static public bool ShellExec(string cmd, string args)
+        static public bool ShellExec(string cmd, string args, bool hidden)
         {
             int exitCode = 0;
-            return ShellExec(cmd, args, ref exitCode, false);
+            return ShellExec(cmd, args, ref exitCode, false, hidden);
         }
 
-        static public bool ShellExec(string cmd)
+        static public bool ShellExec(string cmd, bool hidden)
         {
-            return ShellExec(cmd, null);
+            return ShellExec(cmd, null, hidden);
+        }
+
+        static public bool SilentInstallAvailable(String silentInstallExe, String installerFile)
+        {
+            if (installerFile.EndsWith(".msi", StringComparison.InvariantCultureIgnoreCase))
+                return true;
+            int exitCode = 0;
+            bool bExec = ShellExec(silentInstallExe, "/detect \"" + installerFile + "\"", ref exitCode, true, true);
+            return (bExec && exitCode == 0);
         }
 
         static public String BytesToStr(double len)
@@ -107,6 +119,25 @@ namespace Cameyo
                 hexString += bytes[i].ToString("X2");
             }
             return hexString;
+        }
+
+        public static string UrlEncode(string value)
+        {
+            value = Uri.EscapeDataString(value);
+
+            StringBuilder builder = new StringBuilder();
+            foreach (char ch in value)
+            {
+                if ("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_.~%".IndexOf(ch) != -1)
+                {
+                    builder.Append(ch);
+                }
+                else
+                {
+                    builder.Append('%' + string.Format("{0:X2}", (int)ch));
+                }
+            }
+            return builder.ToString();
         }
 
         static public string TimeAgo(DateTime dt)
@@ -162,6 +193,55 @@ namespace Cameyo
                 int years = Convert.ToInt32(Math.Floor((double)ts.Days / 365));
                 return years <= 1 ? "one year ago" : years + " years ago";
             }
+        }
+
+        static public System.Windows.Forms.DialogResult ShowInputDialog(string title, ref string input)
+        {
+            var size = new System.Drawing.Size(280, 90);
+            var inputBox = new System.Windows.Forms.Form();
+            int top = 5;
+
+            inputBox.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            inputBox.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            inputBox.ClientSize = size;
+            inputBox.Text = title;
+
+            var textLabel = new System.Windows.Forms.Label();
+            textLabel.Size = new System.Drawing.Size(size.Width - 10, 23);
+            textLabel.Location = new System.Drawing.Point(5, top);
+            textLabel.Text = title;
+            inputBox.Controls.Add(textLabel);
+            top += textLabel.Height + 5;
+
+            var textBox = new System.Windows.Forms.TextBox();
+            textBox.Size = new System.Drawing.Size(size.Width - 10, 23);
+            textBox.Location = new System.Drawing.Point(5, top);
+            textBox.Text = input;
+            inputBox.Controls.Add(textBox);
+            top += textBox.Height + 5;
+
+            var okButton = new System.Windows.Forms.Button();
+            okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+            okButton.Name = "okButton";
+            okButton.Size = new System.Drawing.Size(75, 23);
+            okButton.Text = "&OK";
+            okButton.Location = new System.Drawing.Point(size.Width - 80 - 80, top);
+            inputBox.Controls.Add(okButton);
+
+            var cancelButton = new System.Windows.Forms.Button();
+            cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            cancelButton.Name = "cancelButton";
+            cancelButton.Size = new System.Drawing.Size(75, 23);
+            cancelButton.Text = "&Cancel";
+            cancelButton.Location = new System.Drawing.Point(size.Width - 80, top);
+            inputBox.Controls.Add(cancelButton);
+
+            inputBox.AcceptButton = okButton;
+            inputBox.CancelButton = cancelButton;
+
+            var result = inputBox.ShowDialog();
+            input = textBox.Text;
+            return result;
         }
     }
 

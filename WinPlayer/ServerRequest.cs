@@ -24,6 +24,9 @@ namespace Cameyo.Player
         public string StorageProviderName { get; set; }
         public string StorageProviderUserID { get; set; }
         public string LicData { get; set; }
+        public int FileUploadMbLimit { get; set; }
+        public int HttpUploadMbLimit { get; set; }
+        public int PkgDurationDays { get; set; }
     }
 
     // ServerApp
@@ -90,22 +93,38 @@ namespace Cameyo.Player
 
         public string ServerUrl()
         {
-            string url = string.Format("{0}://{1}:{2}", IsHttps ? "https" : "http", ServerHost, ServerPort);
+            string port;
+            if ((IsHttps && ServerPort == 443) || (!IsHttps && ServerPort == 80))
+                port = "";
+            else
+                port = ":" + ServerPort.ToString();
+            string url = string.Format("{0}://{1}{2}", IsHttps ? "https" : "http", ServerHost, port);
             return url;
         }
 
-        private string SendRequest(string op, bool credentials, string extraParams)
+        public string AuthUrl()
         {
-            var webClient = new WebClient();
+            return "auth=" + Utils.HexDump(Encoding.ASCII.GetBytes(this.Login + "|" + this.Password));
+        }
+
+        public string BuildUrl(string op, bool credentials, string extraParams)
+        {
             string url = string.Format("{0}/packager.aspx?op={1}", ServerUrl(), op);
             if (credentials)
-                url += string.Format("&user={0}&pass={1}", Login, Password);
+                url += string.Format("&user={0}&pass={1}", Utils.UrlEncode(Login), Utils.UrlEncode(Password));
             if (!string.IsNullOrEmpty(extraParams))
                 url += extraParams;
+            return url;
+        }
+
+        public string SendRequest(string op, bool credentials, string extraParams)
+        {
+            var webClient = new WebClient();
+            var url = BuildUrl(op, credentials, extraParams);
             return webClient.DownloadString(url);
         }
 
-        private string SendRequest(string op, bool credentials)
+        public string SendRequest(string op, bool credentials)
         {
             return SendRequest(op, credentials, null);
         }
@@ -181,7 +200,7 @@ namespace Cameyo.Player
         public bool Auth(string login, string password, bool cache)
         {
             SetCredentials(login, password);
-            var json = SendRequest("AccountAuth", true, null);
+            var json = SendRequest("AccountAuth", true, "&client=WinPlayer");
             if (DeserializeJson<AccountInfo>(json, ref AccountInfo))
             {
                 if (cache)

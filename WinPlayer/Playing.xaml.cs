@@ -30,6 +30,7 @@ namespace Cameyo.Player
 
         public enum AppAction
         {
+            None,
             Download,
             Play
         }

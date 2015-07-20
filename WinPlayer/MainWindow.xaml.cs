@@ -108,29 +108,26 @@ namespace Cameyo.Player
         // Storage click
         void OnStorageClick(object sender, RoutedEventArgs e)
         {
-            Utils.ShellExec(Server.ServerUrl() + "/storage");
-        }
-
-        // AuthUrl
-        string AuthUrl()
-        {
-            return "auth=" + Utils.HexDump(Encoding.ASCII.GetBytes(Server.Login + "|" + Server.Password));
+            Utils.ShellExec(Server.ServerUrl() + "/storage", false);
         }
 
         // Add app click
         void OnAddAppClick(object sender, RoutedEventArgs e)
         {
-            string url = Server.ServerUrl() + "/add";
-            url += "?" + AuthUrl();
-            Utils.ShellExec(url);
+            var pkgCreateWin = new PkgCreateWin();
+            pkgCreateWin.Owner = this;
+            pkgCreateWin.Show();
+            /*string url = Server.ServerUrl() + "/add";
+            url += "?" + Server.AuthUrl();
+            Utils.ShellExec(url, false);*/
         }
 
         // Profile settings click
         void OnProfileSettingsClick(object sender, RoutedEventArgs e)
         {
             string url = Server.ServerUrl() + "/profile";
-            url += "?" + AuthUrl();
-            Utils.ShellExec(url);
+            url += "?" + Server.AuthUrl();
+            Utils.ShellExec(url, false);
         }
 
         // Logout click
