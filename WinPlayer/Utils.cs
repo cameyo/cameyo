@@ -243,6 +243,53 @@ namespace Cameyo
             input = textBox.Text;
             return result;
         }
+
+        static public bool IsCameyoFile(Stream contents)
+        {
+            // Check if this is a Cameyo package
+            if (contents.Length < 1024 * 1024)
+                return false;
+
+            // Cameyo package
+            byte[] eof = new byte[4];
+            byte[] magic = { 0xBE, 0xBA, 0xCA, 0xDE };
+            contents.Seek(-4, SeekOrigin.End);
+            contents.Read(eof, 0, 4);
+            bool match = true;
+            for (int i = 0; i < 4; i++)
+            {
+                if (eof[i] != magic[i])
+                {
+                    match = false;
+                    break;
+                }
+            }
+            if (match)
+                return true;
+
+            // Usually, EndOfPeContainer = FileSize, but if there has been any addition to the file (ie digital certificate), 
+            // then we need to scan it.
+            // Max certificate size: 32kb
+            int bufLen = 32 * 1024;
+            byte[] buf = new byte[bufLen];
+            contents.Seek(-bufLen, SeekOrigin.End);
+            contents.Read(buf, 0, bufLen);
+            for (int i = 0; i < bufLen - magic.Length; i++)
+            {
+                match = true;
+                for (int j = 0; j < magic.Length; j++)
+                {
+                    if (buf[i + j] != magic[j])
+                    {
+                        match = false;
+                        break;
+                    }
+                }
+                if (match)
+                    return true;
+            }
+            return false;
+        }
     }
 
     /// <summary>

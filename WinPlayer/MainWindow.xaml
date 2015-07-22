@@ -65,9 +65,13 @@
 
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                             <!-- Add dropdown -->
-                            <Button Style="{StaticResource IconBtn}" Margin="20,0,0,0" Click="OnAddAppClick" ToolTip="Add app">
+                            <w:SplitButton x:Name="AddAppSplitBtn" Margin="20,-5,0,0" Content="+" FontSize="30">
+                                <MenuItem Header="Create a new package" Click="OnPkgCreateClick" />
+                                <MenuItem Header="Upload an existing package" Click="OnPkgUploadClick" />
+                            </w:SplitButton>
+                            <!--Button Style="{StaticResource IconBtn}" Margin="20,0,0,0" Click="OnAddAppClick" ToolTip="Add app">
                                 <Rectangle Fill="{StaticResource AddDrawingBrush}" Width="14" Height="14" />
-                            </Button>
+                            </-->
 
                             <!-- Category dropdown -->
                             <w:SplitButton x:Name="CategorySplitBtn" Margin="20,0,0,0" Content="Library" />

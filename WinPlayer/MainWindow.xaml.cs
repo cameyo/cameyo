@@ -45,7 +45,7 @@ namespace Cameyo.Player
             var libs = Server.AccountInfo.libs;
             var curLib = libs[0];
 
-            // Display libs
+            // CategorySplitBtn: libs
             CategorySplitBtn.Content = curLib.DisplayName;
             CategorySplitBtn.Items.Clear();
             foreach (var lib in libs)
@@ -113,8 +113,8 @@ namespace Cameyo.Player
             Utils.ShellExec(Server.ServerUrl() + "/storage", false);
         }
 
-        // Add app click
-        void OnAddAppClick(object sender, RoutedEventArgs e)
+        // Pkg creation click
+        void OnPkgCreateClick(object sender, RoutedEventArgs e)
         {
             var pkgCreateWin = new PkgCreateWin();
             pkgCreateWin.Owner = this;
@@ -122,6 +122,16 @@ namespace Cameyo.Player
             /*string url = Server.ServerUrl() + "/add";
             url += "?" + Server.AuthUrl();
             Utils.ShellExec(url, false);*/
+        }
+
+        // Pkg upload click
+        void OnPkgUploadClick(object sender, RoutedEventArgs e)
+        {
+            var pkgCreateWin = new PkgCreateWin();
+            pkgCreateWin.Owner = this;
+            pkgCreateWin.UploadOnlyMode = true;
+            pkgCreateWin.SetUiMode(PkgCreateWin.UiMode.WaitingForFile);
+            pkgCreateWin.Show();
         }
 
         // Profile settings click

@@ -94,7 +94,7 @@
                                         <TextBlock Text="Browse" FontWeight="SemiBold" Foreground="White" TextDecorations="Underline" FontSize="14"/>
                                     </Button>
                                     <Button Name="PkgExploreBtn" Style="{StaticResource BorderlessButton}" Click="PkgExploreBtnClick" Margin="0,0,10,0" Visibility="Collapsed">
-                                        <TextBlock Text="Explore" FontWeight="SemiBold" Foreground="White" TextDecorations="Underline" FontSize="14"/>
+                                        <TextBlock Text="View" FontWeight="SemiBold" Foreground="White" TextDecorations="Underline" FontSize="14"/>
                                     </Button>
                                     <Button Name="DownloadUploadBtn" Style="{StaticResource BorderlessButton}" Click="DownloadUploadBtnClick" Margin="0,0,10,0" Visibility="Collapsed">
                                         <TextBlock Name="DownloadUploadBtnTxt" Text="Upload online" FontWeight="SemiBold" Foreground="White" TextDecorations="Underline" FontSize="14"/>
@@ -138,6 +138,16 @@
                             <StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
                                 <TextBlock Text="Snapshot capture" HorizontalAlignment="Center" />
                                 <TextBlock Text="(Flexible)" HorizontalAlignment="Center" />
+                            </StackPanel>
+                        </Grid>
+                    </Button>
+                    <Button Name="UploadBtn" Style="{StaticResource LargeBtn}" Width="130" Height="88" Margin="10,0,10,0" Click="UploadBtn_Click" Visibility="Collapsed">
+                        <Grid Height="72">
+                            <Canvas Width="40" VerticalAlignment="Top" Margin="0,2,0,0">
+                                <Path Fill="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType=Button}}" Data="F1 M 8.733,12.031 M 8.733,12.031 L 12.284,12.031 C 13.076,12.031 13.727,12.677 13.727,13.474 L 13.727,27.810 C 13.727,27.850 13.760,27.887 13.803,27.887 L 25.083,27.887 C 25.126,27.887 25.163,27.850 25.163,27.810 L 25.163,13.474 C 25.163,12.677 25.810,12.031 26.607,12.031 L 30.153,12.031 L 19.500,1.374 L 19.390,1.374 L 8.733,12.031 Z M 6.833,12.818 C 6.763,12.640 6.647,12.183 7.140,11.694 L 18.423,0.408 C 18.967,-0.136 19.920,-0.136 20.463,0.408 L 31.750,11.694 C 32.239,12.183 32.123,12.640 32.052,12.818 C 31.980,12.991 31.739,13.397 31.043,13.397 L 26.607,13.397 C 26.566,13.397 26.530,13.430 26.530,13.474 L 26.530,27.810 C 26.530,28.607 25.883,29.253 25.086,29.253 L 13.803,29.253 C 13.006,29.253 12.359,28.607 12.359,27.810 L 12.359,13.474 C 12.359,13.430 12.323,13.397 12.284,13.397 L 7.846,13.397 C 7.150,13.397 6.907,12.991 6.833,12.818 L 6.833,12.818 Z M 38.886,19.113 L 38.886,32.233 C 38.886,35.964 35.853,39.000 32.120,39.000 L 6.767,39.000 C 3.037,39.000 0.000,35.964 0.000,32.233 L 0.000,19.113 C 0.000,18.737 0.306,18.431 0.684,18.431 C 1.060,18.431 1.367,18.737 1.367,19.113 L 1.367,32.233 C 1.367,35.210 3.790,37.634 6.767,37.634 L 32.120,37.634 C 35.100,37.634 37.523,35.210 37.523,32.233 L 37.523,19.113 C 37.523,18.737 37.829,18.431 38.206,18.431 C 38.583,18.431 38.886,18.734 38.886,19.113 L 38.886,19.113 Z"/>
+                            </Canvas>
+                            <StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
+                                <TextBlock Text="Upload" HorizontalAlignment="Center" />
                             </StackPanel>
                         </Grid>
                     </Button>

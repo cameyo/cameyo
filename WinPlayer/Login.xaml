@@ -1,6 +1,7 @@
 ﻿<Window x:Class="Cameyo.Player.Login"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		Icon="Gfx/Icon.ico"
         WindowStyle="None" AllowsTransparency="True" Background="Transparent"
         WindowStartupLocation="CenterScreen" Title="Login" Height="260" Width="400">
 

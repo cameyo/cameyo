@@ -27,7 +27,9 @@ namespace Cameyo.Player
         long RequestId = 0;
         string InstallerPath, InstallerArgs;
         string CannotOnlinePackagerReason = "Please provide an installer file first.";
+        string CannotUploadExistingPkgReason = "Please select a Cameyo package file first.";
         Brush EnabledColor, DisabledColor;
+        public bool UploadOnlyMode = false;
 
         enum PkgStatus
         {
@@ -38,15 +40,7 @@ namespace Cameyo.Player
             StatusDone = 5
         };
 
-        public PkgCreateWin()
-        {
-            InitializeComponent();
-            EnabledColor = SnapshotBtn.Foreground;
-            DisabledColor =  new SolidColorBrush(System.Windows.Media.Colors.LightGray);
-            SetUiMode(UiMode.WaitingForFile);
-        }
-
-        enum UiMode
+        public enum UiMode
         {
             WaitingForFile,
             WaitingForButtonClick,
@@ -57,18 +51,35 @@ namespace Cameyo.Player
             DownloadingUploading,
         }
 
-        void SetUiMode(UiMode mode)
+        public PkgCreateWin()
+        {
+            InitializeComponent();
+            EnabledColor = SnapshotBtn.Foreground;
+            DisabledColor =  new SolidColorBrush(System.Windows.Media.Colors.LightGray);
+            SetUiMode(UiMode.WaitingForFile);
+        }
+
+        public void SetUiMode(UiMode mode)
         {
             switch (mode)
             {
                 case UiMode.WaitingForFile:
+                    if (UploadOnlyMode)
+                    {
+                        StatusTxt.Text = "Drag & Drop your Cameyo package here";
+                        OnlinePackagerBtn.Visibility = Visibility.Hidden;
+                        SnapshotBtn.Visibility = Visibility.Collapsed;
+                        UploadBtn.Visibility = Visibility.Visible;
+                        SandboxCaptureBtn.Visibility = Visibility.Hidden;
+                    }
                     //ButtonsPanel.Visibility = Visibility.Collapsed;
                     break;
                 case UiMode.WaitingForButtonClick:
                     DragDropImg.Visibility = Visibility.Collapsed;
                     ButtonsPanel.Visibility = Visibility.Visible;
                     IconImg.Visibility = Visibility.Visible;
-                    ArgsBtn.Visibility = Visibility.Visible;
+                    if (!UploadOnlyMode)
+                        ArgsBtn.Visibility = Visibility.Visible;
                     break;
                 case UiMode.Working:
                     PreloaderStart();
@@ -109,7 +120,26 @@ namespace Cameyo.Player
 
         void OnFileSelect(string fileName)
         {
-            if (ValidatePackagingMethods(fileName, false))
+            // Upload-only mode
+            if (UploadOnlyMode)
+            {
+                bool isCameyoFile = false;
+                using (FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read))
+                {
+                    if (Utils.IsCameyoFile(fs))
+                    {
+                        isCameyoFile = true;
+                    }
+                    fs.Close();
+                }
+                if (!isCameyoFile)
+                {
+                    MessageBox.Show("This is not a a Cameyo package.");
+                    return;
+                }
+            }
+
+            if (ValidatePackagingMethods(fileName))
             {
                 DisplayAssociatedIcon(fileName);
                 SetUiMode(UiMode.WaitingForButtonClick);
@@ -118,12 +148,27 @@ namespace Cameyo.Player
 
         private void OnlinePackagerBtn_Click(object sender, RoutedEventArgs e)
         {
-            ValidatePackagingMethods(InstallerPath, true);
+            if (string.IsNullOrEmpty(InstallerPath)) return;
+            ValidatePackagingMethods(InstallerPath);
+
+            // Validate cloud packaging: unattended install?
+            bool silentInstallAvailable = Utils.SilentInstallAvailable(Utils.MyPath("SilentInstall.exe"), InstallerPath);
+            if (!silentInstallAvailable)
+            {
+                if (MessageBox.Show("This file does not support unattended installation. " +
+                    "You will need to finalize this request online. Would you like to proceed?",
+                    "Confirmation", MessageBoxButton.YesNo) != MessageBoxResult.Yes)
+                    return;
+            }
+
+            // Check if online packaging is possible (i.e. account limits)
             if (!string.IsNullOrEmpty(CannotOnlinePackagerReason))
             {
                 MessageBox.Show(CannotOnlinePackagerReason);
                 return;
             }
+
+            // Submit file
             string args = "";
             if (!string.IsNullOrEmpty(InstallerArgs))
                 args = "&args=" + InstallerArgs;
@@ -138,6 +183,7 @@ namespace Cameyo.Player
 
         private void SandboxCaptureBtn_Click(object sender, RoutedEventArgs e)
         {
+            if (string.IsNullOrEmpty(InstallerPath)) return;
             ProgressText("Capturing installation...");
             SetUiMode(UiMode.Working);
             var thread = new System.Threading.Thread(new System.Threading.ThreadStart(StartGhostCapture));
@@ -151,6 +197,32 @@ namespace Cameyo.Player
             PreloaderStop();   // Since Packager will be mostly waiting for user's input
             var thread = new System.Threading.Thread(new System.Threading.ThreadStart(StartPackagerCapture));
             thread.Start();
+        }
+
+        private void UploadBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(InstallerPath)) return;
+            ValidatePackagingMethods(InstallerPath);
+            if (!string.IsNullOrEmpty(CannotUploadExistingPkgReason))
+            {
+                MessageBox.Show(CannotUploadExistingPkgReason);
+                return;
+            }
+            PkgLocation = InstallerPath;
+            SubmitFile();
+        }
+
+        void SubmitFile()
+        {
+            // Upload request
+            PkgUploaded = true;   // Avoid the "Download" button from now on
+            var url = Server.BuildUrl("PkgSubmitFile", true, null);
+            var webClient = new WebClient();
+            webClient.UploadProgressChanged += UploadProgressChanged;
+            webClient.UploadFileCompleted += SubmitPkgFileUploadCompleted;
+            webClient.UploadFileAsync(new Uri(url), PkgLocation);
+            ProgressText("Uploading");
+            SetUiMode(UiMode.DownloadingUploading);
         }
 
         private void BrowseBtnClick(object sender, RoutedEventArgs e)
@@ -202,15 +274,7 @@ namespace Cameyo.Player
             }
             else
             {
-                // Upload request
-                PkgUploaded = true;   // Avoid the "Download" button from now on
-                var url = Server.BuildUrl("PkgSubmitFile", true, null);
-                var webClient = new WebClient();
-                webClient.UploadProgressChanged += UploadProgressChanged;
-                webClient.UploadFileCompleted += SubmitPkgFileUploadCompleted;
-                webClient.UploadFileAsync(new Uri(url), PkgLocation);
-                ProgressText("Uploading");
-                SetUiMode(UiMode.DownloadingUploading);
+                SubmitFile();
             }
         }
 
@@ -461,7 +525,7 @@ namespace Cameyo.Player
             }));
         }
 
-        bool ValidatePackagingMethods(string fileName, bool pressed)
+        bool ValidatePackagingMethods(string fileName)
         {
             try
             {
@@ -473,8 +537,11 @@ namespace Cameyo.Player
                 StatusTxt.Text = System.IO.Path.GetFileName(fileName);
                 InstallerPath = fileName;
 
+                // Init
+                CannotOnlinePackagerReason = CannotUploadExistingPkgReason = "";
+
                 // Validate cloud packaging: unattended install?
-                bool silentInstallAvailable = Utils.SilentInstallAvailable(Utils.MyPath("SilentInstall.exe"), fileName);
+                /*bool silentInstallAvailable = Utils.SilentInstallAvailable(Utils.MyPath("SilentInstall.exe"), fileName);
                 if (silentInstallAvailable)
                 {
                     var story = this.TryFindResource("OnlinePackagerHighlight") as System.Windows.Media.Animation.Storyboard;
@@ -491,7 +558,7 @@ namespace Cameyo.Player
                             "Confirmation", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                             CannotOnlinePackagerReason = "";
                     }
-                }
+                }*/
 
                 // Validate cloud packaging: account limitations?
                 if (string.IsNullOrEmpty(CannotOnlinePackagerReason))
@@ -499,8 +566,8 @@ namespace Cameyo.Player
                     var accountMaxMb = Server.AccountInfo.FileUploadMbLimit * 1024 * 1024;
                     if (fi.Length >= accountMaxMb)
                     {
-                        CannotOnlinePackagerReason = string.Format("Your account is limited to {0} MB. Consider upgrading.",
-                            Server.AccountInfo.FileUploadMbLimit); ;
+                        CannotOnlinePackagerReason = CannotUploadExistingPkgReason = 
+                            string.Format("Your account is limited to {0} MB. Consider upgrading.", Server.AccountInfo.FileUploadMbLimit); ;
                     }
                 }
 
