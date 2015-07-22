@@ -137,7 +137,7 @@
                             </Canvas>
                             <StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
                                 <TextBlock Text="Snapshot capture" HorizontalAlignment="Center" />
-                                <TextBlock Text="(Powerful)" HorizontalAlignment="Center" />
+                                <TextBlock Text="(Flexible)" HorizontalAlignment="Center" />
                             </StackPanel>
                         </Grid>
                     </Button>

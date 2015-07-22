@@ -129,13 +129,26 @@ namespace Cameyo.Player
             return SendRequest(op, credentials, null);
         }
 
-        private string CacheOrWeb(string op, bool credentials, string extraParams, string cacheIdentifier)
+        private string CacheOrWeb(string op, bool credentials, string extraParams, string cacheIdentifier, bool allowCache)
         {
             string cacheDir = CacheDir(string.Format("{0} - {1}", ServerHost, Login));
             Directory.CreateDirectory(cacheDir);
             string libCacheFile = cacheDir + "\\" + cacheIdentifier + ".txt";
             string json;
-            if (File.Exists(libCacheFile))
+
+            bool isCached = false;
+            if (allowCache)
+            {
+                isCached = File.Exists(libCacheFile);
+                if (isCached)
+                {
+                    var ageDays = DateTime.UtcNow.Subtract(File.GetLastAccessTimeUtc(libCacheFile)).TotalDays;
+                    if (ageDays > 2)
+                        isCached = false;   // Invalidate cache if it's older than 2 days
+                }
+            }
+
+            if (isCached)
                 json = File.ReadAllText(libCacheFile);
             else
             {
@@ -214,9 +227,9 @@ namespace Cameyo.Player
                 return false;
         }
 
-        public List<ServerApp> PkgList(string libId)
+        public List<ServerApp> PkgList(string libId, bool allowCache)
         {
-            var json = CacheOrWeb("PkgList", true, "&lib=" + libId + "&detail=Player", "Lib." + libId);
+            var json = CacheOrWeb("PkgList", true, "&lib=" + libId + "&detail=Player", "Lib." + libId, allowCache);
             List<ServerApp> retVal = null;
             if (DeserializeJson<List<ServerApp>>(json, ref retVal))
                 return retVal;
@@ -224,9 +237,9 @@ namespace Cameyo.Player
                 return new List<ServerApp>();   // Return empty list on error?
         }
 
-        public ServerAppDetails AppDetails(string pkgId)
+        public ServerAppDetails AppDetails(string pkgId, bool allowCache)
         {
-            var json = CacheOrWeb("PkgInfo", true, "&pkgId=" + pkgId + "&detail=Player", pkgId);
+            var json = CacheOrWeb("PkgInfo", true, "&pkgId=" + pkgId + "&detail=Player", pkgId, allowCache);
             ServerAppDetails retVal = null;
             if (DeserializeJson<ServerAppDetails>(json, ref retVal))
                 return retVal;

@@ -109,7 +109,7 @@ namespace Cameyo.Player
 
         void OnFileSelect(string fileName)
         {
-            if (ValidatePackagingMethods(fileName))
+            if (ValidatePackagingMethods(fileName, false))
             {
                 DisplayAssociatedIcon(fileName);
                 SetUiMode(UiMode.WaitingForButtonClick);
@@ -118,7 +118,7 @@ namespace Cameyo.Player
 
         private void OnlinePackagerBtn_Click(object sender, RoutedEventArgs e)
         {
-            ValidatePackagingMethods(InstallerPath);
+            ValidatePackagingMethods(InstallerPath, true);
             if (!string.IsNullOrEmpty(CannotOnlinePackagerReason))
             {
                 MessageBox.Show(CannotOnlinePackagerReason);
@@ -217,7 +217,7 @@ namespace Cameyo.Player
         void AdditionalInfoBtnClick(object sender, RoutedEventArgs e)
         {
             if (RequestId != 0)
-                Utils.ShellExec(string.Format("{0}/pkgrAdditionalInfo.aspx?reqId={1}", Server.ServerUrl(), RequestId), false);
+                Utils.ShellExec(string.Format("{0}/pkgrAdditionalInfo.aspx?reqId={1}&{2}", Server.ServerUrl(), RequestId, Server.AuthUrl()), false);
         }
 
         private void PreloaderStart()
@@ -269,6 +269,13 @@ namespace Cameyo.Player
                 }
                 UrlBox.Text = PkgLocation;
                 UrlBox.Visibility = Visibility.Visible;
+
+                // Force main window to refresh private library
+                var wnd = (Cameyo.Player.MainWindow)Owner;
+                wnd.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() =>
+                {
+                    wnd.ForceMyLibraryRefresh();
+                }));
             }
             else if (PkgIconPath.EndsWith(".exe", StringComparison.InvariantCultureIgnoreCase))
             {
@@ -454,7 +461,7 @@ namespace Cameyo.Player
             }));
         }
 
-        bool ValidatePackagingMethods(string fileName)
+        bool ValidatePackagingMethods(string fileName, bool pressed)
         {
             try
             {
@@ -477,6 +484,13 @@ namespace Cameyo.Player
                 else
                 {
                     CannotOnlinePackagerReason = "File does not support unattended installation.";
+                    if (pressed)
+                    {
+                        if (MessageBox.Show("This file does not support unattended installation. " +
+                            "You will need to finalize this request online. Would you like to proceed?",
+                            "Confirmation", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                            CannotOnlinePackagerReason = "";
+                    }
                 }
 
                 // Validate cloud packaging: account limitations?
@@ -517,7 +531,7 @@ namespace Cameyo.Player
                 string cmd = "";
                 if (!string.IsNullOrEmpty(InstallerPath))
                 {
-                    cmd += " \"" + InstallerPath + "\"";
+                    cmd += " -exec \"" + InstallerPath + "\"";
                     if (!string.IsNullOrEmpty(InstallerArgs))
                         cmd += " " + InstallerArgs;
                 }

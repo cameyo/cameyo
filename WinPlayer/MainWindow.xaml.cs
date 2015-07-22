@@ -23,6 +23,7 @@ namespace Cameyo.Player
     {
         ServerClient Server = ServerSingleton.Instance.ServerClient;
         List<ServerApp> Apps = new List<ServerApp>();
+        string CurLib;
 
         public MainWindow()
         {
@@ -60,14 +61,15 @@ namespace Cameyo.Player
                 StorageBtn.Content = Server.AccountInfo.StorageProviderName;
             else
                 StorageBtn.Content = "No storage";
-            OnLibSelect(curLib.Id);   // Select first lib
+            OnLibSelect(curLib.Id, true);   // Select first lib
             ShowDetails(null);   // Hide the details pane
             ProdType.Text = Server.License.ProdTypeStr().ToUpper();
         }
 
-        void OnLibSelect(string libId)
+        void OnLibSelect(string libId, bool allowCache)
         {
-            var apps = Server.PkgList(libId);
+            CurLib = libId;
+            var apps = Server.PkgList(libId, allowCache);
             Apps.Clear();
             lvApps.Items.Clear();
             NoAppsLbl.Visibility = (apps.Count == 0 ? Visibility.Visible : Visibility.Hidden);
@@ -102,7 +104,7 @@ namespace Cameyo.Player
             MenuItem menuItem = e.OriginalSource as MenuItem;
             var lib = (ServerLib)(menuItem.Tag);
             CategorySplitBtn.Content = lib.DisplayName;
-            OnLibSelect(lib.Id);
+            OnLibSelect(lib.Id, true);
         }
 
         // Storage click
@@ -187,7 +189,7 @@ namespace Cameyo.Player
         private void ShowDetailsAsync(object data)
         {
             var appDisplay = (AppDisplay)data;
-            var appDetails = Server.AppDetails(appDisplay.PkgId);
+            var appDetails = Server.AppDetails(appDisplay.PkgId, true);
             Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() =>
             {
                 if (DetailsPkgId.Text.Contains(appDisplay.PkgId))   // Are we still displaying the same app?
@@ -322,6 +324,16 @@ namespace Cameyo.Player
                     result = false;
             }
             return result;
+        }
+
+        public void ForceMyLibraryRefresh()
+        {
+            foreach (var lib in Server.AccountInfo.libs)
+            {
+                if (!lib.Id.Equals("public", StringComparison.InvariantCultureIgnoreCase))
+                    Server.PkgList(lib.Id, false);   // Force cache refresh
+            }
+            OnLibSelect(CurLib, true);
         }
     }
 }

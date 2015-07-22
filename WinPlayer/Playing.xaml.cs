@@ -69,7 +69,7 @@ namespace Cameyo.Player
             webClient = new System.Net.WebClient();
             webClient.DownloadProgressChanged += webClient_DownloadProgressChanged;
             webClient.DownloadFileCompleted += webClient_DownloadFileCompleted;
-            var url = Server.ServerUrl() + "/apps/" + appDisplay.PkgId + "/download";           
+            var url = Server.ServerUrl() + "/apps/" + appDisplay.PkgId + "/download?" + Server.AuthUrl();
             //MessageBox.Show();
             webClient.DownloadFileAsync(new Uri(url), targetFileName);
         }
