@@ -47,11 +47,14 @@ namespace Cameyo.Player
             this.Version = serverApp.Version;
             this.Size = serverApp.Size;
             this.Category = serverApp.Category;
-            var info = serverApp.InfoStr.Split('\n');
-            /*if (info.Count() >= 1)
-                this.Category = info[0];
-            if (info.Count() >= 2)
-                this.Version = info[1];*/
+            if (!string.IsNullOrEmpty(serverApp.InfoStr))
+            {
+                var info = serverApp.InfoStr.Split('\n');
+                /*if (info.Count() >= 1)
+                    this.Category = info[0];
+                if (info.Count() >= 2)
+                    this.Version = info[1];*/
+            }
             this.ImageUrl = serverApp.IconUrl;
 
             var localIconFile = ServerSingleton.Instance.ServerClient.LocalIconFile(PkgId);

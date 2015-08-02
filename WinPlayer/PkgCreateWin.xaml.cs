@@ -10,6 +10,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Runtime.Serialization;
+using System.Threading;
 using System.Net;
 using System.Web;
 using System.IO;
@@ -67,7 +69,7 @@ namespace Cameyo.Player
                     if (UploadOnlyMode)
                     {
                         StatusTxt.Text = "Drag & Drop your Cameyo package here";
-                        OnlinePackagerBtn.Visibility = Visibility.Hidden;
+                        OnlinePackagerBtn.Visibility = TeleportInstBtn.Visibility = Visibility.Hidden;
                         SnapshotBtn.Visibility = Visibility.Collapsed;
                         UploadBtn.Visibility = Visibility.Visible;
                         SandboxCaptureBtn.Visibility = Visibility.Hidden;
@@ -146,6 +148,34 @@ namespace Cameyo.Player
             }
         }
 
+        private void TeleportInstBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(InstallerPath)) return;
+            ValidatePackagingMethods(InstallerPath);
+
+            // ToDo: validate installer file
+
+            // Check if online packaging is possible (i.e. account limits)
+            if (!string.IsNullOrEmpty(CannotOnlinePackagerReason))
+            {
+                MessageBox.Show(CannotOnlinePackagerReason);
+                return;
+            }
+
+            // Submit file
+            string args = "";
+            if (!string.IsNullOrEmpty(InstallerArgs))
+                args = "&args=" + InstallerArgs;
+            var url = Server.BuildUrl("RdpCapture", false, "&client=Play.WinTSC");
+            url += "&" + Server.AuthUrl();
+            var webClient = new WebClient();
+            webClient.UploadProgressChanged += UploadProgressChanged;
+            webClient.UploadFileCompleted += SubmitRdpCaptureFileUploadCompleted;
+            webClient.UploadFileAsync(new Uri(url), InstallerPath);
+            ProgressText("Uploading");
+            SetUiMode(UiMode.Working);
+        }
+
         private void OnlinePackagerBtn_Click(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrEmpty(InstallerPath)) return;
@@ -186,7 +216,7 @@ namespace Cameyo.Player
             if (string.IsNullOrEmpty(InstallerPath)) return;
             ProgressText("Capturing installation...");
             SetUiMode(UiMode.Working);
-            var thread = new System.Threading.Thread(new System.Threading.ThreadStart(StartGhostCapture));
+            var thread = new Thread(new ThreadStart(StartGhostCapture));
             thread.Start();
         }
 
@@ -195,7 +225,7 @@ namespace Cameyo.Player
             ProgressText("Snapshot capture in progress.");
             SetUiMode(UiMode.Working);
             PreloaderStop();   // Since Packager will be mostly waiting for user's input
-            var thread = new System.Threading.Thread(new System.Threading.ThreadStart(StartPackagerCapture));
+            var thread = new Thread(new ThreadStart(StartPackagerCapture));
             thread.Start();
         }
 
@@ -362,10 +392,6 @@ namespace Cameyo.Player
             ProgressText(title);
         }
 
-        private void Grid_Loaded(object sender, RoutedEventArgs e)
-        {
-        }
-
         private void CloseBtn_Click(object sender, RoutedEventArgs e)
         {
             Close();
@@ -446,7 +472,7 @@ namespace Cameyo.Player
                     else if (pkgStatus == PkgStatus.StatusDone)
                         break;
 
-                    System.Threading.Thread.Sleep(6 * 1000);
+                    Thread.Sleep(6 * 1000);
                 }
                 catch
                 {
@@ -457,6 +483,178 @@ namespace Cameyo.Player
                     break;
                 }
             }
+        }
+
+        // RdpInfoData: returned by packager.aspx?op=RdpInfo
+        [DataContract]
+        public class RdpInfoData
+        {
+            [DataMember]
+            public int status { get; set; }
+            [DataMember]
+            public int remainingTimeSec { get; set; }
+            [DataMember]
+            public string pkgId { get; set; }   // Defined as string although it's a long?, because DeserializeJson throws an exception when this is ""
+            [DataMember]
+            public long lastStatusChangeTicks { get; set; }
+        }
+
+        public enum RdpTokenStatus
+        {
+            None = 0,
+            Queued = 1,
+            Processing = 2,
+            ReadyForConnection = 3,
+            ApplicationReady = 4,
+            AppHasQuit = 5,
+            Closed = 6,
+            PkgBuilt = 7,   // For Capture mode
+            Error = 0x10000000,
+            ErrorPreparing = 0x10000001,
+            ErrorServerUnavailable = 0x10000002,
+            ErrorCapacity = 0x10000003,
+        }
+
+        string lastPkgId = null;
+        void WaitForRdpCapturePkg(object data)
+        {
+            var rdpTokenId = (string)data;
+            int retry = 0;
+            while (true)
+            {
+                try
+                {
+                    var resp = Server.SendRequest("RdpInfo", false, "&token=" + rdpTokenId);
+                    var rdpInfo = ServerClient.DeserializeJson<RdpInfoData>(resp);
+                    if (rdpInfo != null)
+                    {
+                        if (rdpInfo.status == (int)RdpTokenStatus.PkgBuilt && 
+                            rdpInfo.pkgId != null && rdpInfo.pkgId != lastPkgId)
+                        {
+                            lastPkgId = rdpInfo.pkgId;
+                            Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() =>
+                            {
+                                var pkgInfo = Server.AppDetails(lastPkgId, false);
+                                PkgIconPath = pkgInfo.IconUrl;  // ToDo
+                                PkgAppName = pkgInfo.AppID;   // ToDo
+                                PkgLocation = Server.ServerUrl() + "/apps/" + lastPkgId;   // ?auth= must be added by consuming functions
+                                DisplayResultingPkg();
+                            }));
+                            //break;
+                        }
+                        //if (rdpInfo.status >= (int)RdpTokenStatus.Error)
+                        if (rdpInfo.status != (int)RdpTokenStatus.PkgBuilt &&
+                            rdpInfo.status != (int)RdpTokenStatus.ApplicationReady)   // The only other correct value
+                        {
+                            Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() =>
+                            {
+                                DisplayError("Failed creating package. Please retry.");
+                            }));
+                            break;
+                        }
+                    }
+                    retry = 0;   // No technical error
+                }
+                catch
+                {
+                    if (retry++ >= 3)
+                    {
+                        Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() =>
+                        {
+                            DisplayError("Failed creating package (b). Please retry.");
+                        }));
+                        break;
+                    }
+                }
+                Thread.Sleep(5 * 1000);
+            }
+        }
+
+        // RdpAuthData: returned by packager.aspx?op=RdpCapture
+        [DataContract]
+        class RdpAuthParamsData
+        {
+            [DataMember(Name = "rdp-token")]
+            public string rdp_token { get; set; }
+            // Ignoring all other parameters
+        }
+        [DataContract]
+        class RdpAuthData
+        {
+            [DataMember]
+            public RdpAuthParamsData parameters { get; set; }
+        }
+
+        void SubmitRdpCaptureFileUploadCompleted(object sender, UploadFileCompletedEventArgs e)
+        {
+            if (e.Error != null)
+            {
+                Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() =>
+                {
+                    DisplayError("Upload failed.");
+                }));
+                return;
+            }
+
+            // The upload is finished. Read response.
+            string resp = System.Text.Encoding.ASCII.GetString(e.Result).Trim();
+            if (string.IsNullOrEmpty(resp))
+            {
+                Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() =>
+                {
+                    DisplayError("Upload failed.");
+                }));
+                return;
+            }
+            if (resp.StartsWith("ERR:", StringComparison.InvariantCultureIgnoreCase))
+            {
+                Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() =>
+                {
+                    DisplayError("Error: " + resp.Substring("ERR:".Length).Trim());
+                }));
+                return;
+            }
+
+            var thread = new Thread(new ParameterizedThreadStart(StartRdpCapturePlay));
+            thread.SetApartmentState(ApartmentState.STA);
+            thread.Start(resp);
+        }
+
+        void StartRdpCapturePlay(object data)
+        {
+            var resp = (string)data;
+
+            // Transmit resulting JSON to Packager
+            var rdpAuthJsonFile = System.IO.Path.GetTempFileName();
+            var rdpAuth = ServerClient.DeserializeJson<RdpAuthData>(resp);
+            if (rdpAuth == null)
+            {
+                Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() =>
+                {
+                    DisplayError("Failed starting session.");
+                }));
+                return;
+            }
+            string rdpTokenId = rdpAuth.parameters.rdp_token;
+            File.WriteAllText(rdpAuthJsonFile, resp);   // Transmit to Packager, he'll know what to do with it...
+
+            // Start Play session
+            Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() =>
+            {
+                borderMain.Opacity = 0.3;
+                var serverApp = new ServerApp() { PkgId = rdpAuthJsonFile };
+                var appDisplay = new AppDisplay(serverApp);
+                var playing = new Playing(appDisplay, Playing.AppAction.Play, null);
+                playing.Owner = this;
+                playing.ShowDialog();
+                borderMain.Opacity = 1;
+            }));
+
+            // Wait for resulting package or failure
+            var thread = new Thread(new ParameterizedThreadStart(WaitForRdpCapturePkg));
+            thread.Start(rdpTokenId);
+            //WaitForRdpCapturePkg(rdpTokenId);
+            //Close();
         }
 
         void SubmitPkgFileUploadCompleted(object sender, UploadFileCompletedEventArgs e)
@@ -492,7 +690,7 @@ namespace Cameyo.Player
                     errCode = Convert.ToInt32(value);
             }
 
-            var thread = new System.Threading.Thread(new System.Threading.ThreadStart(WaitForPkgCreation));
+            var thread = new Thread(new ThreadStart(WaitForPkgCreation));
             thread.Start();
         }
 
@@ -573,9 +771,9 @@ namespace Cameyo.Player
 
                 // Enable / disable buttons
                 if (string.IsNullOrEmpty(CannotOnlinePackagerReason))
-                    OnlinePackagerBtn.Foreground = EnabledColor;
+                    OnlinePackagerBtn.Foreground = TeleportInstBtn.Foreground = EnabledColor;
                 else
-                    OnlinePackagerBtn.Foreground = DisabledColor;
+                    OnlinePackagerBtn.Foreground = TeleportInstBtn.Foreground = DisabledColor;
 
                 // Validate Sandbox capture
                 SandboxCaptureBtn.Foreground = EnabledColor;

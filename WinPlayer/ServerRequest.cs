@@ -93,6 +93,7 @@ namespace Cameyo.Player
 
         public string ServerUrl()
         {
+            //return "http://localhost:53910";
             string port;
             if ((IsHttps && ServerPort == 443) || (!IsHttps && ServerPort == 80))
                 port = "";
@@ -165,7 +166,7 @@ namespace Cameyo.Player
             return bytes;
         }
 
-        public static bool DeserializeJson<T>(string json, ref T t)
+        /*public static bool DeserializeJson<T>(string json, ref T t)
         {
             using (var memoryStream = new MemoryStream())
             {
@@ -186,6 +187,15 @@ namespace Cameyo.Player
                 }
             }
             return true;
+        }*/
+        static public T DeserializeJson<T>(string json)
+        {
+            var instance = Activator.CreateInstance<T>();
+            using (var ms = new System.IO.MemoryStream(Encoding.Unicode.GetBytes(json)))
+            {
+                var serializer = new System.Runtime.Serialization.Json.DataContractJsonSerializer(instance.GetType());
+                return (T)serializer.ReadObject(ms);
+            }
         }
 
         public bool AuthCached(ref string login, ref string password)
@@ -214,7 +224,8 @@ namespace Cameyo.Player
         {
             SetCredentials(login, password);
             var json = SendRequest("AccountAuth", true, "&client=WinPlayer");
-            if (DeserializeJson<AccountInfo>(json, ref AccountInfo))
+            AccountInfo = DeserializeJson<AccountInfo>(json);
+            if (AccountInfo != null)
             {
                 if (cache)
                 {
@@ -230,8 +241,8 @@ namespace Cameyo.Player
         public List<ServerApp> PkgList(string libId, bool allowCache)
         {
             var json = CacheOrWeb("PkgList", true, "&lib=" + libId + "&detail=Player", "Lib." + libId, allowCache);
-            List<ServerApp> retVal = null;
-            if (DeserializeJson<List<ServerApp>>(json, ref retVal))
+            var retVal = DeserializeJson<List<ServerApp>>(json);
+            if (retVal != null)
                 return retVal;
             else
                 return new List<ServerApp>();   // Return empty list on error?
@@ -240,8 +251,8 @@ namespace Cameyo.Player
         public ServerAppDetails AppDetails(string pkgId, bool allowCache)
         {
             var json = CacheOrWeb("PkgInfo", true, "&pkgId=" + pkgId + "&detail=Player", pkgId, allowCache);
-            ServerAppDetails retVal = null;
-            if (DeserializeJson<ServerAppDetails>(json, ref retVal))
+            var retVal = DeserializeJson<ServerAppDetails>(json);
+            if (retVal != null)
                 return retVal;
             else
                 return new ServerAppDetails();   // Return empty item on error?
