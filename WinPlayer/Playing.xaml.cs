@@ -149,7 +149,13 @@ namespace Cameyo.Player
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
         {
             if (proc != null)
-                proc.Kill();
+            {
+                try
+                {
+                    proc.Kill();
+                }
+                catch { }
+            }
             if (appAction == AppAction.Play)
                 DialogResult = true;
             else if (appAction == AppAction.Download)
