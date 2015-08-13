@@ -57,7 +57,7 @@ namespace Cameyo.Player
         {
             InitializeComponent();
             EnabledColor = SnapshotBtn.Foreground;
-            DisabledColor =  new SolidColorBrush(System.Windows.Media.Colors.LightGray);
+            DisabledColor = new SolidColorBrush(System.Windows.Media.Colors.LightGray);
             SetUiMode(UiMode.WaitingForFile);
         }
 
@@ -520,6 +520,10 @@ namespace Cameyo.Player
         {
             var rdpTokenId = (string)data;
             int retry = 0;
+            Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() =>
+            {
+                this.Hide();   // Disappear while RDP session is in progress
+            }));
             while (true)
             {
                 try
@@ -528,7 +532,7 @@ namespace Cameyo.Player
                     var rdpInfo = ServerClient.DeserializeJson<RdpInfoData>(resp);
                     if (rdpInfo != null)
                     {
-                        if (rdpInfo.status == (int)RdpTokenStatus.PkgBuilt && 
+                        if (rdpInfo.status == (int)RdpTokenStatus.PkgBuilt &&
                             rdpInfo.pkgId != null && rdpInfo.pkgId != lastPkgId)
                         {
                             lastPkgId = rdpInfo.pkgId;
@@ -538,6 +542,12 @@ namespace Cameyo.Player
                                 PkgIconPath = pkgInfo.IconUrl;  // ToDo
                                 PkgAppName = pkgInfo.AppID;   // ToDo
                                 PkgLocation = Server.ServerUrl() + "/apps/" + lastPkgId;   // ?auth= must be added by consuming functions
+
+                                // Show form and bring it to front
+                                this.WindowState = WindowState.Minimized;
+                                this.Show();   // Restore
+                                this.WindowState = WindowState.Normal;
+
                                 DisplayResultingPkg();
                             }));
                             //break;
@@ -548,6 +558,7 @@ namespace Cameyo.Player
                         {
                             Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() =>
                             {
+                                this.Show();   // Restore
                                 DisplayError("Failed creating package. Please retry.");
                             }));
                             break;
@@ -561,6 +572,7 @@ namespace Cameyo.Player
                     {
                         Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() =>
                         {
+                            this.Show();   // Restore
                             DisplayError("Failed creating package (b). Please retry.");
                         }));
                         break;
@@ -764,7 +776,7 @@ namespace Cameyo.Player
                     var accountMaxMb = Server.AccountInfo.FileUploadMbLimit * 1024 * 1024;
                     if (fi.Length >= accountMaxMb)
                     {
-                        CannotOnlinePackagerReason = CannotUploadExistingPkgReason = 
+                        CannotOnlinePackagerReason = CannotUploadExistingPkgReason =
                             string.Format("Your account is limited to {0} MB. Consider upgrading.", Server.AccountInfo.FileUploadMbLimit); ;
                     }
                 }
