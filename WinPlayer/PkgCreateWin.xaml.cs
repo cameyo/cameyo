@@ -69,7 +69,7 @@ namespace Cameyo.Player
                     if (UploadOnlyMode)
                     {
                         StatusTxt.Text = "Drag & Drop your Cameyo package here";
-                        OnlinePackagerBtn.Visibility = TeleportInstBtn.Visibility = Visibility.Hidden;
+                        OnlinePackagerBtn.Visibility = RemoteInstallBtn.Visibility = Visibility.Hidden;
                         SnapshotBtn.Visibility = Visibility.Collapsed;
                         UploadBtn.Visibility = Visibility.Visible;
                         SandboxCaptureBtn.Visibility = Visibility.Hidden;
@@ -148,7 +148,7 @@ namespace Cameyo.Player
             }
         }
 
-        private void TeleportInstBtn_Click(object sender, RoutedEventArgs e)
+        private void RemoteInstallBtn_Click(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrEmpty(InstallerPath)) return;
             ValidatePackagingMethods(InstallerPath);
@@ -721,7 +721,7 @@ namespace Cameyo.Player
 
         void UploadProgressChanged(object sender, UploadProgressChangedEventArgs e)
         {
-            Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() =>
+            Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Send, new Action(() =>
             {
                 ProgressText("Uploading " + e.ProgressPercentage.ToString() + "%");
             }));
@@ -783,9 +783,9 @@ namespace Cameyo.Player
 
                 // Enable / disable buttons
                 if (string.IsNullOrEmpty(CannotOnlinePackagerReason))
-                    OnlinePackagerBtn.Foreground = TeleportInstBtn.Foreground = EnabledColor;
+                    OnlinePackagerBtn.Foreground = RemoteInstallBtn.Foreground = EnabledColor;
                 else
-                    OnlinePackagerBtn.Foreground = TeleportInstBtn.Foreground = DisabledColor;
+                    OnlinePackagerBtn.Foreground = RemoteInstallBtn.Foreground = DisabledColor;
 
                 // Validate Sandbox capture
                 SandboxCaptureBtn.Foreground = EnabledColor;

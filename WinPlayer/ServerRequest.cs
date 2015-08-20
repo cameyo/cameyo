@@ -80,6 +80,9 @@ namespace Cameyo.Player
         public string ServerHost { get { return "online.cameyo.com"; } }
         private int ServerPort { get { return 443; } }
         private bool IsHttps { get { return true; } }
+        /*public string ServerHost { get { return "localhost"; } }
+        private int ServerPort { get { return 53910; } }
+        private bool IsHttps { get { return false; } }*/
         private string LoginFile { get { return Utils.MyPath("Login.dat"); } }
         private string PasswordFile { get { return Utils.MyPath("Pwd.dat"); } }
         public AccountInfo AccountInfo;

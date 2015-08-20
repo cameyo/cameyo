@@ -117,17 +117,6 @@
                 </Grid>
 
                 <StackPanel Name="ButtonsPanel" Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="20,0,20,0">
-                    <Button Name="TeleportInstBtn" Style="{StaticResource LargeBtn}" Width="100" Height="88" IsDefault="True" Click="TeleportInstBtn_Click" Foreground="LightGray" >
-                        <Grid Height="72">
-                            <Canvas Width="40" VerticalAlignment="Top" Margin="0,5,0,0" >
-                                <Path Fill="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType=Button}}" Data="F1 M 31.379,10.486 C 30.885,10.486 30.395,10.533 29.915,10.627 C 29.696,4.730 24.830,0.000 18.880,0.000 C 13.409,0.000 8.779,4.048 7.967,9.370 C 3.556,9.478 0.000,13.100 0.000,17.537 C 0.000,22.042 3.665,25.706 8.169,25.706 L 15.004,25.706 C 15.521,25.706 15.939,25.287 15.939,24.771 C 15.939,24.254 15.521,23.835 15.004,23.835 L 8.169,23.835 C 4.697,23.835 1.871,21.010 1.871,17.537 C 1.871,14.064 4.697,11.239 8.169,11.239 C 8.340,11.239 8.520,11.248 8.721,11.265 L 9.669,11.347 L 9.735,10.398 C 10.067,5.617 14.084,1.871 18.880,1.871 C 23.937,1.871 28.051,5.986 28.051,11.042 C 28.051,11.275 28.040,11.523 28.017,11.802 L 27.895,13.295 L 29.290,12.750 C 29.959,12.489 30.661,12.357 31.380,12.357 C 34.550,12.357 37.129,14.936 37.129,18.106 C 37.129,21.276 34.550,23.855 31.380,23.855 C 31.296,23.855 28.809,23.850 26.331,23.845 C 23.872,23.840 21.422,23.835 21.341,23.835 C 20.758,23.835 20.454,23.555 20.436,23.002 L 20.436,12.901 L 21.451,14.107 C 21.784,14.503 22.374,14.553 22.770,14.220 C 23.165,13.888 23.216,13.297 22.883,12.902 L 20.632,10.229 C 20.349,9.892 19.942,9.699 19.515,9.699 C 19.088,9.699 18.681,9.892 18.397,10.229 L 16.147,12.902 C 15.814,13.297 15.865,13.888 16.260,14.220 C 16.436,14.368 16.650,14.440 16.862,14.440 C 17.129,14.440 17.394,14.327 17.579,14.107 L 18.564,12.936 L 18.564,23.011 C 18.564,24.094 19.304,25.706 21.341,25.706 C 21.422,25.706 23.870,25.711 26.327,25.716 C 28.807,25.721 31.296,25.726 31.380,25.726 C 35.582,25.726 39.000,22.308 39.000,18.106 C 39.000,13.904 35.581,10.486 31.379,10.486 Z"/>
-                            </Canvas>
-                            <StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
-                                <TextBlock Text="Teleported install" HorizontalAlignment="Center" />
-                                <TextBlock Text="(Cool)" HorizontalAlignment="Center" />
-                            </StackPanel>
-                        </Grid>
-                    </Button>
                     <Button Name="OnlinePackagerBtn" Style="{StaticResource LargeBtn}" Width="100" Height="88" IsDefault="True" Click="OnlinePackagerBtn_Click" Foreground="LightGray" >
                         <Grid Height="72">
                             <Canvas Width="40" VerticalAlignment="Top" Margin="0,5,0,0" >
@@ -136,6 +125,17 @@
                             <StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
                                 <TextBlock Text="Online packaging" HorizontalAlignment="Center" />
                                 <TextBlock Text="(Simple)" HorizontalAlignment="Center" />
+                            </StackPanel>
+                        </Grid>
+                    </Button>
+                    <Button Name="RemoteInstallBtn" Style="{StaticResource LargeBtn}" Width="100" Height="88" IsDefault="True" Click="RemoteInstallBtn_Click" Foreground="LightGray" >
+                        <Grid Height="72">
+                            <Canvas Width="40" VerticalAlignment="Top" Margin="0,5,0,0" >
+                                <Path Fill="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType=Button}}" Data="F1 M 31.379,10.486 C 30.885,10.486 30.395,10.533 29.915,10.627 C 29.696,4.730 24.830,0.000 18.880,0.000 C 13.409,0.000 8.779,4.048 7.967,9.370 C 3.556,9.478 0.000,13.100 0.000,17.537 C 0.000,22.042 3.665,25.706 8.169,25.706 L 15.004,25.706 C 15.521,25.706 15.939,25.287 15.939,24.771 C 15.939,24.254 15.521,23.835 15.004,23.835 L 8.169,23.835 C 4.697,23.835 1.871,21.010 1.871,17.537 C 1.871,14.064 4.697,11.239 8.169,11.239 C 8.340,11.239 8.520,11.248 8.721,11.265 L 9.669,11.347 L 9.735,10.398 C 10.067,5.617 14.084,1.871 18.880,1.871 C 23.937,1.871 28.051,5.986 28.051,11.042 C 28.051,11.275 28.040,11.523 28.017,11.802 L 27.895,13.295 L 29.290,12.750 C 29.959,12.489 30.661,12.357 31.380,12.357 C 34.550,12.357 37.129,14.936 37.129,18.106 C 37.129,21.276 34.550,23.855 31.380,23.855 C 31.296,23.855 28.809,23.850 26.331,23.845 C 23.872,23.840 21.422,23.835 21.341,23.835 C 20.758,23.835 20.454,23.555 20.436,23.002 L 20.436,12.901 L 21.451,14.107 C 21.784,14.503 22.374,14.553 22.770,14.220 C 23.165,13.888 23.216,13.297 22.883,12.902 L 20.632,10.229 C 20.349,9.892 19.942,9.699 19.515,9.699 C 19.088,9.699 18.681,9.892 18.397,10.229 L 16.147,12.902 C 15.814,13.297 15.865,13.888 16.260,14.220 C 16.436,14.368 16.650,14.440 16.862,14.440 C 17.129,14.440 17.394,14.327 17.579,14.107 L 18.564,12.936 L 18.564,23.011 C 18.564,24.094 19.304,25.706 21.341,25.706 C 21.422,25.706 23.870,25.711 26.327,25.716 C 28.807,25.721 31.296,25.726 31.380,25.726 C 35.582,25.726 39.000,22.308 39.000,18.106 C 39.000,13.904 35.581,10.486 31.379,10.486 Z"/>
+                            </Canvas>
+                            <StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
+                                <TextBlock Text="Remote install" HorizontalAlignment="Center" />
+                                <TextBlock Text="(Beta)" HorizontalAlignment="Center" />
                             </StackPanel>
                         </Grid>
                     </Button>
