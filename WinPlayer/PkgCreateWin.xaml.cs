@@ -69,10 +69,10 @@ namespace Cameyo.Player
                     if (UploadOnlyMode)
                     {
                         StatusTxt.Text = "Drag & Drop your Cameyo package here";
-                        OnlinePackagerBtn.Visibility = RemoteInstallBtn.Visibility = Visibility.Hidden;
+                        OnlinePackagerBtn.Visibility = RemoteInstallBtn.Visibility = Visibility.Collapsed;
                         SnapshotBtn.Visibility = Visibility.Collapsed;
                         UploadBtn.Visibility = Visibility.Visible;
-                        SandboxCaptureBtn.Visibility = Visibility.Hidden;
+                        SandboxCaptureBtn.Visibility = Visibility.Collapsed;
                     }
                     //ButtonsPanel.Visibility = Visibility.Collapsed;
                     break;
@@ -375,6 +375,8 @@ namespace Cameyo.Player
             {
                 DisplayAssociatedIcon(PkgIconPath);
             }
+
+            this.Activate();
         }
 
         private void DisplayAssociatedIcon(string iconPath)
@@ -448,7 +450,7 @@ namespace Cameyo.Player
                                 ProgressText("Your input is needed. Please continue online:");
                                 break;
                             case PkgStatus.StatusFailed:
-                                DisplayError("Failed.");
+                                DisplayError("Packaging failed. Please try another method.");
                                 break;
                             case PkgStatus.StatusDone:
                                 if (items.Count() >= 7)
@@ -603,7 +605,7 @@ namespace Cameyo.Player
             {
                 Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() =>
                 {
-                    DisplayError("Upload failed.");
+                    DisplayError("Upload failed: " + e.Error.Message);
                 }));
                 return;
             }
@@ -675,7 +677,7 @@ namespace Cameyo.Player
             {
                 Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() =>
                 {
-                    DisplayError("Upload failed.");
+                    DisplayError("Upload failed: " + e.Error.Message);
                 }));
                 return;
             }
@@ -700,6 +702,15 @@ namespace Cameyo.Player
                     RequestId = Convert.ToInt64(value);
                 else if (name == "errCode")
                     errCode = Convert.ToInt32(value);
+            }
+
+            if (requestStatus == 0 || RequestId == 0)
+            {
+                Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() =>
+                {
+                    DisplayError("Submission failed.");
+                }));
+                return;
             }
 
             var thread = new Thread(new ThreadStart(WaitForPkgCreation));
@@ -729,7 +740,7 @@ namespace Cameyo.Player
 
         void DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
         {
-            Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() =>
+            Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Send, new Action(() =>
             {
                 ProgressText("Downloading " + e.ProgressPercentage.ToString() + "%");
             }));
