@@ -42,6 +42,34 @@ namespace Cameyo.Player
             StatusDone = 5
         };
 
+        enum APIRET   // Copied from PackageAPI.cs
+        {
+            SUCCESS = 0,
+            FAILURE = 1,
+            VIRTFILES_DB_ERROR = 2,
+            VIRTFILES_ZIP_ERROR = 3,
+            NOT_FOUND = 5,
+            INVALID_PARAMETER = 6,
+            FILE_CREATE_ERROR = 7,
+            PE_RESOURCE_ERROR = 8,
+            MEMORY_ERROR = 9,
+            COMMIT_ERROR = 10,
+            VIRTREG_DEPLOY_ERROR = 11,
+            OUTPUT_ERROR = 12,
+            INSUFFICIENT_BUFFER = 13,
+            LOADLIBRARY_ERROR = 14,
+            VIRTFILES_INI_ERROR = 15,
+            APP_NOT_DEPLOYED = 16,
+            INSUFFICIENT_PRIVILEGES = 17,
+            _32_64_BIT_MISMATCH = 18,
+            DOTNET_REQUIRED = 19,
+            CANCELLED = 20,
+            INJECTION_FAILED = 21,
+            OLD_VERSION = 22,
+            PASSWORD_REQUIRED = 23,
+            PASSWORD_MISMATCH = 24,
+        }
+
         public enum UiMode
         {
             WaitingForFile,
@@ -624,7 +652,11 @@ namespace Cameyo.Player
             {
                 Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() =>
                 {
-                    DisplayError("Error: " + resp.Substring("ERR:".Length).Trim());
+                    var errStr = resp.Substring("ERR:".Length).Trim();
+                    if (errStr.Equals("Account limit reached", StringComparison.InvariantCultureIgnoreCase))
+                        DisplayError("Account quota reached. Consider upgrading your account.");
+                    else
+                        DisplayError("Error: " + errStr);
                 }));
                 return;
             }
@@ -708,7 +740,14 @@ namespace Cameyo.Player
             {
                 Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() =>
                 {
-                    DisplayError("Submission failed.");
+                    if (errCode == (int)APIRET.INSUFFICIENT_BUFFER)            // Used for indicating account quota is over
+                        DisplayError("Account quota reached. Consider upgrading your account.");
+                    else if (errCode == (int)APIRET.INSUFFICIENT_PRIVILEGES)   // When modifying an existing package to which the user has no access
+                        DisplayError("Insufficient permissions.");
+                    else if (requestStatus == (int)PkgStatus.StatusFailed)
+                        DisplayError("Packaging failed.");
+                    else
+                        DisplayError("Submission failed.");
                 }));
                 return;
             }
