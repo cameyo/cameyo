@@ -386,7 +386,7 @@ namespace Cameyo.Player
                 // Expiration
                 if (Server.AccountInfo.PkgDurationDays > 0)
                 {
-                    ExpirationTxt.Text += "Expiration in " + Server.AccountInfo.PkgDurationDays + " days";
+                    ExpirationTxt.Text = "Expiration in " + Server.AccountInfo.PkgDurationDays + " days";
                     ExpirationTxt.Visibility = Visibility.Visible;
                 }
                 UrlBox.Text = PkgLocation;
