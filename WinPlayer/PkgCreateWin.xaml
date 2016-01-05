@@ -135,8 +135,8 @@
                                 <Path Fill="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType=Button}}" Data="F1 M 23.531,2.049 M 23.531,2.049 C 24.612,2.142 25.879,2.792 26.685,3.666 C 27.483,4.532 28.028,5.834 28.039,6.908 C 28.046,7.470 28.503,7.922 29.065,7.922 L 29.077,7.922 C 29.643,7.916 30.098,7.452 30.092,6.885 C 30.074,5.291 29.347,3.525 28.195,2.274 C 27.031,1.012 25.312,0.142 23.707,0.004 C 23.142,-0.046 22.645,0.374 22.597,0.938 C 22.548,1.503 22.966,2.000 23.531,2.049 L 23.531,2.049 Z"/>
                             </Canvas>
                             <StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
-                                <TextBlock Text="Remote Install" HorizontalAlignment="Center" FontWeight="Bold" />
-                                <TextBlock Text="Beta" HorizontalAlignment="Center" />
+                                <TextBlock Text="Live Install" HorizontalAlignment="Center" FontWeight="Bold" />
+                                <TextBlock Text="Remote installation" HorizontalAlignment="Center" />
                             </StackPanel>
                         </Grid>
                     </Button>
