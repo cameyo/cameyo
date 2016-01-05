@@ -788,7 +788,7 @@ reask:
         private void exportXmlToolStripMenuItem_Click(object sender, EventArgs e)
         {
             int licenseType = VirtPackage.LicDataLoadFromFile(null);
-            if (licenseType < VirtPackage.LICENSETYPE_PRO)
+            if (false && licenseType < VirtPackage.LICENSETYPE_PRO)
             {
                 MessageBox.Show("Insufficient license");
                 return;
