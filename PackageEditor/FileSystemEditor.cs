@@ -735,7 +735,12 @@ retry_input:
             }
 
             if (fileSaveTargetDir == null || !Directory.Exists(fileSaveTargetDir))
-                fileSaveTargetDir = Path.GetDirectoryName(virtPackage.openedFile);
+            {
+                if (!string.IsNullOrEmpty(virtPackage.openedFile))
+                    fileSaveTargetDir = Path.GetDirectoryName(virtPackage.openedFile);
+                else
+                    fileSaveTargetDir = "";
+            }
 
             ListView.SelectedListViewItemCollection fileItems = fsFilesList.SelectedItems;
             if (fileItems.Count == 0)    // In this case, folderNode is always selected too
