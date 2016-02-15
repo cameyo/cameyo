@@ -491,6 +491,7 @@ namespace PackageEditor
 
             int ret = 0;
             VirtPackage.APIRET apiRet = 0;
+            virtPackage.ResetLastError();
             PleaseWait.PleaseWaitBegin(PackageEditor.Messages.Messages.savingPackage, 
                 PackageEditor.Messages.Messages.saving + " " + System.IO.Path.GetFileName(fileName) + "...", virtPackage.openedFile);
             {
@@ -510,7 +511,14 @@ namespace PackageEditor
             }
             else
             {
-                MessageBox.Show(PackageEditor.Messages.Messages.cannotSave + ": " + apiRet + " (step " + ret + ")");
+                string str = "", name, description;
+                VirtPackage.ApiRetStr(virtPackage.GetLastError(), out name, out description);
+                if (apiRet != VirtPackage.APIRET.SUCCESS)
+                    str += apiRet + " ";
+                if (virtPackage.GetLastError() != VirtPackage.APIRET.SUCCESS)
+                    str += description + " ";
+                str += "\n(step #" + ret + ")";
+                MessageBox.Show(str, PackageEditor.Messages.Messages.cannotSave);
                 return false;
             }
         }

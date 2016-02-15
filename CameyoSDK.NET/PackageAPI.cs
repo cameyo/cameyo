@@ -70,6 +70,7 @@ namespace VirtPackageAPI
             OLD_VERSION = 22,
             PASSWORD_REQUIRED = 23,
             PASSWORD_MISMATCH = 24,
+            INSUFFICIENT_LICENSE = 25,
         }
 
         public const int SANDBOXFLAGS_PASSTHROUGH = 1;
@@ -88,6 +89,7 @@ namespace VirtPackageAPI
         private IntPtr hPkg;
         public bool opened;
         public String openedFile;
+        APIRET lastError;
 
         private const int MAX_PATH = 260;
         public const int MAX_APPID_LENGTH = 128;
@@ -120,7 +122,7 @@ namespace VirtPackageAPI
         // DLL imports
 
         // PackageOpen
-        [DllImport(DLL32, EntryPoint="PackageOpen", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
+        [DllImport(DLL32, EntryPoint = "PackageOpen", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
         private extern static int PackageOpen32(
             String PackageExeFile,
             UInt32 Reserved,
@@ -139,7 +141,7 @@ namespace VirtPackageAPI
         }
 
         // PackageCreate
-        [DllImport(DLL32, EntryPoint="PackageCreate", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
+        [DllImport(DLL32, EntryPoint = "PackageCreate", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
         private extern static int PackageCreate32(
             String AppID,
             String AppVirtDll,
@@ -177,7 +179,7 @@ namespace VirtPackageAPI
         }
 
         // PackageSave
-        [DllImport(DLL32, EntryPoint="PackageSave", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
+        [DllImport(DLL32, EntryPoint = "PackageSave", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
         private extern static int PackageSave32(
             IntPtr hPkg,
             String OutFileName);
@@ -193,7 +195,7 @@ namespace VirtPackageAPI
         }
 
         // PackageGetProperty
-        [DllImport(DLL32, EntryPoint="PackageGetProperty", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
+        [DllImport(DLL32, EntryPoint = "PackageGetProperty", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
         private extern static int PackageGetProperty32(
             IntPtr hPkg,
             String Name,
@@ -215,7 +217,7 @@ namespace VirtPackageAPI
         }
 
         // PackageSetProperty
-        [DllImport(DLL32, EntryPoint="PackageSetProperty", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
+        [DllImport(DLL32, EntryPoint = "PackageSetProperty", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
         private extern static int PackageSetProperty32(
             IntPtr hPkg,
             String Name,
@@ -234,7 +236,7 @@ namespace VirtPackageAPI
         }
 
         // PackageSetIconFile
-        [DllImport(DLL32, EntryPoint="PackageSetIconFile", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
+        [DllImport(DLL32, EntryPoint = "PackageSetIconFile", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
         private extern static int PackageSetIconFile32(
             IntPtr hPkg,
             String FileName);
@@ -283,7 +285,7 @@ namespace VirtPackageAPI
             UInt64 ChangeTime,
             UInt64 EndOfFile,
             UInt32 FileAttributes);
-        [DllImport(DLL32, EntryPoint="VirtFsEnum", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
+        [DllImport(DLL32, EntryPoint = "VirtFsEnum", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
         private extern static int VirtFsEnum32(
             IntPtr hPkg,
             VIRTFS_ENUM_CALLBACK Callback,
@@ -302,7 +304,7 @@ namespace VirtPackageAPI
         }
 
         // VirtFsAdd
-        [DllImport(DLL32, EntryPoint="VirtFsAdd", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
+        [DllImport(DLL32, EntryPoint = "VirtFsAdd", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
         private extern static int VirtFsAdd32(
             IntPtr hPkg,
             String SrcFileName,
@@ -324,7 +326,7 @@ namespace VirtPackageAPI
         }
 
         // VirtFsAddEx
-        [DllImport(DLL32, EntryPoint="VirtFsAddEx", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
+        [DllImport(DLL32, EntryPoint = "VirtFsAddEx", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
         private extern static int VirtFsAddEx32(
             IntPtr hPkg,
             String SrcFileName,
@@ -349,7 +351,7 @@ namespace VirtPackageAPI
         }
 
         // VirtFsAddEmptyDir
-        [DllImport(DLL32, EntryPoint="VirtFsAddEmptyDir", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
+        [DllImport(DLL32, EntryPoint = "VirtFsAddEmptyDir", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
         private extern static int VirtFsAddEmptyDir32(
             IntPtr hPkg,
             String DirName,
@@ -368,7 +370,7 @@ namespace VirtPackageAPI
         }
 
         // VirtFsExtract
-        [DllImport(DLL32, EntryPoint="VirtFsExtract", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
+        [DllImport(DLL32, EntryPoint = "VirtFsExtract", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
         private extern static int VirtFsExtract32(
             IntPtr hPkg,
             String FileName,
@@ -403,7 +405,7 @@ namespace VirtPackageAPI
         }
 
         // VirtFsSetFileStreaming
-        [DllImport(DLL32, EntryPoint="VirtFsSetFileStreaming", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
+        [DllImport(DLL32, EntryPoint = "VirtFsSetFileStreaming", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
         private extern static int VirtFsSetFileStreaming32(
             IntPtr hPkg,
             String FileName);
@@ -423,7 +425,7 @@ namespace VirtPackageAPI
         // VirtReg imports
 
         // VirtRegGetWorkKey
-        [DllImport(DLL32, EntryPoint="VirtRegGetWorkKey", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
+        [DllImport(DLL32, EntryPoint = "VirtRegGetWorkKey", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
         private extern static int VirtRegGetWorkKey32(
             IntPtr hPkg,
             StringBuilder WorkKey,
@@ -442,7 +444,7 @@ namespace VirtPackageAPI
         }
 
         // VirtRegGetWorkKeyEx
-        [DllImport(DLL32, EntryPoint="VirtRegGetWorkKeyEx", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
+        [DllImport(DLL32, EntryPoint = "VirtRegGetWorkKeyEx", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
         private extern static int VirtRegGetWorkKeyEx32(
             IntPtr hPkg,
             StringBuilder WorkKey,
@@ -464,7 +466,7 @@ namespace VirtPackageAPI
         }
 
         // VirtRegSaveWorkKey
-        [DllImport(DLL32, EntryPoint="VirtRegSaveWorkKey", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
+        [DllImport(DLL32, EntryPoint = "VirtRegSaveWorkKey", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
         private extern static int VirtRegSaveWorkKey32(
             IntPtr hPkg);
         [DllImport(DLL64, EntryPoint = "VirtRegSaveWorkKey", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
@@ -481,7 +483,7 @@ namespace VirtPackageAPI
         // Sandbox imports
 
         // SandboxGetRegistryFlags
-        [DllImport(DLL32, EntryPoint="SandboxGetRegistryFlags", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
+        [DllImport(DLL32, EntryPoint = "SandboxGetRegistryFlags", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
         private extern static int SandboxGetRegistryFlags32(
             IntPtr hPkg,
             String Path,
@@ -503,7 +505,7 @@ namespace VirtPackageAPI
         }
 
         // SandboxGetFileFlags
-        [DllImport(DLL32, EntryPoint="SandboxGetFileFlags", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
+        [DllImport(DLL32, EntryPoint = "SandboxGetFileFlags", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
         private extern static int SandboxGetFileFlags32(
             IntPtr hPkg,
             String Path,
@@ -525,7 +527,7 @@ namespace VirtPackageAPI
         }
 
         // SandboxSetRegistryFlags
-        [DllImport(DLL32, EntryPoint="SandboxSetRegistryFlags", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
+        [DllImport(DLL32, EntryPoint = "SandboxSetRegistryFlags", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
         private extern static int SandboxSetRegistryFlags32(
             IntPtr hPkg,
             String Path,
@@ -547,7 +549,7 @@ namespace VirtPackageAPI
         }
 
         // SandboxSetFileFlags
-        [DllImport(DLL32, EntryPoint="SandboxSetFileFlags", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
+        [DllImport(DLL32, EntryPoint = "SandboxSetFileFlags", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
         private extern static int SandboxSetFileFlags32(
             IntPtr hPkg,
             String Path,
@@ -569,7 +571,7 @@ namespace VirtPackageAPI
         }
 
         // VirtFsGetFileFlags
-        [DllImport(DLL32, EntryPoint="VirtFsGetFileFlags", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
+        [DllImport(DLL32, EntryPoint = "VirtFsGetFileFlags", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
         private extern static int VirtFsGetFileFlags32(
             IntPtr hPkg,
             String Path,
@@ -588,7 +590,7 @@ namespace VirtPackageAPI
         }
 
         // VirtFsSetFileFlags
-        [DllImport(DLL32, EntryPoint="VirtFsSetFileFlags", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
+        [DllImport(DLL32, EntryPoint = "VirtFsSetFileFlags", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
         private extern static int VirtFsSetFileFlags32(
             IntPtr hPkg,
             String Path,
@@ -611,7 +613,7 @@ namespace VirtPackageAPI
         // 'Quick' functions (do not require package to be opened, can be called on closed package files)
 
         // QuickReadIni
-        [DllImport(DLL32, EntryPoint="QuickReadIni", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
+        [DllImport(DLL32, EntryPoint = "QuickReadIni", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
         private extern static int QuickReadIni32(
             String PackageExeFile,
             StringBuilder IniBuf,
@@ -728,7 +730,7 @@ namespace VirtPackageAPI
             [MarshalAs(UnmanagedType.LPWStr)] String AppID);
 
         // DeployedAppEnum
-        [DllImport(DLL32, EntryPoint="DeployedAppEnum", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
+        [DllImport(DLL32, EntryPoint = "DeployedAppEnum", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
         private extern static int DeployedAppEnum32(
             DEPLOYEDAPP_ENUM_CALLBACK Callback,
             ref Object Data);
@@ -744,7 +746,7 @@ namespace VirtPackageAPI
         }
 
         // DeployedAppGetDir
-        [DllImport(DLL32, EntryPoint="DeployedAppGetDir", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
+        [DllImport(DLL32, EntryPoint = "DeployedAppGetDir", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
         private extern static int DeployedAppGetDir32(
             String AppID,
             StringBuilder BaseDirName,
@@ -931,12 +933,56 @@ namespace VirtPackageAPI
         {
             opened = false;
             openedFile = "";
+            lastError = APIRET.SUCCESS;
             //private const String DLLNAME = "PackagerDll.dll";
         }
 
         ~VirtPackage()
         {
             Close();
+        }
+
+        public APIRET GetLastError()
+        {
+            return lastError;
+        }
+
+        public void ResetLastError()
+        {
+            lastError = APIRET.SUCCESS;
+        }
+
+        static public void ApiRetStr(APIRET apiRet, out string name, out string description)
+        {
+            switch (apiRet)
+            {
+	        case APIRET.SUCCESS:				name = "APIRET_SUCCESS"; description = "Success"; break;
+	        case APIRET.FAILURE:				name = "APIRET_FAILURE"; description = "Failure"; break;
+	        case APIRET.VIRTFILES_DB_ERROR:		name = "APIRET_VIRTFILES_DB_ERROR"; description = "Virtual filesystem database error"; break;
+	        case APIRET.VIRTFILES_ZIP_ERROR:	name = "APIRET_VIRTFILES_ZIP_ERROR"; description = "ZIP error"; break;
+	        case APIRET.NOT_FOUND:				name = "APIRET_NOT_FOUND"; description = "File / resource not found"; break;
+	        case APIRET.INVALID_PARAMETER:		name = "APIRET_INVALID_PARAMETER"; description = "Invalid parameter"; break;
+	        case APIRET.FILE_CREATE_ERROR:		name = "APIRET_FILE_CREATE_ERROR"; description = "File creation error"; break;
+	        case APIRET.PE_RESOURCE_ERROR:		name = "APIRET_PE_RESOURCE_ERROR"; description = "Virtual package resource error"; break;
+	        case APIRET.MEMORY_ERROR:			name = "APIRET_MEMORY_ERROR"; description = "Memory error"; break;
+	        case APIRET.COMMIT_ERROR:			name = "APIRET_COMMIT_ERROR"; description = "Error committing virtual package changes"; break;
+	        case APIRET.VIRTREG_DEPLOY_ERROR:	name = "APIRET_VIRTREG_DEPLOY_ERROR"; description = "Error deploying virtual registry"; break;
+	        case APIRET.OUTPUT_ERROR:			name = "APIRET_OUTPUT_ERROR"; description = "Output error"; break;
+	        case APIRET.INSUFFICIENT_BUFFER:	name = "APIRET_INSUFFICIENT_BUFFER"; description = "Insufficient buffer size"; break;
+	        case APIRET.LOADLIBRARY_ERROR:		name = "APIRET_LOADLIBRARY_ERROR"; description = "LoadLibrary error"; break;
+	        case APIRET.VIRTFILES_INI_ERROR:	name = "APIRET_VIRTFILES_INI_ERROR"; description = "Virtual package INI error"; break;
+	        case APIRET.APP_NOT_DEPLOYED:		name = "APIRET_APP_NOT_DEPLOYED"; description = "Application not depliyed"; break;
+	        case APIRET.INSUFFICIENT_PRIVILEGES:name = "APIRET_INSUFFICIENT_PRIVILEGES"; description = "Insufficient user permissions"; break;
+	        case APIRET._32_64_BIT_MISMATCH:	name = "APIRET_32_64_BIT_MISMATCH"; description = "32/64 bit mismatch"; break;
+	        case APIRET.DOTNET_REQUIRED:		name = "APIRET_DOTNET_REQUIRED"; description = ".NET framework required"; break;
+	        case APIRET.CANCELLED:				name = "APIRET_CANCELLED"; description = "Operation cancelled"; break;
+	        case APIRET.INJECTION_FAILED:		name = "APIRET_INJECTION_FAILED"; description = "Injection failed"; break;
+	        case APIRET.OLD_VERSION:			name = "APIRET_OLD_VERSION"; description = "Old package version"; break;
+	        case APIRET.PASSWORD_REQUIRED:		name = "APIRET_PASSWORD_REQUIRED"; description = "Password required"; break;
+	        case APIRET.PASSWORD_MISMATCH:		name = "APIRET_PASSWORD_MISMATCH"; description = "Password mismatch"; break;
+	        case APIRET.INSUFFICIENT_LICENSE:	name = "APIRET_INSUFFICIENT_LICENSE"; description = "Insufficient license"; break;
+	        default:							name = String.Format("{0}", (int)apiRet); description = "Unknown error " + ((int)apiRet).ToString(); break;
+	        }
         }
 
         static public bool Is32Bit()
@@ -965,6 +1011,7 @@ namespace VirtPackageAPI
         {
             int Ret = PackageSave(hPkg, FileName);
             apiRet = (APIRET)Ret;
+            lastError = (apiRet != APIRET.SUCCESS ? apiRet : lastError);
             if (apiRet == APIRET.SUCCESS)
                 return true;
             else
@@ -980,6 +1027,7 @@ namespace VirtPackageAPI
         public bool Open(String PackageExeFile, out APIRET apiRet)
         {
             apiRet = (APIRET)PackageOpen(PackageExeFile, 0, ref hPkg);
+            lastError = (apiRet != APIRET.SUCCESS ? apiRet : lastError);
             if (apiRet == APIRET.SUCCESS)
             {
                 opened = true;
@@ -996,7 +1044,14 @@ namespace VirtPackageAPI
 
         public bool Create(String AppID, String AppVirtDll, String LoaderExe)
         {
-            APIRET Ret = (APIRET)PackageCreate(AppID, AppVirtDll, LoaderExe, ref hPkg);
+            APIRET Ret;
+            return Create(AppID, AppVirtDll, LoaderExe, out Ret);
+        }
+
+        public bool Create(String AppID, String AppVirtDll, String LoaderExe, out APIRET Ret)
+        {
+            Ret = (APIRET)PackageCreate(AppID, AppVirtDll, LoaderExe, ref hPkg);
+            lastError = (Ret != APIRET.SUCCESS ? Ret : lastError);
             if (Ret == APIRET.SUCCESS)
             {
                 opened = true;
@@ -1009,8 +1064,15 @@ namespace VirtPackageAPI
 
         public bool GetProperty(String Name, ref String Value)
         {
+            APIRET Ret;
+            return GetProperty(Name, ref Value, out Ret);
+        }
+
+        public bool GetProperty(String Name, ref String Value, out APIRET Ret)
+        {
             StringBuilder sbValue = new StringBuilder(MAX_STRING);
-            APIRET Ret = (APIRET)PackageGetProperty(hPkg, Name, sbValue, MAX_STRING);
+            Ret = (APIRET)PackageGetProperty(hPkg, Name, sbValue, MAX_STRING);
+            //lastError = (Ret != APIRET.SUCCESS ? Ret : lastError);
             if (Ret == APIRET.SUCCESS)
             {
                 Value = sbValue.ToString();
@@ -1033,7 +1095,14 @@ namespace VirtPackageAPI
 
         public bool SetProperty(String Name, String Value)
         {
-            APIRET Ret = (APIRET)PackageSetProperty(hPkg, Name, Value);
+            APIRET Ret;
+            return SetProperty(Name, Value, out Ret);
+        }
+
+        public bool SetProperty(String Name, String Value, out APIRET Ret)
+        {
+            Ret = (APIRET)PackageSetProperty(hPkg, Name, Value);
+            lastError = (Ret != APIRET.SUCCESS ? Ret : lastError);
             if (Ret == APIRET.SUCCESS)
                 return true;
             else if (Ret == APIRET.FILE_CREATE_ERROR)
@@ -1044,7 +1113,14 @@ namespace VirtPackageAPI
 
         public bool SetProtection(String Password, int ProtectedActions, String RequireCertificate)
         {
-            APIRET Ret = (APIRET)PackageSetProtection(hPkg, Password, ProtectedActions, RequireCertificate);
+            APIRET Ret;
+            return SetProtection(Password, ProtectedActions, RequireCertificate, out Ret);
+        }
+
+        public bool SetProtection(String Password, int ProtectedActions, String RequireCertificate, out APIRET Ret)
+        {
+            Ret = (APIRET)PackageSetProtection(hPkg, Password, ProtectedActions, RequireCertificate);
+            lastError = (Ret != APIRET.SUCCESS ? Ret : lastError);
             if (Ret == APIRET.SUCCESS)
                 return true;
             else if (Ret == APIRET.FILE_CREATE_ERROR)
@@ -1055,7 +1131,14 @@ namespace VirtPackageAPI
 
         public bool SetIcon(String FileName)
         {
-            APIRET Ret = (APIRET)PackageSetIconFile(hPkg, FileName);
+            APIRET Ret;
+            return SetIcon(FileName, out Ret);
+        }
+
+        public bool SetIcon(String FileName, out APIRET Ret)
+        {
+            Ret = (APIRET)PackageSetIconFile(hPkg, FileName);
+            lastError = (Ret != APIRET.SUCCESS ? Ret : lastError);
             if (Ret == APIRET.SUCCESS)
                 return true;
             else if (Ret == APIRET.NOT_FOUND)
@@ -1114,15 +1197,16 @@ namespace VirtPackageAPI
             bool bVariablizeName,
             VIRT_FILE_FLAGS fileFlags)
         {
-          APIRET Ret = (APIRET)VirtFsAddEx(hPkg, SrcFileName, DestFileName, bVariablizeName, (uint)fileFlags);
-          if (Ret == APIRET.SUCCESS)
-            return true;
-          else if (Ret == APIRET.VIRTFILES_DB_ERROR)
-            return true;
-          else if (Ret == APIRET.NOT_FOUND)
-            return false;
-          else
-            return false;
+            APIRET Ret = (APIRET)VirtFsAddEx(hPkg, SrcFileName, DestFileName, bVariablizeName, (uint)fileFlags);
+            lastError = (Ret != APIRET.SUCCESS ? Ret : lastError);
+            if (Ret == APIRET.SUCCESS)
+                return true;
+            else if (Ret == APIRET.VIRTFILES_DB_ERROR)
+                return true;
+            else if (Ret == APIRET.NOT_FOUND)
+                return false;
+            else
+                return false;
         }
 
         public bool AddEmptyDir(
@@ -1130,6 +1214,7 @@ namespace VirtPackageAPI
             bool bVariablizeName)
         {
             APIRET Ret = (APIRET)VirtFsAddEmptyDir(hPkg, DirName, bVariablizeName);
+            lastError = (Ret != APIRET.SUCCESS ? Ret : lastError);
             if (Ret == APIRET.SUCCESS)
                 return true;
             else if (Ret == APIRET.VIRTFILES_DB_ERROR)
@@ -1169,6 +1254,7 @@ namespace VirtPackageAPI
             String TargetDir)
         {
             APIRET Ret = (APIRET)VirtFsExtract(hPkg, FileName, TargetDir);
+            lastError = (Ret != APIRET.SUCCESS ? Ret : lastError);
             if (Ret == APIRET.SUCCESS)
                 return true;
             else if (Ret == APIRET.NOT_FOUND)
@@ -1183,6 +1269,7 @@ namespace VirtPackageAPI
             String FileName)
         {
             APIRET Ret = (APIRET)VirtFsDelete(hPkg, FileName);
+            lastError = (Ret != APIRET.SUCCESS ? Ret : lastError);
             if (Ret == APIRET.SUCCESS)
                 return true;
             else if (Ret == APIRET.NOT_FOUND)
@@ -1195,6 +1282,7 @@ namespace VirtPackageAPI
             String FileName)
         {
             APIRET Ret = (APIRET)VirtFsSetFileStreaming(hPkg, FileName);
+            lastError = (Ret != APIRET.SUCCESS ? Ret : lastError);
             if (Ret == APIRET.SUCCESS)
                 return true;
             else if (Ret == APIRET.NOT_FOUND)
@@ -1215,6 +1303,7 @@ namespace VirtPackageAPI
             else
                 waitHandle = new SafeWaitHandle(IntPtr.Zero, true); ;
             APIRET Ret = (APIRET)VirtRegGetWorkKeyEx(hPkg, sbWorkKey, MAX_STRING, waitHandle);
+            lastError = (Ret != APIRET.SUCCESS ? Ret : lastError);
             if (Ret == APIRET.SUCCESS)
             {
                 RegistryKey key = Registry.CurrentUser.OpenSubKey(sbWorkKey.ToString(), true);
@@ -1234,7 +1323,7 @@ namespace VirtPackageAPI
         {
             return GetRegWorkKeyEx(null);
         }
-        
+
         [DllImport("kernel32.dll")]
         static extern void OutputDebugString(string lpOutputString);
 
@@ -1242,6 +1331,7 @@ namespace VirtPackageAPI
         {
             APIRET Ret = (APIRET)VirtRegSaveWorkKey(hPkg);
             OutputDebugString("SaveRegWorkKey() ret=" + (int)Ret + " LE=" + Marshal.GetLastWin32Error() + "\n");
+            lastError = (Ret != APIRET.SUCCESS ? Ret : lastError);
             if (Ret == APIRET.SUCCESS)
                 return true;
             else if (Ret == APIRET.INVALID_PARAMETER)
@@ -1285,12 +1375,14 @@ namespace VirtPackageAPI
 
         public void SetFileFlags(String Path, VIRT_FILE_FLAGS FileFlags)
         {
-          APIRET apiRet = (APIRET)VirtFsSetFileFlags(hPkg, Path, (UInt32)FileFlags);
+            APIRET apiRet = (APIRET)VirtFsSetFileFlags(hPkg, Path, (UInt32)FileFlags);
+            lastError = (apiRet != APIRET.SUCCESS ? apiRet : lastError);
         }
         public VIRT_FILE_FLAGS GetFileFlags(String Path)
         {
             UInt32 FileFlags = 0;
             APIRET apiRet = (APIRET)VirtFsGetFileFlags(hPkg, Path, ref FileFlags);
+            lastError = (apiRet != APIRET.SUCCESS ? apiRet : lastError);
             return (VIRT_FILE_FLAGS)FileFlags;
         }
 
@@ -1604,10 +1696,10 @@ namespace VirtPackageAPI
             m_IniProperties = VirtPackage.QuickReadIniValues(carrierExeName); //ReadIniSettings(Path.Combine(baseDirName, "VirtApp.ini"));
         }
 
-        public static long RecursiveDirSize(DirectoryInfo d) 
-        {    
-            long Size = 0;    
-            
+        public static long RecursiveDirSize(DirectoryInfo d)
+        {
+            long Size = 0;
+
             // Add file sizes.
             try
             {
@@ -1633,7 +1725,7 @@ namespace VirtPackageAPI
                 }
             }
             catch { }
-            return(Size);  
+            return (Size);
         }
 
         private String GetVersion()
