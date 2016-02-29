@@ -139,7 +139,7 @@
     <value>完全访问</value>
   </data>
   <data name="isolated" xml:space="preserve">
-    <value>隔离</value>
+    <value>只读访问 (Isolated)</value>
   </data>
   <data name="menuRequiresAtLeastTwo" xml:space="preserve">
     <value>至少需要两个菜单项</value>

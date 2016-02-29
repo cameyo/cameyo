@@ -154,7 +154,7 @@
     <value>是否开启自动更新?</value>
   </data>
   <data name="label7.Text" xml:space="preserve">
-    <value>应用版本</value>
+    <value>应用版本:</value>
   </data>
   <data name="label8.Text" xml:space="preserve">
     <value>测试版本号:</value>
@@ -170,21 +170,19 @@
   </data>
   <data name="textBox2.Text" xml:space="preserve">
     <value>存放XML和应用程序的路径:
-例如:
+例子:
 \\server\public\apps\App.cameyo.xml
 http://www.myserver.com/apps/App.cameyo.xml
 https://www.myserver.com/apps/App.cameyo.xml</value>
   </data>
   <data name="textBox3.Text" xml:space="preserve">
-    <value>该按钮会为当前程序生成XML文件.
-这个XML文件包含版本等信息,请存放到服务器上.</value>
+    <value>点击该按钮会为当前程序生成XML文件.这个XML文件包含版本等信息,请把它放到服务器上.</value>
   </data>
   <data name="textBox4.Text" xml:space="preserve">
     <value>请上传XML和EXE文件到服务器上,确保它们有在同一个目录并且有相同名称.
 例子:
 http://www.myserver.com/apps/App.cameyo.xml
 http://www.myserver.com/apps/App.cameyo.exe
-
 </value>
   </data>
 </root>

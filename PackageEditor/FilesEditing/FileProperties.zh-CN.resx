@@ -118,10 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="chkFileFlagDELETED.Text" xml:space="preserve">
-    <value>已删除: 在虚拟应用程序中就像删除了一样。</value>
+    <value>已删除: 在虚拟应用程序中删除。</value>
   </data>
   <data name="chkFileFlagDEPLOYED.Text" xml:space="preserve">
-    <value>配置: 在初次使用时获取</value>
+    <value>强制解压(磁盘模式)</value>
   </data>
   <data name="chkFileFlagDISCONNECTED.Text" xml:space="preserve">
     <value>从数据库中修改硬盘文件</value>
