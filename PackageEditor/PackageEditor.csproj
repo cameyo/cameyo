@@ -169,6 +169,9 @@
     <Compile Include="WizardTabControl.cs">
       <SubType>Component</SubType>
     </Compile>
+    <EmbeddedResource Include="ADPermissions.zh-CN.resx">
+      <DependentUpon>ADPermissions.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AutoLaunchEditItemForm.af-ZA.resx">
       <DependentUpon>AutoLaunchEditItemForm.cs</DependentUpon>
     </EmbeddedResource>
