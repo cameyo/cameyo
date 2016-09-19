@@ -226,39 +226,64 @@ namespace Cameyo.Player
         public bool Auth(string login, string password, bool cache)
         {
             SetCredentials(login, password);
+
             var json = SendRequest("AccountAuth", true, "&client=WinPlayer");
-            AccountInfo = DeserializeJson<AccountInfo>(json);
-            if (AccountInfo != null)
+            try
             {
-                if (cache)
+                AccountInfo = DeserializeJson<AccountInfo>(json);
+                if (AccountInfo != null)
                 {
-                    File.WriteAllText(LoginFile, DPAPI.Encrypt(DPAPI.KeyType.UserKey, login, "=EQW*"));
-                    File.WriteAllText(PasswordFile, DPAPI.Encrypt(DPAPI.KeyType.UserKey, password, "M#$!"));
+                    if (cache)
+                    {
+                        File.WriteAllText(LoginFile, DPAPI.Encrypt(DPAPI.KeyType.UserKey, login, "=EQW*"));
+                        File.WriteAllText(PasswordFile, DPAPI.Encrypt(DPAPI.KeyType.UserKey, password, "M#$!"));
+                    }
+                    return true;
                 }
-                return true;
+                else
+                    return false;
             }
-            else
+            catch
+            {
                 return false;
+            }
         }
 
         public List<ServerApp> PkgList(string libId, bool allowCache)
         {
             var json = CacheOrWeb("PkgList", true, "&lib=" + libId + "&detail=Player", "Lib." + libId, allowCache);
-            var retVal = DeserializeJson<List<ServerApp>>(json);
-            if (retVal != null)
-                return retVal;
-            else
+            try
+            {
+                var retVal = DeserializeJson<List<ServerApp>>(json);
+                if (retVal != null)
+                    return retVal;
+                else
+                    return new List<ServerApp>();   // Return empty list on error?
+
+            }
+            catch
+            {
+                DeleteUserCache();
                 return new List<ServerApp>();   // Return empty list on error?
+            }
         }
 
         public ServerAppDetails AppDetails(string pkgId, bool allowCache)
         {
             var json = CacheOrWeb("PkgInfo", true, "&pkgId=" + pkgId + "&detail=Player", pkgId, allowCache);
-            var retVal = DeserializeJson<ServerAppDetails>(json);
-            if (retVal != null)
-                return retVal;
-            else
+            try
+            {
+                var retVal = DeserializeJson<ServerAppDetails>(json);
+                if (retVal != null)
+                    return retVal;
+                else
+                    return new ServerAppDetails();   // Return empty item on error?
+            }
+            catch
+            {
+                DeleteUserCache();
                 return new ServerAppDetails();   // Return empty item on error?
+            }
         }
 
         public bool DownloadIcon(string iconUrl, string pkgId)
