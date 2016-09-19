@@ -584,7 +584,8 @@ namespace Cameyo.Player
                         }
                         //if (rdpInfo.status >= (int)RdpTokenStatus.Error)
                         if (rdpInfo.status != (int)RdpTokenStatus.PkgBuilt &&
-                            rdpInfo.status != (int)RdpTokenStatus.ApplicationReady)   // The only other correct value
+                            rdpInfo.status != (int)RdpTokenStatus.ApplicationReady &&   // The only other correct values
+                            rdpInfo.status != (int)RdpTokenStatus.ReadyForConnection)   // The only other correct values
                         {
                             Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() =>
                             {
@@ -596,14 +597,14 @@ namespace Cameyo.Player
                     }
                     retry = 0;   // No technical error
                 }
-                catch
+                catch (Exception ex)
                 {
                     if (retry++ >= 3)
                     {
                         Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() =>
                         {
                             this.Show();   // Restore
-                            DisplayError("Failed creating package (b). Please retry.");
+                            DisplayError("Failed creating package (b). Please retry.\n" + ex.ToString());
                         }));
                         break;
                     }
