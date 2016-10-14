@@ -9,7 +9,10 @@
 		android:targetSdkVersion="@ANDROID_APP_TARGET_SDK@"
 		android:minSdkVersion="@ANDROID_APP_MIN_SDK@"/>
 
-	<supports-screens
+	<uses-libraries 
+                android:name="org.apache.http.legacy" android:required="false"/>
+	
+        <supports-screens
 		android:anyDensity="true"
 		android:smallScreens="true"
 		android:normalScreens="true"
