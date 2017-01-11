@@ -127,7 +127,7 @@
     <value>标题：</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>目标：</value>
+    <value>命令：</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
     <value>备注(可选):</value>

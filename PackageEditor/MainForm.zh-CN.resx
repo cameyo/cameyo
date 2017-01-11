@@ -154,7 +154,7 @@
     <value>发布</value>
   </data>
   <data name="englishMenuItem.Text" xml:space="preserve">
-    <value>英语</value>
+    <value>English</value>
   </data>
   <data name="exitToolStripMenuItem.Text" xml:space="preserve">
     <value>退出(&amp;X)</value>
@@ -187,7 +187,7 @@
     <value>添加空文件夹</value>
   </data>
   <data name="fsFolderInfoIsolationLbl.Text" xml:space="preserve">
-    <value>文件夹隔离</value>
+    <value>文件系统:</value>
   </data>
   <data name="fsRemoveBtn.Text" xml:space="preserve">
     <value>删除</value>
@@ -205,7 +205,7 @@
     <value>扩展属性</value>
   </data>
   <data name="groupBox5.Text" xml:space="preserve">
-    <value>高级</value>
+    <value>扩展功能（完整功能需授权）</value>
   </data>
   <data name="groupBox6.Text" xml:space="preserve">
     <value>时间限制</value>
@@ -214,22 +214,22 @@
     <value>删除应用程序痕迹</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>程序名:</value>
+    <value>程序名(AppID):</value>
   </data>
   <data name="label10.Text" xml:space="preserve">
-    <value>文件版本：</value>
+    <value>程序版本：</value>
   </data>
   <data name="label11.Text" xml:space="preserve">
     <value>最近编辑</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>说明：</value>
+    <value>程序说明：</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
-    <value>隔离：</value>
+    <value>注册表：</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
-    <value>安全模式：</value>
+    <value>资源访问模式：</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
     <value>数据存储器：</value>
@@ -238,13 +238,13 @@
     <value>图标：</value>
   </data>
   <data name="label7.Text" xml:space="preserve">
-    <value>在虚拟机外执行子程序:</value>
+    <value>不虚拟化的子进程:</value>
   </data>
   <data name="label8.Text" xml:space="preserve">
     <value>例子：“iexplore.exe;myapp.exe”</value>
   </data>
   <data name="label9.Text" xml:space="preserve">
-    <value>工作室</value>
+    <value>运 行 模 式:</value>
   </data>
   <data name="langToolStripMenuItem.Text" xml:space="preserve">
     <value>语言(&amp;L)</value>
@@ -274,10 +274,10 @@
     <value>打开虚拟程序包(&amp;O)</value>
   </data>
   <data name="propertyExpiration.Text" xml:space="preserve">
-    <value>终止日期</value>
+    <value>到期时间</value>
   </data>
   <data name="propertyIsolationDataMode.Text" xml:space="preserve">
-    <value>数据模式：应用程序只能存储文件到我的文档，桌面和网络硬盘</value>
+    <value>数据模式：应用程序只能存储文件到我的文档，桌面或网络设备</value>
   </data>
   <data name="propertyIsolationIsolated.Text" xml:space="preserve">
     <value>隔离模式：安全模式，应用程序无法对真实系统进行修改。</value>
@@ -289,7 +289,7 @@
     <value>退出时清除(所有数据和设置都会丢失)</value>
   </data>
   <data name="rdbCleanNone.Text" xml:space="preserve">
-    <value>不删除，让应用程序准备运行（最快）</value>
+    <value>不删除，让应用程序可随时运行（最快）</value>
   </data>
   <data name="rdbCleanRegOnly.Text" xml:space="preserve">
     <value>不修改注册表（注册表的更改将会保存在文件中）</value>
@@ -346,10 +346,10 @@
     <value>不集成</value>
   </data>
   <data name="rdbIntegrateStandard.Text" xml:space="preserve">
-    <value>重建快捷方式和关联</value>
+    <value>只建立快捷方式和关联（自动添加应用程序的快捷方式和文件关联）</value>
   </data>
   <data name="rdbIntegrateVirtual.Text" xml:space="preserve">
-    <value>虚拟集成：添加虚拟层到Windows资源管理器</value>
+    <value>虚拟集成：添加虚拟层到Windows资源管理器（深度集成，就像是已经安装到系统中一样）</value>
   </data>
   <data name="chineseMenuItem.Text" xml:space="preserve">
     <value>简体中文</value>
@@ -395,5 +395,47 @@
   </data>
   <data name="propertyTtlResistRemove.Text" xml:space="preserve">
     <value>删除应用时不重置应用有效期</value>
+  </data>
+  <data name="groupDataEncrypt.Text" xml:space="preserve">
+    <value>加密</value>
+  </data>
+  <data name="groupEditProtect.Text" xml:space="preserve">
+    <value>编辑权限</value>
+  </data>
+  <data name="groupExpiration.Text" xml:space="preserve">
+    <value>使用时间限制</value>
+  </data>
+  <data name="groupUsageRights.Text" xml:space="preserve">
+    <value>用户权限</value>
+  </data>
+  <data name="label12.Text" xml:space="preserve">
+    <value>密码确认:</value>
+  </data>
+  <data name="lnkEncryptionLearnMore.Text" xml:space="preserve">
+    <value>关于加密</value>
+  </data>
+  <data name="lnkExportPwdKey.Text" xml:space="preserve">
+    <value>导出</value>
+  </data>
+  <data name="lnkGenerateEncKey.Text" xml:space="preserve">
+    <value>生成</value>
+  </data>
+  <data name="lnkImportPwdKey.Text" xml:space="preserve">
+    <value>导入</value>
+  </data>
+  <data name="propertyEncryption.Text" xml:space="preserve">
+    <value>加密用户程序数据</value>
+  </data>
+  <data name="propertyEncryptUserCreatedPassword.Text" xml:space="preserve">
+    <value>首次运行时由用户创建密码</value>
+  </data>
+  <data name="propertyEncryptUsingPassword.Text" xml:space="preserve">
+    <value>使用密码加密:</value>
+  </data>
+  <data name="propertyEncryptUsingKey.Text" xml:space="preserve">
+    <value>使用密钥加密 (直接保存到程序包中,不需要密码):</value>
+  </data>
+  <data name="tabSecurity.Text" xml:space="preserve">
+    <value>安全</value>
   </data>
 </root>

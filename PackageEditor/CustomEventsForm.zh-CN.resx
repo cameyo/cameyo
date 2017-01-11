@@ -124,7 +124,7 @@
     <value>等待程序结束</value>
   </data>
   <data name="btnAddSave.Text" xml:space="preserve">
-    <value>添加(&amp;A)</value>
+    <value>添加/修改(&amp;A)</value>
   </data>
   <data name="btnCancel.Text" xml:space="preserve">
     <value>取消(&amp;C)</value>
