@@ -169,6 +169,9 @@
     <Compile Include="WizardTabControl.cs">
       <SubType>Component</SubType>
     </Compile>
+    <EmbeddedResource Include="ADPermissions.zh-CN.resx">
+      <DependentUpon>ADPermissions.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AutoLaunchEditItemForm.af-ZA.resx">
       <DependentUpon>AutoLaunchEditItemForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -244,12 +247,36 @@
     <EmbeddedResource Include="AutoUpdateForm.af-ZA.resx">
       <DependentUpon>AutoUpdateForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AutoUpdateForm.de-DE.resx">
+      <DependentUpon>AutoUpdateForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AutoUpdateForm.es-ES.resx">
+      <DependentUpon>AutoUpdateForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AutoUpdateForm.fr-FR.resx">
+      <DependentUpon>AutoUpdateForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AutoUpdateForm.id-ID.resx">
+      <DependentUpon>AutoUpdateForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AutoUpdateForm.it-IT.resx">
+      <DependentUpon>AutoUpdateForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AutoUpdateForm.pl-PL.resx">
+      <DependentUpon>AutoUpdateForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AutoUpdateForm.resx">
       <DependentUpon>AutoUpdateForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ADPermissions.resx">
       <DependentUpon>ADPermissions.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AutoUpdateForm.tr-TR.resx">
+      <DependentUpon>AutoUpdateForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AutoUpdateForm.zh-CN.resx">
+      <DependentUpon>AutoUpdateForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CustomEventsForm.af-ZA.resx">
       <DependentUpon>CustomEventsForm.cs</DependentUpon>
