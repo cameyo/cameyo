@@ -201,9 +201,6 @@ namespace PackageEditor
             this.panel9 = new System.Windows.Forms.Panel();
             this.label11 = new System.Windows.Forms.Label();
             this.line = new System.Windows.Forms.GroupBox();
-            this.bottomPanel = new System.Windows.Forms.Panel();
-            this.panel12 = new System.Windows.Forms.PictureBox();
-            this.panel11 = new System.Windows.Forms.PictureBox();
             this.bkPanel = new System.Windows.Forms.Panel();
             this.panelLicense = new System.Windows.Forms.Panel();
             this.lnkUpgrade = new System.Windows.Forms.LinkLabel();
@@ -260,9 +257,6 @@ namespace PackageEditor
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel13.SuspendLayout();
             this.panel9.SuspendLayout();
-            this.bottomPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.panel12)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panel11)).BeginInit();
             this.bkPanel.SuspendLayout();
             this.panelLicense.SuspendLayout();
             this.SuspendLayout();
@@ -344,6 +338,7 @@ namespace PackageEditor
             // 
             // fileContextMenu
             // 
+            this.fileContextMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.fileContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileContextMenuDelete,
             this.fileContextMenuProperties});
@@ -420,6 +415,7 @@ namespace PackageEditor
             // 
             // ContextMenuStripRegistryFolder
             // 
+            this.ContextMenuStripRegistryFolder.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.ContextMenuStripRegistryFolder.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItemExport,
             this.deleteToolStripMenuItem});
@@ -529,6 +525,7 @@ namespace PackageEditor
             // 
             // menuStrip1
             // 
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem});
             resources.ApplyResources(this.menuStrip1, "menuStrip1");
@@ -925,6 +922,7 @@ namespace PackageEditor
             // 
             // fileToolStrip
             // 
+            this.fileToolStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.fileToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fsAddBtn,
             this.fsAddEmptyDirBtn,
@@ -1019,6 +1017,7 @@ namespace PackageEditor
             // 
             // regToolStrip
             // 
+            this.regToolStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.regToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.regRemoveBtn,
             this.regEditBtn,
@@ -1534,25 +1533,6 @@ namespace PackageEditor
             this.line.Name = "line";
             this.line.TabStop = false;
             // 
-            // bottomPanel
-            // 
-            this.bottomPanel.Controls.Add(this.panel12);
-            this.bottomPanel.Controls.Add(this.panel11);
-            resources.ApplyResources(this.bottomPanel, "bottomPanel");
-            this.bottomPanel.Name = "bottomPanel";
-            // 
-            // panel12
-            // 
-            resources.ApplyResources(this.panel12, "panel12");
-            this.panel12.Name = "panel12";
-            this.panel12.TabStop = false;
-            // 
-            // panel11
-            // 
-            resources.ApplyResources(this.panel11, "panel11");
-            this.panel11.Name = "panel11";
-            this.panel11.TabStop = false;
-            // 
             // bkPanel
             // 
             resources.ApplyResources(this.bkPanel, "bkPanel");
@@ -1585,7 +1565,6 @@ namespace PackageEditor
             this.AllowDrop = true;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.bottomPanel);
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.bkPanel);
@@ -1676,9 +1655,6 @@ namespace PackageEditor
             this.panel13.PerformLayout();
             this.panel9.ResumeLayout(false);
             this.panel9.PerformLayout();
-            this.bottomPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.panel12)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panel11)).EndInit();
             this.bkPanel.ResumeLayout(false);
             this.panelLicense.ResumeLayout(false);
             this.panelLicense.PerformLayout();
@@ -1770,9 +1746,6 @@ namespace PackageEditor
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.TextBox tbType;
-        private System.Windows.Forms.PictureBox panel11;
-        private System.Windows.Forms.PictureBox panel12;
-        private System.Windows.Forms.Panel bottomPanel;
         private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.CheckBox chkCleanAsk;
         private System.Windows.Forms.RadioButton rdbCleanAll;
