@@ -129,7 +129,7 @@ namespace PackageEditor
             System.ComponentModel.ComponentResourceManager localResources = new System.ComponentModel.ComponentResourceManager(typeof(CustomEventsForm));
             if (txtCmd.Text == "")
             {
-                MessageBox.Show(localResources.GetString("enterCommand"));
+                MessageBox.Show("Please enter a command.");
                 return;
             }
             int selectedIndex = listBox.SelectedIndex;
