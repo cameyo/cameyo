@@ -110,7 +110,7 @@ namespace Cameyo.Player
         // Storage click
         void OnStorageClick(object sender, RoutedEventArgs e)
         {
-            Utils.ShellExec(Server.ServerUrl() + "/storage", false);
+            Utils.ShellExec(Server.ServerUrl() + "/profile", false);
         }
 
         // Pkg creation click
