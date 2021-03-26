@@ -1018,7 +1018,7 @@ namespace VirtPackageAPI
                 return false;
         }
 
-        public bool Open(String PackageExeFile)
+        public bool Open(string PackageExeFile)
         {
             APIRET apiRet;
             return Open(PackageExeFile, out apiRet);
