@@ -32,6 +32,7 @@ namespace Cameyo.Player
 
         public Login()
         {
+            Utils.RequireTls12();
             InitializeComponent();
         }
 

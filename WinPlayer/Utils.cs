@@ -4,19 +4,37 @@ using System.Runtime.InteropServices;
 using System.ComponentModel;
 using System.IO;
 using System.Diagnostics;
+using System.Net;
 
 namespace Cameyo
 {
     // Utils
     public class Utils
     {
+        public static void RequireTls12()
+        {
+            // Fixes a compatibility issue on machines with old protocol configuration (Chad @ Bentley). To reproduce:
+            //   [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Client]
+            //   "Enabled"=dword:00000000
+            //   [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server]
+            //   "Enabled"=dword:00000000
+            // => System.ComponentModel.Win32Exception: The client and server cannot communicate, because they do not possess a common algorithm
+            ServicePointManager.SecurityProtocol &= ~SecurityProtocolType.Ssl3;
+            ServicePointManager.SecurityProtocol &= ~SecurityProtocolType.Tls;
+#if WINPLAYER35
+#else
+            ServicePointManager.SecurityProtocol &= ~SecurityProtocolType.Tls11;
+            ServicePointManager.SecurityProtocol |= SecurityProtocolType.Tls12;
+#endif
+        }
+
         public static string MyPath(string fileName)
         {
             var myPath = System.IO.Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName);
-            return Path.Combine(myPath, fileName);
+            return Cameyo.Utils.PathCombine(myPath, fileName);
         }
 
-        static public bool KillFile(String fileName)
+        static public bool KillFile(string fileName)
         {
             try
             {
@@ -97,6 +115,29 @@ namespace Cameyo
             int exitCode = 0;
             bool bExec = ShellExec(silentInstallExe, "/detect \"" + installerFile + "\"", ref exitCode, true, true);
             return (bExec && exitCode == 0);
+        }
+
+        // CombinePath: a safer alternative to Path.Combine().
+        // To my great surprise & sadness, Path.Combine("c:\\now", "\\anything") -> "\\anything"
+        // In other words, whenever path2 starts with '\' or '/', it suppresses path1, which is a security issue!
+        public static string PathCombine(string path1, string path2, string path3 = null)
+        {
+            // 1 param
+            if (path2 == null)
+                return path1;
+
+            // 2+ params
+            if (!string.IsNullOrEmpty(path1) && path1.EndsWith(":"))
+                path1 += "\\";
+            while (!string.IsNullOrEmpty(path2) && (path2.StartsWith("\\") || path2.StartsWith("/")))
+                path2 = path2.Remove(0, 1);
+            if (path3 == null)
+                return System.IO.Path.Combine(path1 ?? "", path2);
+
+            // 3 params
+            while (!string.IsNullOrEmpty(path3) && (path3.StartsWith("\\") || path3.StartsWith("/")))
+                path3 = path3.Remove(0, 1);
+            return System.IO.Path.Combine(path1 ?? "", path2, path3);
         }
 
         static public String BytesToStr(double len)

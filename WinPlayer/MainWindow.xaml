@@ -65,7 +65,7 @@
 
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                             <!-- Add dropdown -->
-                            <w:SplitButton x:Name="AddAppSplitBtn" Margin="20,-5,0,0" Content="+" FontSize="30">
+                            <w:SplitButton x:Name="AddAppSplitBtn" Margin="20,-5,0,0" Content="+" FontSize="30" Visibility="Collapsed">
                                 <MenuItem Header="Create a new package" Click="OnPkgCreateClick" />
                                 <MenuItem Header="Upload an existing package" Click="OnPkgUploadClick" />
                             </w:SplitButton>

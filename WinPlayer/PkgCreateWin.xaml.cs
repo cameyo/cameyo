@@ -824,7 +824,7 @@ namespace Cameyo.Player
                 // Validate cloud packaging: account limitations?
                 if (string.IsNullOrEmpty(CannotOnlinePackagerReason))
                 {
-                    var accountMaxMb = Server.AccountInfo.FileUploadMbLimit * 1024 * 1024;
+                    var accountMaxMb = (long)Server.AccountInfo.FileUploadMbLimit * 1024 * 1024;
                     if (fi.Length >= accountMaxMb)
                     {
                         CannotOnlinePackagerReason = CannotUploadExistingPkgReason =
